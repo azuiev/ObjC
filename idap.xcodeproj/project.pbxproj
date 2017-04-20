@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D145DE21EA90DFE00ABEC5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE11EA90DFE00ABEC5C /* main.m */; };
+		1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE31EA9102B00ABEC5C /* Creature.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		1D145DE11EA90DFE00ABEC5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1D145DE31EA9102B00ABEC5C /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
+		1D145DE51EA9103A00ABEC5C /* Creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				1D145DE11EA90DFE00ABEC5C /* main.m */,
+				1D145DE31EA9102B00ABEC5C /* Creature.m */,
+				1D145DE51EA9103A00ABEC5C /* Creature.h */,
 			);
 			path = idap;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */,
 				1D145DE21EA90DFE00ABEC5C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +222,7 @@
 		1D9FDCFF1EA90C86003C4CE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -223,6 +230,7 @@
 		1D9FDD001EA90C86003C4CE6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

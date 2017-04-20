@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Creature.h"
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        Creature *creature1 = [Creature create];
+        [creature1 setName:@"Yasya"];
+        [creature1 setGender:male];
+        [creature1 setAge:25.4];
+        [creature1 setWeight:99.9];
+        [creature1 sayHi];
+        
     }
     return 0;
 }
