@@ -16,10 +16,12 @@
 @property   (nonatomic, assign)     double         weight;
 @property   (nonatomic, copy, readonly)   NSArray *children;
 
-+(Creature *)create;
 -(void)remove;
 -(void)sayHi;
 -(void)addChild:(Creature *)child;
 -(void)removeChild:(Creature *)child;
 -(void)performGenderSpecificOperation;
+
 @end
+
+

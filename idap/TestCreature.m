@@ -11,6 +11,7 @@
 #import "TestCreature.h"
 #import "CreatureMale.h"
 #import "CreatureFemale.h"
+#import "Creature+CreatureCategory.h"
 
 
 @implementation TestCreature

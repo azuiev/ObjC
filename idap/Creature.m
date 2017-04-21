@@ -17,12 +17,6 @@
 @implementation Creature
 @dynamic children;
 
-+(Creature *)create {
-    Creature *creature = [[[self alloc] init] autorelease];
-    [creature create];
-    return creature;
-}
-
 -(NSArray *)children {
     return [[self mutableChildren] copy];
 }
