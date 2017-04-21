@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+
 @class TestCreature;
 
 @interface TestCreature : NSObject

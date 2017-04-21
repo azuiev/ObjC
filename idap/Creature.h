@@ -17,16 +17,16 @@
 
 @property 	(nonatomic, assign)     gender         gender;
 @property 	(nonatomic, copy)       NSString       *name;
-@property   (nonatomic, assign)     double        age;
-@property   (nonatomic, assign)     double        weight;
-@property   (nonatomic, retain)     NSMutableArray *children;
+@property   (nonatomic, assign)     double         age;
+@property   (nonatomic, assign)     double         weight;
+@property   (nonatomic, copy, readonly)   NSArray *children;
 
 +(Creature *)create;
 -(void)goToWar;
 -(void)bornChild;
 -(void)remove;
 -(void)sayHi;
--(void)addChild;
--(void)removeChild;
+-(void)addChild:(Creature *)child;
+-(void)removeChild:(Creature *)child;
 
 @end
