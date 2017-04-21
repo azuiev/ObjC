@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D145DE21EA90DFE00ABEC5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE11EA90DFE00ABEC5C /* main.m */; };
 		1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE31EA9102B00ABEC5C /* Creature.m */; };
+		1D16EF811EAA8C21004825A8 /* CreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D16EF801EAA8C21004825A8 /* CreatureMale.m */; };
+		1D16EF841EAA8CE4004825A8 /* CreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D16EF831EAA8CE4004825A8 /* CreatureFemale.m */; };
 		1D6A553C1EAA5D20009479E1 /* TestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A553B1EAA5D20009479E1 /* TestCreature.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,10 @@
 		1D145DE11EA90DFE00ABEC5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D145DE31EA9102B00ABEC5C /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
 		1D145DE51EA9103A00ABEC5C /* Creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
+		1D16EF7F1EAA8B62004825A8 /* CreatureMale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatureMale.h; sourceTree = "<group>"; };
+		1D16EF801EAA8C21004825A8 /* CreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureMale.m; sourceTree = "<group>"; };
+		1D16EF821EAA8CB0004825A8 /* CreatureFemale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatureFemale.h; sourceTree = "<group>"; };
+		1D16EF831EAA8CE4004825A8 /* CreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureFemale.m; sourceTree = "<group>"; };
 		1D6A553B1EAA5D20009479E1 /* TestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCreature.m; sourceTree = "<group>"; };
 		1D6A553F1EAA5FCC009479E1 /* TestCreature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCreature.h; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +55,10 @@
 			children = (
 				1D145DE51EA9103A00ABEC5C /* Creature.h */,
 				1D145DE31EA9102B00ABEC5C /* Creature.m */,
+				1D16EF7F1EAA8B62004825A8 /* CreatureMale.h */,
+				1D16EF801EAA8C21004825A8 /* CreatureMale.m */,
+				1D16EF821EAA8CB0004825A8 /* CreatureFemale.h */,
+				1D16EF831EAA8CE4004825A8 /* CreatureFemale.m */,
 			);
 			name = Creature;
 			sourceTree = "<group>";
@@ -147,7 +157,9 @@
 			files = (
 				1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */,
 				1D6A553C1EAA5D20009479E1 /* TestCreature.m in Sources */,
+				1D16EF841EAA8CE4004825A8 /* CreatureFemale.m in Sources */,
 				1D145DE21EA90DFE00ABEC5C /* main.m in Sources */,
+				1D16EF811EAA8C21004825A8 /* CreatureMale.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
