@@ -6,12 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "TestCreature.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        [TestCreature test];
     }
     return 0;
 }
