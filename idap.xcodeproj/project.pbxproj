@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D145DE21EA90DFE00ABEC5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE11EA90DFE00ABEC5C /* main.m */; };
 		1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145DE31EA9102B00ABEC5C /* Creature.m */; };
+		1D6A553C1EAA5D20009479E1 /* TestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A553B1EAA5D20009479E1 /* TestCreature.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,8 @@
 		1D145DE11EA90DFE00ABEC5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D145DE31EA9102B00ABEC5C /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
 		1D145DE51EA9103A00ABEC5C /* Creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
+		1D6A553B1EAA5D20009479E1 /* TestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCreature.m; sourceTree = "<group>"; };
+		1D6A553F1EAA5FCC009479E1 /* TestCreature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCreature.h; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -41,6 +44,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D6A553A1EAA5CB6009479E1 /* Creature */ = {
+			isa = PBXGroup;
+			children = (
+				1D145DE51EA9103A00ABEC5C /* Creature.h */,
+				1D145DE31EA9102B00ABEC5C /* Creature.m */,
+			);
+			name = Creature;
+			sourceTree = "<group>";
+		};
+		1D6A553D1EAA5F94009479E1 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A553B1EAA5D20009479E1 /* TestCreature.m */,
+				1D6A553F1EAA5FCC009479E1 /* TestCreature.h */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 		1D9FDCEE1EA90C86003C4CE6 = {
 			isa = PBXGroup;
 			children = (
@@ -60,9 +81,9 @@
 		1D9FDCF91EA90C86003C4CE6 /* idap */ = {
 			isa = PBXGroup;
 			children = (
+				1D6A553D1EAA5F94009479E1 /* Test */,
+				1D6A553A1EAA5CB6009479E1 /* Creature */,
 				1D145DE11EA90DFE00ABEC5C /* main.m */,
-				1D145DE31EA9102B00ABEC5C /* Creature.m */,
-				1D145DE51EA9103A00ABEC5C /* Creature.h */,
 			);
 			path = idap;
 			sourceTree = "<group>";
@@ -125,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D145DE41EA9102B00ABEC5C /* Creature.m in Sources */,
+				1D6A553C1EAA5D20009479E1 /* TestCreature.m in Sources */,
 				1D145DE21EA90DFE00ABEC5C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +162,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -187,7 +209,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;

@@ -8,7 +8,6 @@
 
 @class Creature;
 
-
 @interface Creature : NSObject
 
     typedef enum {
