@@ -15,30 +15,10 @@
 @end
 
 @implementation Creature
-
-@synthesize gender = _gender;
 @dynamic children;
 
-+(Creature *)create {
-    Creature *creature = [[[self alloc] init] autorelease];
-    [creature create];
-    return creature;
-}
-
--(NSArray *) children {
+-(NSArray *)children {
     return [[self mutableChildren] copy];
-}
-
--(NSString *)genderAsString {
-    return male == [self gender] ? @"male" : @"female";
-}
-
--(void)goToWar {
-    NSLog(@"%@ went to war",[self name]);
-}
-
--(void)bornChild {
-    NSLog(@"%@ went to give birth to children",[self name]);
 }
 
 -(void)remove {
@@ -49,14 +29,16 @@
 }
 
 -(void)sayHi {
-    NSLog(@"HI. I`am %@ (%@) - %3.1f years old, %3.1f kilo", [self name], [self genderAsString], [self age], [self weight]);
+    NSLog(@"HI. I`am %@ (%@) - %3.1f years old, %3.1f kilo", [self name], [self class], [self age], [self weight]);
     if (0 == [self.children count]){
         return;
     }
+    
     NSLog(@"%@`s children",[self name]);
     for (Creature *creature in self.children) {
         [creature sayHi];
     }
+    
     NSLog(@"\n");
 }
 
@@ -71,4 +53,9 @@
 -(void)create {
     [self setMutableChildren:[NSMutableArray new]];
 }
+
+-(void)performGenderSpecificOperation{
+    
+}
+
 @end

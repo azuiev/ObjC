@@ -1,16 +1,15 @@
 //
-//  TestCreature.h
+//  Creature+CreatureCategory.h
 //  idap
 //
 //  Created by Aleksey Zuiev on 21/04/2017.
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
-#import <Foundation/Foundation.h>
 
-@class TestCreature;
+#import "Creature.h"
 
-@interface TestCreature : NSObject
+@interface Creature (CreatureCategory)
 
-+(void)test;
++(Creature *)create;
 
 @end
