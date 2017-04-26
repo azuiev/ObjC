@@ -18,6 +18,9 @@
 		1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */; };
 		1D5CA4321EB0F1C700706B17 /* AZTestCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */; };
 		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
+		1D5CA4431EB0F5B000706B17 /* AZCarWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4421EB0F5B000706B17 /* AZCarWashBuilding.m */; };
+		1D5CA4461EB0F6E300706B17 /* AZRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4451EB0F6E300706B17 /* AZRoom.m */; };
+		1D5CA44C1EB0F8C900706B17 /* AZBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4491EB0F82D00706B17 /* AZBuilding.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +47,12 @@
 		1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreatureMale.m; sourceTree = "<group>"; };
 		1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCreature.h; sourceTree = "<group>"; };
 		1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCreature.m; sourceTree = "<group>"; };
+		1D5CA4411EB0F5B000706B17 /* AZCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZCarWashBuilding.h; path = CarWash/AZCarWashBuilding.h; sourceTree = "<group>"; };
+		1D5CA4421EB0F5B000706B17 /* AZCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZCarWashBuilding.m; path = CarWash/AZCarWashBuilding.m; sourceTree = "<group>"; };
+		1D5CA4441EB0F6E300706B17 /* AZRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZRoom.h; path = CarWash/AZRoom.h; sourceTree = "<group>"; };
+		1D5CA4451EB0F6E300706B17 /* AZRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZRoom.m; path = CarWash/AZRoom.m; sourceTree = "<group>"; };
+		1D5CA4481EB0F82D00706B17 /* AZBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZBuilding.h; path = CarWash/AZBuilding.h; sourceTree = "<group>"; };
+		1D5CA4491EB0F82D00706B17 /* AZBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZBuilding.m; path = CarWash/AZBuilding.m; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +94,12 @@
 		1D5CA4341EB0F23C00706B17 /* CarWash */ = {
 			isa = PBXGroup;
 			children = (
+				1D5CA4411EB0F5B000706B17 /* AZCarWashBuilding.h */,
+				1D5CA4421EB0F5B000706B17 /* AZCarWashBuilding.m */,
+				1D5CA4441EB0F6E300706B17 /* AZRoom.h */,
+				1D5CA4451EB0F6E300706B17 /* AZRoom.m */,
+				1D5CA4481EB0F82D00706B17 /* AZBuilding.h */,
+				1D5CA4491EB0F82D00706B17 /* AZBuilding.m */,
 			);
 			name = CarWash;
 			sourceTree = "<group>";
@@ -173,10 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5CA44C1EB0F8C900706B17 /* AZBuilding.m in Sources */,
+				1D5CA4461EB0F6E300706B17 /* AZRoom.m in Sources */,
 				1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */,
 				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
 				1D5CA42C1EB0F1C700706B17 /* AZCreature+CreatureCategory.h in Sources */,
 				1D5CA42D1EB0F1C700706B17 /* AZCreature+CreatureCategory.m in Sources */,
+				1D5CA4431EB0F5B000706B17 /* AZCarWashBuilding.m in Sources */,
 				1D5CA42E1EB0F1C700706B17 /* AZCreatureFemale.h in Sources */,
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D5CA4301EB0F1C700706B17 /* AZCreatureMale.h in Sources */,
