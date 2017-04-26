@@ -6,9 +6,9 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZCreature+CreatureCategory.h"
+#import "AZCreature+AZCreatureCategory.h"
 
-@implementation AZCreature (CreatureCategory)
+@implementation AZCreature (AZCreatureCategory)
 
 + (AZCreature *)create {
     AZCreature *creature = [[[self alloc] init] autorelease];

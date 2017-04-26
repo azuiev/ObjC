@@ -8,7 +8,7 @@
 
 #import "AZCreature.h"
 
-@interface AZCreature (CreatureCategory)
+@interface AZCreature (AZCreatureCategory)
 
 + (AZCreature *)create;
 

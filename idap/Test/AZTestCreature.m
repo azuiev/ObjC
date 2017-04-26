@@ -11,7 +11,7 @@
 #import "AZTestCreature.h"
 #import "AZCreatureMale.h"
 #import "AZCreatureFemale.h"
-#import "AZCreature+CreatureCategory.h"
+#import "AZCreature+AZCreatureCategory.h"
 
 
 @implementation AZTestCreature

@@ -10,6 +10,8 @@
 
 @implementation AZDirector
 
-- (void)takeIncome:(double)income;
+- (void)takeIncome:(double)income{
+    
+}
 
 @end

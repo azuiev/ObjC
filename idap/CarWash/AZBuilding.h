@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AZCar.h"
+#import "AZWasher.h"
+#import "AZAccountant.h"
+#import "AZDirector.h"
+
 @interface AZBuilding : NSObject
 
 @property (nonatomic, copy, readonly) NSArray *rooms;
