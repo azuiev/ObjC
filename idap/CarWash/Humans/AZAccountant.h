@@ -10,4 +10,6 @@
 
 @interface AZAccountant : AZHuman
 
+- (void)calculateMoney:(double)amount;
+
 @end

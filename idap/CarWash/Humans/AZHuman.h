@@ -10,4 +10,8 @@
 
 @interface AZHuman : NSObject
 
+@property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, assign)   float       salary;
+@property (nonatomic, assign)   float       expirience;
+
 @end

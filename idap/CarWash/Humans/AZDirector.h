@@ -10,4 +10,6 @@
 
 @interface AZDirector : AZHuman
 
+- (void)takeIncome:(double)income;
+
 @end

@@ -10,4 +10,8 @@
 
 @implementation AZAccountant
 
+- (void)calculateMoney:(double)amount{
+    NSLog(@"%f", amount);
+}
+
 @end

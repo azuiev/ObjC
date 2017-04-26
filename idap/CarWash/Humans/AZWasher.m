@@ -10,4 +10,8 @@
 
 @implementation AZWasher
 
+- (void)washCar:(AZCar *)car{
+    NSLog(@"%@ is now cleat\n",car);
+}
+
 @end

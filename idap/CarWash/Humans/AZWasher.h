@@ -7,7 +7,10 @@
 //
 
 #import "AZHuman.h"
+#import "AZCar.h"
 
 @interface AZWasher : AZHuman
+
+- (void)washCar:(AZCar *)car;
 
 @end
