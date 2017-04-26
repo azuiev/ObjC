@@ -6,12 +6,12 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "Creature+CreatureCategory.h"
+#import "AZCreature+CreatureCategory.h"
 
-@implementation Creature (CreatureCategory)
+@implementation AZCreature (CreatureCategory)
 
-+(Creature *)create {
-    Creature *creature = [[[self alloc] init] autorelease];
++ (AZCreature *)create {
+    AZCreature *creature = [[[self alloc] init] autorelease];
     [creature create];
     return creature;
 }

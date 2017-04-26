@@ -6,11 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "TestCreature.h"
+#import "AZTestCreature.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        [TestCreature test];
+        [AZTestCreature test];
     }
     return 0;
 }

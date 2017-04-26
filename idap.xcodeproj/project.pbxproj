@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1D5CA4291EB0F10C00706B17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA3F11EB0ECF500706B17 /* main.m */; };
-		1D5CA42A1EB0F1C700706B17 /* Creature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4151EB0EFCC00706B17 /* Creature.h */; };
-		1D5CA42B1EB0F1C700706B17 /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4161EB0EFCC00706B17 /* Creature.m */; };
-		1D5CA42C1EB0F1C700706B17 /* Creature+CreatureCategory.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4171EB0EFCC00706B17 /* Creature+CreatureCategory.h */; };
-		1D5CA42D1EB0F1C700706B17 /* Creature+CreatureCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4181EB0EFCC00706B17 /* Creature+CreatureCategory.m */; };
-		1D5CA42E1EB0F1C700706B17 /* CreatureFemale.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4191EB0EFCC00706B17 /* CreatureFemale.h */; };
-		1D5CA42F1EB0F1C700706B17 /* CreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41A1EB0EFCC00706B17 /* CreatureFemale.m */; };
-		1D5CA4301EB0F1C700706B17 /* CreatureMale.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41B1EB0EFCC00706B17 /* CreatureMale.h */; };
-		1D5CA4311EB0F1C700706B17 /* CreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41C1EB0EFCC00706B17 /* CreatureMale.m */; };
-		1D5CA4321EB0F1C700706B17 /* TestCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4211EB0EFD400706B17 /* TestCreature.h */; };
-		1D5CA4331EB0F1C700706B17 /* TestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* TestCreature.m */; };
+		1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4151EB0EFCC00706B17 /* AZCreature.h */; };
+		1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4161EB0EFCC00706B17 /* AZCreature.m */; };
+		1D5CA42C1EB0F1C700706B17 /* AZCreature+CreatureCategory.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4171EB0EFCC00706B17 /* AZCreature+CreatureCategory.h */; };
+		1D5CA42D1EB0F1C700706B17 /* AZCreature+CreatureCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4181EB0EFCC00706B17 /* AZCreature+CreatureCategory.m */; };
+		1D5CA42E1EB0F1C700706B17 /* AZCreatureFemale.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4191EB0EFCC00706B17 /* AZCreatureFemale.h */; };
+		1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */; };
+		1D5CA4301EB0F1C700706B17 /* AZCreatureMale.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41B1EB0EFCC00706B17 /* AZCreatureMale.h */; };
+		1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */; };
+		1D5CA4321EB0F1C700706B17 /* AZTestCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */; };
+		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,16 +34,16 @@
 
 /* Begin PBXFileReference section */
 		1D5CA3F11EB0ECF500706B17 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1D5CA4151EB0EFCC00706B17 /* Creature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
-		1D5CA4161EB0EFCC00706B17 /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
-		1D5CA4171EB0EFCC00706B17 /* Creature+CreatureCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Creature+CreatureCategory.h"; sourceTree = "<group>"; };
-		1D5CA4181EB0EFCC00706B17 /* Creature+CreatureCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Creature+CreatureCategory.m"; sourceTree = "<group>"; };
-		1D5CA4191EB0EFCC00706B17 /* CreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatureFemale.h; sourceTree = "<group>"; };
-		1D5CA41A1EB0EFCC00706B17 /* CreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureFemale.m; sourceTree = "<group>"; };
-		1D5CA41B1EB0EFCC00706B17 /* CreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatureMale.h; sourceTree = "<group>"; };
-		1D5CA41C1EB0EFCC00706B17 /* CreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureMale.m; sourceTree = "<group>"; };
-		1D5CA4211EB0EFD400706B17 /* TestCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCreature.h; sourceTree = "<group>"; };
-		1D5CA4221EB0EFD400706B17 /* TestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCreature.m; sourceTree = "<group>"; };
+		1D5CA4151EB0EFCC00706B17 /* AZCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreature.h; sourceTree = "<group>"; };
+		1D5CA4161EB0EFCC00706B17 /* AZCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreature.m; sourceTree = "<group>"; };
+		1D5CA4171EB0EFCC00706B17 /* AZCreature+CreatureCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AZCreature+CreatureCategory.h"; sourceTree = "<group>"; };
+		1D5CA4181EB0EFCC00706B17 /* AZCreature+CreatureCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AZCreature+CreatureCategory.m"; sourceTree = "<group>"; };
+		1D5CA4191EB0EFCC00706B17 /* AZCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreatureFemale.h; sourceTree = "<group>"; };
+		1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreatureFemale.m; sourceTree = "<group>"; };
+		1D5CA41B1EB0EFCC00706B17 /* AZCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreatureMale.h; sourceTree = "<group>"; };
+		1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreatureMale.m; sourceTree = "<group>"; };
+		1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCreature.h; sourceTree = "<group>"; };
+		1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCreature.m; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,14 +61,14 @@
 		1D5CA3DE1EB0ECCC00706B17 /* Creature */ = {
 			isa = PBXGroup;
 			children = (
-				1D5CA4151EB0EFCC00706B17 /* Creature.h */,
-				1D5CA4161EB0EFCC00706B17 /* Creature.m */,
-				1D5CA4171EB0EFCC00706B17 /* Creature+CreatureCategory.h */,
-				1D5CA4181EB0EFCC00706B17 /* Creature+CreatureCategory.m */,
-				1D5CA4191EB0EFCC00706B17 /* CreatureFemale.h */,
-				1D5CA41A1EB0EFCC00706B17 /* CreatureFemale.m */,
-				1D5CA41B1EB0EFCC00706B17 /* CreatureMale.h */,
-				1D5CA41C1EB0EFCC00706B17 /* CreatureMale.m */,
+				1D5CA4151EB0EFCC00706B17 /* AZCreature.h */,
+				1D5CA4161EB0EFCC00706B17 /* AZCreature.m */,
+				1D5CA4171EB0EFCC00706B17 /* AZCreature+CreatureCategory.h */,
+				1D5CA4181EB0EFCC00706B17 /* AZCreature+CreatureCategory.m */,
+				1D5CA4191EB0EFCC00706B17 /* AZCreatureFemale.h */,
+				1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */,
+				1D5CA41B1EB0EFCC00706B17 /* AZCreatureMale.h */,
+				1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */,
 			);
 			path = Creature;
 			sourceTree = "<group>";
@@ -76,10 +76,17 @@
 		1D5CA3E81EB0ECCC00706B17 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				1D5CA4211EB0EFD400706B17 /* TestCreature.h */,
-				1D5CA4221EB0EFD400706B17 /* TestCreature.m */,
+				1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */,
+				1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		1D5CA4341EB0F23C00706B17 /* CarWash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CarWash;
 			sourceTree = "<group>";
 		};
 		1D9FDCEE1EA90C86003C4CE6 = {
@@ -102,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				1D5CA3F11EB0ECF500706B17 /* main.m */,
+				1D5CA4341EB0F23C00706B17 /* CarWash */,
 				1D5CA3DE1EB0ECCC00706B17 /* Creature */,
 				1D5CA3E81EB0ECCC00706B17 /* Test */,
 			);
@@ -165,16 +173,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D5CA42A1EB0F1C700706B17 /* Creature.h in Sources */,
-				1D5CA42B1EB0F1C700706B17 /* Creature.m in Sources */,
-				1D5CA42C1EB0F1C700706B17 /* Creature+CreatureCategory.h in Sources */,
-				1D5CA42D1EB0F1C700706B17 /* Creature+CreatureCategory.m in Sources */,
-				1D5CA42E1EB0F1C700706B17 /* CreatureFemale.h in Sources */,
-				1D5CA42F1EB0F1C700706B17 /* CreatureFemale.m in Sources */,
-				1D5CA4301EB0F1C700706B17 /* CreatureMale.h in Sources */,
-				1D5CA4311EB0F1C700706B17 /* CreatureMale.m in Sources */,
-				1D5CA4321EB0F1C700706B17 /* TestCreature.h in Sources */,
-				1D5CA4331EB0F1C700706B17 /* TestCreature.m in Sources */,
+				1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */,
+				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
+				1D5CA42C1EB0F1C700706B17 /* AZCreature+CreatureCategory.h in Sources */,
+				1D5CA42D1EB0F1C700706B17 /* AZCreature+CreatureCategory.m in Sources */,
+				1D5CA42E1EB0F1C700706B17 /* AZCreatureFemale.h in Sources */,
+				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
+				1D5CA4301EB0F1C700706B17 /* AZCreatureMale.h in Sources */,
+				1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */,
+				1D5CA4321EB0F1C700706B17 /* AZTestCreature.h in Sources */,
+				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

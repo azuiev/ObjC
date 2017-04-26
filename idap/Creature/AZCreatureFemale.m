@@ -6,9 +6,9 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "CreatureFemale.h"
+#import "AZCreatureFemale.h"
 
-@implementation CreatureFemale
+@implementation AZCreatureFemale
 
 -(void)performGenderSpecificOperation{
     NSLog(@"%@ went to give birth to children",[self name]);

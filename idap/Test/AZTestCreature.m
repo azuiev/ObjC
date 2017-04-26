@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TestCreature.h"
-#import "CreatureMale.h"
-#import "CreatureFemale.h"
-#import "Creature+CreatureCategory.h"
+#import "AZTestCreature.h"
+#import "AZCreatureMale.h"
+#import "AZCreatureFemale.h"
+#import "AZCreature+CreatureCategory.h"
 
 
-@implementation TestCreature
+@implementation AZTestCreature
 
 #define createCreature(parameter,name,gender,age,weight) \
-    Creature *parameter = [Creature##gender create]; \
-    [TestCreature setProperties :parameter :@#name :age :weight]; \
+    AZCreature *parameter = [AZCreature##gender create]; \
+    [AZTestCreature setProperties :parameter :@#name :age :weight]; \
     [childrenArray addObject:parameter]
 
 + (void) test {
@@ -39,12 +39,12 @@
     
     [creature4 sayHi];
     
-    for (Creature *creature in childrenArray) {
+    for (AZCreature *creature in childrenArray) {
         [creature performGenderSpecificOperation];
     }
 }
 
-+ (void) setProperties :(Creature *)creature :(NSString *)name :(double)age :(double)weight {
++ (void) setProperties :(AZCreature *)creature :(NSString *)name :(double)age :(double)weight {
     [creature setName:name];
     [creature setAge:age];
     [creature setWeight:weight];

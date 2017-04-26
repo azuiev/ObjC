@@ -6,9 +6,9 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "CreatureMale.h"
+#import "AZCreatureMale.h"
 
-@implementation CreatureMale
+@implementation AZCreatureMale
 
 -(void)performGenderSpecificOperation{
     NSLog(@"%@ went to war",[self name]);

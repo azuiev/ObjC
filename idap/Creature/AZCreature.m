@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Creature.h"
+#import "AZCreature.h"
 
-@interface Creature ()
+@interface AZCreature ()
     @property (nonatomic, retain)   NSMutableArray *mutableChildren;
 @end
 
-@implementation Creature
+@implementation AZCreature
 @dynamic children;
 
 -(NSArray *)children {
@@ -35,18 +35,18 @@
     }
     
     NSLog(@"%@`s children",[self name]);
-    for (Creature *creature in self.children) {
+    for (AZCreature *creature in self.children) {
         [creature sayHi];
     }
     
     NSLog(@"\n");
 }
 
--(void)addChild:(Creature *)child {
+-(void)addChild:(AZCreature *)child {
     [self.mutableChildren addObject:child];
 }
 
--(void)removeChild:(Creature *)child {
+-(void)removeChild:(AZCreature *)child {
     [self.mutableChildren removeObject:child];
 }
 
