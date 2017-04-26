@@ -1,5 +1,5 @@
 //
-//  AZBuilding.h
+//  AZCar.h
 //  idap
 //
 //  Created by Aleksey Zuiev on 26/04/2017.
@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AZBuilding : NSObject
-
-@property (nonatomic, copy, readonly) NSArray *rooms;
+@interface AZCar : NSObject
 
 @end

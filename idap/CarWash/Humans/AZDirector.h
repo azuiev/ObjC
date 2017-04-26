@@ -1,13 +1,13 @@
 //
-//  AZRoom.m
+//  AZDirector.h
 //  idap
 //
 //  Created by Aleksey Zuiev on 26/04/2017.
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZRoom.h"
+#import "AZHuman.h"
 
-@implementation AZRoom
+@interface AZDirector : AZHuman
 
 @end
