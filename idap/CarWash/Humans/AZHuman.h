@@ -14,4 +14,10 @@
 @property (nonatomic, assign)   float       salary;
 @property (nonatomic, assign)   float       expirience;
 
++ (instancetype)init;
+
+- (instancetype)init;
+
+- (void)sayHi;
+
 @end

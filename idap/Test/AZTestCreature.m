@@ -21,7 +21,7 @@
     [AZTestCreature setProperties :parameter :@#name :age :weight]; \
     [childrenArray addObject:parameter]
 
-+ (void) test {
++ (void)performTest {
     NSMutableArray *childrenArray = [NSMutableArray new];
     
     createCreature(creature1, Yasya, Male, 25.4, 99.9);
@@ -44,7 +44,7 @@
     }
 }
 
-+ (void) setProperties :(AZCreature *)creature :(NSString *)name :(double)age :(double)weight {
++ (void)setProperties :(AZCreature *)creature :(NSString *)name :(double)age :(double)weight {
     [creature setName:name];
     [creature setAge:age];
     [creature setWeight:weight];

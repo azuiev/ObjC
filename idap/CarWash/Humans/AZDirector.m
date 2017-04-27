@@ -11,7 +11,7 @@
 @implementation AZDirector
 
 - (void)takeIncome:(double)income{
-    
+    NSLog(@"Director recieved income - %f", income);
 }
 
 @end

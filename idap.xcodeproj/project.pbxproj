@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF96C1EB252980093099B /* AZTestCarWash.m */; };
+		1D5BF9711EB25EC70093099B /* AZStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF9701EB25EC70093099B /* AZStringGenerator.m */; };
 		1D5CA4291EB0F10C00706B17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA3F11EB0ECF500706B17 /* main.m */; };
 		1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4151EB0EFCC00706B17 /* AZCreature.h */; };
 		1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4161EB0EFCC00706B17 /* AZCreature.m */; };
@@ -42,6 +44,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D5BF96B1EB252980093099B /* AZTestCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCarWash.h; sourceTree = "<group>"; };
+		1D5BF96C1EB252980093099B /* AZTestCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCarWash.m; sourceTree = "<group>"; };
+		1D5BF96F1EB25EC70093099B /* AZStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZStringGenerator.h; path = Generator/AZStringGenerator.h; sourceTree = "<group>"; };
+		1D5BF9701EB25EC70093099B /* AZStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZStringGenerator.m; path = Generator/AZStringGenerator.m; sourceTree = "<group>"; };
 		1D5CA3F11EB0ECF500706B17 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D5CA4151EB0EFCC00706B17 /* AZCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreature.h; sourceTree = "<group>"; };
 		1D5CA4161EB0EFCC00706B17 /* AZCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreature.m; sourceTree = "<group>"; };
@@ -85,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5BF96E1EB25EAE0093099B /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				1D5BF96F1EB25EC70093099B /* AZStringGenerator.h */,
+				1D5BF9701EB25EC70093099B /* AZStringGenerator.m */,
+			);
+			name = Generator;
+			sourceTree = "<group>";
+		};
 		1D5CA3DE1EB0ECCC00706B17 /* Creature */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +120,8 @@
 			children = (
 				1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */,
 				1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */,
+				1D5BF96B1EB252980093099B /* AZTestCarWash.h */,
+				1D5BF96C1EB252980093099B /* AZTestCarWash.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -178,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				1D5CA3F11EB0ECF500706B17 /* main.m */,
+				1D5BF96E1EB25EAE0093099B /* Generator */,
 				1D5CA4341EB0F23C00706B17 /* CarWash */,
 				1D5CA3DE1EB0ECCC00706B17 /* Creature */,
 				1D5CA3E81EB0ECCC00706B17 /* Test */,
@@ -255,11 +273,13 @@
 				1D5CA42E1EB0F1C700706B17 /* AZCreatureFemale.h in Sources */,
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */,
+				1D5BF9711EB25EC70093099B /* AZStringGenerator.m in Sources */,
 				1D65E1671EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m in Sources */,
 				1D5CA4301EB0F1C700706B17 /* AZCreatureMale.h in Sources */,
 				1D65E1501EB1047200D0B5E4 /* AZRoom.m in Sources */,
 				1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */,
 				1D5CA4321EB0F1C700706B17 /* AZTestCreature.h in Sources */,
+				1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */,
 				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
 			);

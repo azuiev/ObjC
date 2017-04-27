@@ -7,10 +7,13 @@
 //
 
 #import "AZTestCreature.h"
+#import "AZTestCarWash.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        [AZTestCreature test];
+        //[AZTestCreature performTest];
+        [AZTestCarWash performTtest];
+        
     }
     return 0;
 }

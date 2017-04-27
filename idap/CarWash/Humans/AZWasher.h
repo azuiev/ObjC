@@ -12,5 +12,6 @@
 @interface AZWasher : AZHuman
 
 - (void)washCar:(AZCar *)car;
+- (instancetype)init;
 
 @end
