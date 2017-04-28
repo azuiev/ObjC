@@ -11,12 +11,13 @@
 #import "AZAccountant.h"
 #import "AZDirector.h"
 #import "AZWasher.h"
-
+#import "AZStringGenerator.h"
 @implementation AZTestCarWash
 
 + (void)performTtest{
     AZWasher *washer = [AZWasher init];
     [washer sayHi];
+    [AZStringGenerator lowercaseString];
 }
 
 @end
