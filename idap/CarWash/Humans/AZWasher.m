@@ -10,8 +10,19 @@
 
 @implementation AZWasher
 
-- (void)washCar:(AZCar *)car{
-    NSLog(@"%@ is now cleat\n",car);
+@dynamic moneyFromCars;
+
+- (void)washCar:(AZCar *)car {
+    [car setIsClear:TRUE];
+    self.moneyFromCars += [car payForClearing];
+    NSLog(@"%@ is now clear\n",car);
+}
+
+- (float)passMoneyToAccountant {
+    float result = self.moneyFromCars;
+    self.moneyFromCars = 0;
+    NSLog(@"%@ %@ passed %5.2f dollars to accountant\n",[self class],self.name,result);
+    return result;
 }
 
 @end

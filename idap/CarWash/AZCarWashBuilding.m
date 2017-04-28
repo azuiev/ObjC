@@ -10,8 +10,11 @@
 
 @implementation AZCarWashBuilding
 
-- (void)washCarBy:(AZCar *)car washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director{
-
+- (void)washCarsBy:(NSArray *)cars washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director{
+    for (AZCar *car in cars) {
+        [washer washCar:car];
+    }
+    
 }
 
 @end

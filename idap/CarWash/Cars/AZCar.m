@@ -10,6 +10,7 @@
 
 @implementation AZCar
 
+const u_int AZMaxMoneyForCar = 5000;
 #pragma mark -
 #pragma mark Initialization
 
@@ -20,7 +21,7 @@
 - (instancetype)init{
     [super init];
     self.mark = [self randomMark];
-    self.money = 5000.0;
+    self.money = arc4random_uniform((uint32_t)AZMaxMoneyForCar);
     [self sayHi];
     return self;
 }
@@ -47,8 +48,15 @@
 #pragma mark -
 #pragma mark Implements methods
 
-- (void)sayHi{
+- (void)sayHi {
     NSLog(@"HI! I am %@ - %@. I have %4.2f dollars",[self class],self.mark,self.money);
+}
+
+- (float)payForClearing {
+    float moneyForClearing = self.money;
+    [self setMoney:0];
+    NSLog(@"%@ - %@. Paid %4.2f dollars for washing",[self class],self.mark,moneyForClearing);
+    return moneyForClearing;
 }
 
 @end

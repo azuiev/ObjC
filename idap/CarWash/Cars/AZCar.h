@@ -10,13 +10,14 @@
 
 @interface AZCar : NSObject
 
-@property (nonatomic, copy)   NSString    *mark;
-@property (nonatomic, assign) float       money;
+@property (nonatomic, copy)   NSString  *mark;
+@property (nonatomic, assign) float     money;
+@property (nonatomic, assign) BOOL      isClear;
 
 + (instancetype)init;
 
 - (instancetype)init;
-
+- (float)payForClearing;
 - (void)sayHi;
 
 @end

@@ -10,8 +10,24 @@
 
 @implementation AZAccountant
 
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init {
+    [super init];
+    self.moneyFromWashers = 0;
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public methods
+
 - (void)calculateMoney:(double)amount{
-    NSLog(@"%f", amount);
+    NSLog(@"%@ - %@, Totally income is %5.2f dollars ",[self class],self.name, amount);
+}
+
+- (void)takeMoneyFromWasher:(float) amount {
+    self.moneyFromWashers += amount;
 }
 
 @end

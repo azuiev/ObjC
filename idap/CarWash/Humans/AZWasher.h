@@ -11,7 +11,10 @@
 
 @interface AZWasher : AZHuman
 
+@property (nonatomic, assign) float moneyFromCars;
+
 - (void)washCar:(AZCar *)car;
+- (float)passMoneyToAccountant;
 - (instancetype)init;
 
 @end
