@@ -10,10 +10,11 @@
 
 @interface AZAccountant : AZHuman
 
-@property (nonatomic,assign) float moneyFromWashers;
+@property (nonatomic,assign) double moneyFromWashers;
 
 
-- (void)calculateMoney:(double)amount;
-- (void)takeMoneyFromWasher:(float) amount;
+- (void)calculateMoney;
+- (void)takeMoneyFromWasher:(double) amount;
+- (double)passIncomeToDirector;
 
 @end

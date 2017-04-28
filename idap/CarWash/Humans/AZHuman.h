@@ -11,13 +11,11 @@
 @interface AZHuman : NSObject
 
 @property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, assign)   float       salary;
-@property (nonatomic, assign)   float       expirience;
+@property (nonatomic, assign)   double       salary;
+@property (nonatomic, assign)   double       experience;
 
 + (instancetype)init;
-
 - (instancetype)init;
-
 - (void)sayHi;
 
 @end

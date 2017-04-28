@@ -10,8 +10,21 @@
 
 @implementation AZDirector
 
-- (void)takeIncome:(double)income{
-    NSLog(@"Director recieved income - %f", income);
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init {
+    [super init];
+    self.income = 0;
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)takeIncome:(double)income {
+    self.income += income;
+    NSLog(@"%@ - %@ recieved income - %f", [self class], self.name, income);
 }
 
 @end

@@ -11,6 +11,7 @@
 @implementation AZCar
 
 const u_int AZMaxMoneyForCar = 5000;
+
 #pragma mark -
 #pragma mark Initialization
 
@@ -42,7 +43,6 @@ const u_int AZMaxMoneyForCar = 5000;
                            @"Toyota",
                            nil];
     return [listOfMarks objectAtIndex:arc4random_uniform((uint32_t)[listOfMarks count])];
-                           
 }
 
 #pragma mark -

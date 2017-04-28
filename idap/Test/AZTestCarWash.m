@@ -18,11 +18,14 @@
 
 + (void)performTtest{
     AZWasher *washer = [AZWasher init];
-    [washer sayHi];
+    AZAccountant *accountant = [AZAccountant init];
+    AZDirector *director = [AZDirector init];
+    
     NSMutableArray *cars = [[[NSMutableArray alloc] init] autorelease];
     for (u_int i = 0; i < 10; i +=1 ) {
         [cars addObject:[AZCar init]];
     }
+    
 }
 
 @end

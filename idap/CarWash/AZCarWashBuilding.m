@@ -14,7 +14,9 @@
     for (AZCar *car in cars) {
         [washer washCar:car];
     }
-    
+    [accountant takeMoneyFromWasher:[washer passMoneyToAccountant]];
+    [accountant calculateMoney];
+    [director takeIncomeFromAccountant:[accountant passIncomeToDirector]];
 }
 
 @end

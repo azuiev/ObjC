@@ -22,11 +22,11 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)calculateMoney:(double)amount{
-    NSLog(@"%@ - %@, Totally income is %5.2f dollars ",[self class],self.name, amount);
+- (void)calculateMoney {
+    NSLog(@"%@ - %@, Totally income is %5.2f dollars ", [self class] ,self.name, self.moneyFromWashers);
 }
 
-- (void)takeMoneyFromWasher:(float) amount {
+- (void)takeMoneyFromWasher:(double) amount {
     self.moneyFromWashers += amount;
 }
 

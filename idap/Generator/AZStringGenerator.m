@@ -12,7 +12,7 @@
 
 static const u_int AZDefaultStringLength = 8;
 
-+ (NSString *)stringFromAlphabet:(NSString *)alphabet withLength:(u_int)length {
++ (NSMutableString *)stringFromAlphabet:(NSString *)alphabet withLength:(u_int)length {
     NSMutableString *result = [NSMutableString string];
     for (u_int i = 0; i < length; i += 1) {
         [result appendFormat:@"%c",[alphabet characterAtIndex:arc4random_uniform((uint32_t)[alphabet length])]];
@@ -52,7 +52,19 @@ static const u_int AZDefaultStringLength = 8;
     return [self stringFromAlphabet:[self numericAlphabet] withLength:AZDefaultStringLength];
 }
 
++ (NSString *)randomName {
+    NSMutableString *result = [self stringFromAlphabet:[self uppercaseAlphabet] withLength:1];
+    [result appendString:[self stringFromAlphabet:[self lowercaseAlphabet] withLength:arc4random_uniform((uint32)AZDefaultStringLength)]];
+    return result;
+}
 
++ (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue {
+    return [self randomNumberInRangeFrom:0 to:maxValue];
+}
+
++ (uint32_t)randomNumberInRangeFrom:(uint32_t)minValue to:(uint32_t)maxValue {
+    return minValue + arc4random_uniform(maxValue-minValue);
+}
 //+ (NSString *)lowercaseStringWithLength:(short)length;
 //+ (NSString *)uppercaseStringWithLength:(short)length;
 //+ (NSUInteger *)numericStringWithLength:(short)length;

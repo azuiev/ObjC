@@ -7,6 +7,7 @@
 //
 
 #import "AZHuman.h"
+#import "AZStringGenerator.h"
 
 @implementation AZHuman
 
@@ -19,9 +20,10 @@
 
 - (instancetype)init{
     [super init];
-    self.name = @"aaa";
-    self.salary = 5000.0;
-    self.expirience = 10.0;
+    self.name = [AZStringGenerator randomName];
+    self.salary = [AZStringGenerator randomNumberInRangeFrom:1000 to:5000];
+    self.experience = [AZStringGenerator randomNumberInRangeFrom:0 to:50];
+    [self sayHi];
     return self;
 }
 
@@ -29,7 +31,7 @@
 #pragma mark Implements methods
 
 - (void)sayHi{
-    NSLog(@"HI! I am %@ - %@, salary - %4.2f, expirience - %2.1f",[self class],self.name,self.salary,self.expirience);
+    NSLog(@"HI! I am %@ - %@, salary - %4.2f, expirience - %2.1f", [self class], self.name, self.salary, self.experience);
 }
 
 @end

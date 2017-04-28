@@ -10,18 +10,28 @@
 
 @implementation AZWasher
 
-@dynamic moneyFromCars;
+#pragma mark -
+#pragma mark Initialization
+
+- (instancetype)init {
+    [super init];
+    self.moneyFromCars = 0;
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public methods
 
 - (void)washCar:(AZCar *)car {
     [car setIsClear:TRUE];
     self.moneyFromCars += [car payForClearing];
-    NSLog(@"%@ is now clear\n",car);
+    NSLog(@"%@ is now clear\n", car);
 }
 
 - (float)passMoneyToAccountant {
     float result = self.moneyFromCars;
     self.moneyFromCars = 0;
-    NSLog(@"%@ %@ passed %5.2f dollars to accountant\n",[self class],self.name,result);
+    NSLog(@"%@ %@ passed %5.2f dollars to accountant\n", [self class], self.name, result);
     return result;
 }
 
