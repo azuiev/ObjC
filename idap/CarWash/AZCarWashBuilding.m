@@ -1,17 +1,17 @@
 //
-//  AZBuilding+AZCarWash.m
+//  AZCarWashBuilding.m
 //  idap
 //
-//  Created by Aleksey Zuiev on 26/04/2017.
+//  Created by Aleksey Zuiev on 28/04/2017.
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZBuilding+AZCarWash.h"
+#import "AZCarWashBuilding.h"
 
-@implementation AZBuilding (AZCarWash)
+@implementation AZCarWashBuilding
 
 - (void)washCarBy:(AZCar *)car washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director{
-    
+
 }
 
 @end

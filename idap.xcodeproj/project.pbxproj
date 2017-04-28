@@ -28,7 +28,7 @@
 		1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15A1EB1062000D0B5E4 /* AZAccountant.m */; };
 		1D65E15E1EB1065B00D0B5E4 /* AZWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15D1EB1065B00D0B5E4 /* AZWasher.m */; };
 		1D65E1611EB1070500D0B5E4 /* AZDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1601EB1070500D0B5E4 /* AZDirector.m */; };
-		1D65E1671EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1661EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m */; };
+		1D75D54D1EB38BC000813DB8 /* AZCarWashBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75D54C1EB38BC000813DB8 /* AZCarWashBuilding.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,8 +75,8 @@
 		1D65E15D1EB1065B00D0B5E4 /* AZWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZWasher.m; path = CarWash/Humans/AZWasher.m; sourceTree = "<group>"; };
 		1D65E15F1EB1070500D0B5E4 /* AZDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZDirector.h; path = CarWash/Humans/AZDirector.h; sourceTree = "<group>"; };
 		1D65E1601EB1070500D0B5E4 /* AZDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZDirector.m; path = CarWash/Humans/AZDirector.m; sourceTree = "<group>"; };
-		1D65E1651EB11A5300D0B5E4 /* AZBuilding+AZCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AZBuilding+AZCarWash.h"; path = "CarWash/AZBuilding+AZCarWash.h"; sourceTree = "<group>"; };
-		1D65E1661EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AZBuilding+AZCarWash.m"; path = "CarWash/AZBuilding+AZCarWash.m"; sourceTree = "<group>"; };
+		1D75D54B1EB38BC000813DB8 /* AZCarWashBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZCarWashBuilding.h; path = CarWash/AZCarWashBuilding.h; sourceTree = "<group>"; };
+		1D75D54C1EB38BC000813DB8 /* AZCarWashBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZCarWashBuilding.m; path = CarWash/AZCarWashBuilding.m; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -134,8 +134,8 @@
 				1D65E14A1EB1042D00D0B5E4 /* Room */,
 				1D5CA44F1EB0F97F00706B17 /* AZBuilding.h */,
 				1D5CA4501EB0F97F00706B17 /* AZBuilding.m */,
-				1D65E1651EB11A5300D0B5E4 /* AZBuilding+AZCarWash.h */,
-				1D65E1661EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m */,
+				1D75D54B1EB38BC000813DB8 /* AZCarWashBuilding.h */,
+				1D75D54C1EB38BC000813DB8 /* AZCarWashBuilding.m */,
 			);
 			name = CarWash;
 			sourceTree = "<group>";
@@ -263,6 +263,7 @@
 				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
 				1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
+				1D75D54D1EB38BC000813DB8 /* AZCarWashBuilding.m in Sources */,
 				1D65E1611EB1070500D0B5E4 /* AZDirector.m in Sources */,
 				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
 				1D65E1581EB1053800D0B5E4 /* AZCar.m in Sources */,
@@ -274,7 +275,6 @@
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */,
 				1D5BF9711EB25EC70093099B /* AZStringGenerator.m in Sources */,
-				1D65E1671EB11A5300D0B5E4 /* AZBuilding+AZCarWash.m in Sources */,
 				1D5CA4301EB0F1C700706B17 /* AZCreatureMale.h in Sources */,
 				1D65E1501EB1047200D0B5E4 /* AZRoom.m in Sources */,
 				1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */,

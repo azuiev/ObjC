@@ -12,12 +12,17 @@
 #import "AZDirector.h"
 #import "AZWasher.h"
 #import "AZStringGenerator.h"
+#import "AZCar.h"
+
 @implementation AZTestCarWash
 
 + (void)performTtest{
     AZWasher *washer = [AZWasher init];
     [washer sayHi];
-    [AZStringGenerator lowercaseString];
+    NSMutableArray *cars = [[[NSMutableArray alloc] init] autorelease];
+    for (u_int i = 0; i < 10; i +=1 ) {
+        [cars addObject:[AZCar init]];
+    }
 }
 
 @end

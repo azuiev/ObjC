@@ -13,15 +13,14 @@
 #import "AZCreatureFemale.h"
 #import "AZCreature+AZCreatureCategory.h"
 
-
 @implementation AZTestCreature
 
++ (void)performTest {
 #define createCreature(parameter,name,gender,age,weight) \
     AZCreature *parameter = [AZCreature##gender create]; \
     [AZTestCreature setProperties :parameter :@#name :age :weight]; \
-    [childrenArray addObject:parameter]
+    [childrenArray addObject:parameter]; \
 
-+ (void)performTest {
     NSMutableArray *childrenArray = [NSMutableArray new];
     
     createCreature(creature1, Yasya, Male, 25.4, 99.9);
@@ -42,6 +41,9 @@
     for (AZCreature *creature in childrenArray) {
         [creature performGenderSpecificOperation];
     }
+    
+#undef createCreature
+    
 }
 
 + (void)setProperties :(AZCreature *)creature :(NSString *)name :(double)age :(double)weight {
