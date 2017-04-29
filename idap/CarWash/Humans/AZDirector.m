@@ -22,9 +22,9 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)takeIncome:(double)income {
+- (void)takeIncomeFromAccountant:(double)income {
     self.income += income;
-    NSLog(@"%@ - %@ recieved income - %f", [self class], self.name, income);
+    NSLog(@"%@ - %@, receive income - %5.2f", [self class], self.name, income);
 }
 
 @end

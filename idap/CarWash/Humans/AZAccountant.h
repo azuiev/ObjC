@@ -12,7 +12,6 @@
 
 @property (nonatomic,assign) double moneyFromWashers;
 
-
 - (void)calculateMoney;
 - (void)takeMoneyFromWasher:(double) amount;
 - (double)passIncomeToDirector;

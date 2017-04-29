@@ -24,14 +24,18 @@
 
 - (void)washCar:(AZCar *)car {
     [car setIsClear:TRUE];
-    self.moneyFromCars += [car payForClearing];
-    NSLog(@"%@ is now clear\n", car);
+    NSLog(@"%@ - %@ wash the %@ - %@\n", [self class], self.name, [car class], car.mark);
 }
 
-- (float)passMoneyToAccountant {
+- (void)takeMoneyFromCar:(double)amount {
+    self.moneyFromCars += amount;
+    NSLog(@"%@ - %@, receive %5.2f dollars from car\n", [self class], self.name, amount);
+}
+
+- (double)passMoneyToAccountant {
     float result = self.moneyFromCars;
     self.moneyFromCars = 0;
-    NSLog(@"%@ %@ passed %5.2f dollars to accountant\n", [self class], self.name, result);
+    NSLog(@"%@ %@, pass %5.2f dollars to accountant\n", [self class], self.name, result);
     return result;
 }
 

@@ -13,6 +13,7 @@
 #import "AZWasher.h"
 #import "AZStringGenerator.h"
 #import "AZCar.h"
+#import "AZCarWashBuilding.h"
 
 @implementation AZTestCarWash
 
@@ -25,7 +26,8 @@
     for (u_int i = 0; i < 10; i +=1 ) {
         [cars addObject:[AZCar init]];
     }
-    
+    AZCarWashBuilding *carWashBuilding = [AZCarWashBuilding init];
+    [carWashBuilding washCarsBy:cars washer:washer accountant:accountant director:director];
 }
 
 @end

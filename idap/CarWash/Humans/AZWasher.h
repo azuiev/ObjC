@@ -14,6 +14,7 @@
 @property (nonatomic, assign) double moneyFromCars;
 
 - (void)washCar:(AZCar *)car;
+- (void)takeMoneyFromCar:(double)amount;
 - (double)passMoneyToAccountant;
 - (instancetype)init;
 

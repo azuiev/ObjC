@@ -16,8 +16,9 @@
 
 + (instancetype)init;
 
+- (void)dealloc;
 - (instancetype)init;
-- (float)payForClearing;
+- (double)payForClearing;
 - (void)sayHi;
 
 @end

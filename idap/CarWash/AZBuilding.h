@@ -12,9 +12,14 @@
 #import "AZWasher.h"
 #import "AZAccountant.h"
 #import "AZDirector.h"
+#import "AZRoom.h"
 
 @interface AZBuilding : NSObject
 
 @property (nonatomic, copy, readonly) NSArray *rooms;
+
++ (instancetype)init;
+
+- (void)addRoom:(AZRoom *)room;
 
 @end

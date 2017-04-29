@@ -13,16 +13,23 @@
 const u_int AZMaxMoneyForCar = 5000;
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Initialization and Deallocation
 
 + (instancetype)init{
     return [[[self alloc] init] autorelease];
+}
+
+- (void)dealloc {
+    [self.mark release];
+    self.mark = nil;
+    [super dealloc];
 }
 
 - (instancetype)init{
     [super init];
     self.mark = [self randomMark];
     self.money = arc4random_uniform((uint32_t)AZMaxMoneyForCar);
+    self.isClear = FALSE;
     [self sayHi];
     return self;
 }
@@ -52,10 +59,10 @@ const u_int AZMaxMoneyForCar = 5000;
     NSLog(@"HI! I am %@ - %@. I have %4.2f dollars",[self class],self.mark,self.money);
 }
 
-- (float)payForClearing {
+- (double)payForClearing {
     float moneyForClearing = self.money;
     [self setMoney:0];
-    NSLog(@"%@ - %@. Paid %4.2f dollars for washing",[self class],self.mark,moneyForClearing);
+    NSLog(@"%@ - %@. Paid %4.2f dollars for washing", [self class], self.mark, moneyForClearing);
     return moneyForClearing;
 }
 

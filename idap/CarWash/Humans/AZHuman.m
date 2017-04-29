@@ -12,7 +12,13 @@
 @implementation AZHuman
 
 #pragma mark -
-#pragma mark Initialization
+#pragma mark Initialization and Deallocation
+
+- (void)dealloc {
+    [self.name release];
+    self.name = nil;
+    [super dealloc];
+}
 
 + (instancetype)init{
     return [[[self alloc] init] autorelease];
