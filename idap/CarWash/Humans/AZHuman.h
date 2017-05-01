@@ -16,9 +16,6 @@
 @property (nonatomic, assign)   double       salary;
 @property (nonatomic, assign)   double       experience;
 	
-+ (instancetype)init;
-+ (void)dealloc;
-
 - (instancetype)init;
 - (void)sayHi;
 

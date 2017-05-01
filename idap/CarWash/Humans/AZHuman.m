@@ -29,10 +29,6 @@ extern NSString * AZDescriptionFormatter;
     [super dealloc];
 }
 
-+ (instancetype)init{
-    return [[[self alloc] init] autorelease];
-}
-
 - (instancetype)init{
     [super init];
     self.name = [AZRandom randomName];
@@ -61,7 +57,7 @@ extern NSString * AZDescriptionFormatter;
 - (double)giveMoney:(id<AZMoneyFlow> *)moneyReceiver{
     double result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %5.2f dollars from %@ ", self, result, (id)moneyReceiver);
+    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, (id)moneyReceiver);
     return result;
 }
 

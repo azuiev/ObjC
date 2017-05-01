@@ -11,6 +11,11 @@
 @implementation AZDirector
 
 #pragma mark -
-#pragma mark Implements protocol
+#pragma mark Public methods
+
+- (void)getIncome:(AZAccountant *)accountant{
+    [self takeMoney:(id<AZMoneyFlow> *)accountant];
+    NSLog(@"%@ get income from %@. Total income - %5.2f dollars ", self, accountant, self.money);
+}
 
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "AZHuman.h"
+#import "AZWasher.h"
 
 @interface AZAccountant : AZHuman
 
 @property (nonatomic,assign) double moneyFromWashers;
 
-- (void)calculateMoney;
+- (void)calculateMoney:(AZWasher *)washer;
 
 @end

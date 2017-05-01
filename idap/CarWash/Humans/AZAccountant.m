@@ -22,8 +22,9 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)calculateMoney {
-    NSLog(@"%@ - %@, totally income is %5.2f dollars ", [self class] ,self.name, self.moneyFromWashers);
+- (void)calculateMoney:washer {
+    NSLog(@"%@ calculate %@ money. %5.2f dollars ", self ,washer, [washer money]);
+    [self takeMoney:(id<AZMoneyFlow> *)washer];
 }
 
 @end

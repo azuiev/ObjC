@@ -22,11 +22,10 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)washCar:(AZCar *)car {
+- (void)washCar:(AZCar *)car{
     [car setClear:YES];
     NSLog(@"%@ wash the %@\n", self, car);
     [self takeMoney:(id<AZMoneyFlow> *)car];
 }
-
 
 @end

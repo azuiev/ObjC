@@ -7,9 +7,12 @@
 //
 
 #import "AZHuman.h"
+#import "AZAccountant.h"
 
 @interface AZDirector : AZHuman
 
 @property (nonatomic, assign) double income;
+
+- (void)getIncome:(AZAccountant *)accountant;
 
 @end

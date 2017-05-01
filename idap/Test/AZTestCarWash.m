@@ -12,8 +12,10 @@
 #import "AZDirector.h"
 #import "AZWasher.h"
 #import "AZCar.h"
-#import "AZCarWashBuilding.h"
+#import "AZEnterprise.h"
 #import "NSObject+AZInit.h"
+
+static const NSString *AZDelimeter = @"**********";
 
 @implementation AZTestCarWash
 
@@ -21,10 +23,14 @@
     AZWasher *washer = [AZWasher init];
     AZAccountant *accountant = [AZAccountant init];
     AZDirector *director = [AZDirector init];
-    
+    NSLog(@"%@",AZDelimeter);
     NSArray *cars = [AZCar initWithCount:10];
-    AZCarWashBuilding *carWashBuilding = [AZCarWashBuilding init];
-    [carWashBuilding washCarsBy:cars washer:washer accountant:accountant director:director];
+    AZEnterprise *enterprise = [AZEnterprise init];
+    NSLog(@"%@",AZDelimeter);
+    for (AZCar *car in cars) {
+        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
+        NSLog(@"%@",AZDelimeter);
+    }
 }
 
 @end
