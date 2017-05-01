@@ -8,6 +8,10 @@
 
 #import "AZCar.h"
 
+@interface AZCar ()
+@property (nonatomic, assign) double money;
+@end
+
 @implementation AZCar
 
 const u_int AZMaxMoneyForCar = 5000;
@@ -29,7 +33,7 @@ const u_int AZMaxMoneyForCar = 5000;
     [super init];
     self.mark = [self randomMark];
     self.money = arc4random_uniform((uint32_t)AZMaxMoneyForCar);
-    self.isClear = FALSE;
+    self.clear = NO;
     [self sayHi];
     return self;
 }
@@ -59,11 +63,20 @@ const u_int AZMaxMoneyForCar = 5000;
     NSLog(@"HI! I am %@ - %@. I have %4.2f dollars",[self class],self.mark,self.money);
 }
 
-- (double)payForClearing {
-    float moneyForClearing = self.money;
-    [self setMoney:0];
-    NSLog(@"%@ - %@. Paid %4.2f dollars for washing", [self class], self.mark, moneyForClearing);
-    return moneyForClearing;
+#pragma mark -
+#pragma mark Implements protocols
+
+- (void)takeMoney:(id<AZMoneyFlow>  *)human{
+    double income = [(id<AZMoneyFlow>)human giveMoney:(id<AZMoneyFlow> *)self];
+    self.money += income;
+    NSLog(@"%@ take %5.2f dollars from %@ ", self, income, *human);
+}
+
+- (double)giveMoney:(id<AZMoneyFlow> *)human{
+    double result = self.money;
+    self.money = 0;
+    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, human);
+    return result;
 }
 
 @end

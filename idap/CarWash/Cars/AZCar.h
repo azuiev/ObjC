@@ -8,17 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AZCar : NSObject
+#import "AZMoneyFlow.h"
+
+@interface AZCar : NSObject <AZMoneyFlow>
 
 @property (nonatomic, copy)   NSString  *mark;
-@property (nonatomic, assign) float     money;
-@property (nonatomic, assign) BOOL      isClear;
 
-+ (instancetype)init;
+@property (nonatomic, assign, getter=isClear) BOOL      clear;
 
-- (void)dealloc;
-- (instancetype)init;
-- (double)payForClearing;
 - (void)sayHi;
 
 @end

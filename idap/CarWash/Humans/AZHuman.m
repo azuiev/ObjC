@@ -13,6 +13,10 @@ static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
 static const NSUInteger AZMaxExperience = 50;
 
+@interface AZHuman ()
+@property (nonatomic,assign) double money;
+@end
+
 @implementation AZHuman
 
 #pragma mark -
@@ -38,10 +42,26 @@ static const NSUInteger AZMaxExperience = 50;
 }
 
 #pragma mark -
-#pragma mark Implements methods
+#pragma mark Public methods
 
 - (void)sayHi{
     NSLog(@"HI! I am %@ - %@, salary - %4.2f, expirience - %2.1f", [self class], self.name, self.salary, self.experience);
+}
+
+#pragma mark -
+#pragma mark Implements protocols
+
+- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender{
+    double income = [(id<AZMoneyFlow>)moneySpender giveMoney:(id<AZMoneyFlow> *)self];
+    self.money += income;
+    NSLog(@"%@ take %5.2f dollars from %@ ", self, income, (id)moneySpender);
+}
+
+- (double)giveMoney:(id<AZMoneyFlow> *)moneyReceiver{
+    double result = self.money;
+    self.money = 0;
+    NSLog(@"%@ give %5.2f dollars from %@ ", self, result, (id)moneyReceiver);
+    return result;
 }
 
 @end

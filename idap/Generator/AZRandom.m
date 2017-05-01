@@ -48,9 +48,9 @@ static const NSUInteger AZDefaultStringLength = 8;
 #pragma mark User Methods
 
 + (NSString *)randomName {
-    NSMutableString *result = [self stringFromAlphabet:[self lowercaseAlphabet] withLength:arc4random_uniform((uint32)AZDefaultStringLength)];
-    [[result substringToIndex:1] uppercaseString];
-    return result;
+    NSMutableString *result = [self stringFromAlphabet:[self lowercaseAlphabet] withLength:2 + arc4random_uniform((uint32)AZDefaultStringLength)];
+    return [result capitalizedString];
+
 }
 
 + (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue {

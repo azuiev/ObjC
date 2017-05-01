@@ -11,20 +11,6 @@
 @implementation AZDirector
 
 #pragma mark -
-#pragma mark Initialization
-
-- (instancetype)init {
-    [super init];
-    self.income = 0;
-    return self;
-}
-
-#pragma mark -
-#pragma mark Public methods
-
-- (void)takeIncomeFromAccountant:(double)income {
-    self.income += income;
-    NSLog(@"%@ - %@, receive income - %5.2f", [self class], self.name, income);
-}
+#pragma mark Implements protocol
 
 @end

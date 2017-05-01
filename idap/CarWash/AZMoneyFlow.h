@@ -8,7 +8,9 @@
 
 @protocol AZMoneyFlow
 
-- (double)takeMoneyFrom:(id<AZMoneyFlow>  *)human;
-- (double)giveMoneyTo:(id<AZMoneyFlow> *)human;
+@property (nonatomic,readonly) double money;
+
+- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender;
+- (double)giveMoney:(id<AZMoneyFlow> *)monetReceiver;
 
 @end

@@ -12,6 +12,4 @@
 
 @property (nonatomic, assign) double income;
 
-- (void)takeIncomeFromAccountant:(double)income;
-
 @end

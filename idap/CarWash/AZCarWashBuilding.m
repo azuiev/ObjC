@@ -15,13 +15,11 @@ static const NSString *AZDelimeter = @"**********";
 - (void)washCarsBy:(NSArray *)cars washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director{
     for (AZCar *car in cars) {
         [washer washCar:car];
-        [washer takeMoneyFromCar:[car payForClearing]];
-        NSLog(@"%@",AZDelimeter);
+         NSLog(@"%@",AZDelimeter);
     }
     
-    [accountant takeMoneyFromWasher:[washer passMoneyToAccountant]];
-    [accountant calculateMoney];
-    [director takeIncomeFromAccountant:[accountant passIncomeToDirector]];
+    [accountant takeMoney:washer];
+    [director takeMoney:accountant];
 }
 
 @end

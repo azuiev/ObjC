@@ -11,7 +11,6 @@
 #import "AZAccountant.h"
 #import "AZDirector.h"
 #import "AZWasher.h"
-#import "AZStringGenerator.h"
 #import "AZCar.h"
 #import "AZCarWashBuilding.h"
 
@@ -22,7 +21,7 @@
     AZAccountant *accountant = [AZAccountant init];
     AZDirector *director = [AZDirector init];
     
-    NSMutableArray *cars = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *cars = [NSMutableArray array];
     for (u_int i = 0; i < 10; i +=1 ) {
         [cars addObject:[AZCar init]];
     }
