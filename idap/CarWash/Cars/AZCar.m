@@ -8,6 +8,8 @@
 
 #import "AZCar.h"
 
+extern NSString * AZDescriptionFormatter;
+
 @interface AZCar ()
 @property (nonatomic, assign) double money;
 @end
@@ -77,6 +79,13 @@ const u_int AZMaxMoneyForCar = 5000;
     self.money = 0;
     NSLog(@"%@ give %5.2f dollars to %@ ", self, result, human);
     return result;
+}
+
+#pragma mark -
+#pragma mark Override Methods
+
+- (NSString *)description {
+    return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.mark];
 }
 
 @end

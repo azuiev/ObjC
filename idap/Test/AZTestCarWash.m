@@ -13,6 +13,7 @@
 #import "AZWasher.h"
 #import "AZCar.h"
 #import "AZCarWashBuilding.h"
+#import "NSObject+AZInit.h"
 
 @implementation AZTestCarWash
 
@@ -21,10 +22,7 @@
     AZAccountant *accountant = [AZAccountant init];
     AZDirector *director = [AZDirector init];
     
-    NSMutableArray *cars = [NSMutableArray array];
-    for (u_int i = 0; i < 10; i +=1 ) {
-        [cars addObject:[AZCar init]];
-    }
+    NSArray *cars = [AZCar initWithCount:10];
     AZCarWashBuilding *carWashBuilding = [AZCarWashBuilding init];
     [carWashBuilding washCarsBy:cars washer:washer accountant:accountant director:director];
 }

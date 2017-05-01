@@ -24,7 +24,8 @@
 
 - (void)washCar:(AZCar *)car {
     [car setClear:YES];
-    NSLog(@"%@ - %@ wash the %@ - %@\n", [self class], self.name, [car class], car.mark);
+    NSLog(@"%@ wash the %@\n", self, car);
+    [self takeMoney:(id<AZMoneyFlow> *)car];
 }
 
 
