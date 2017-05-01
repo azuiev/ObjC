@@ -12,6 +12,7 @@
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
 static const NSUInteger AZMaxExperience = 50;
+extern NSString * AZDescriptionFormatter;
 
 @interface AZHuman ()
 @property (nonatomic,assign) double money;
@@ -62,6 +63,13 @@ static const NSUInteger AZMaxExperience = 50;
     self.money = 0;
     NSLog(@"%@ give %5.2f dollars from %@ ", self, result, (id)moneyReceiver);
     return result;
+}
+
+#pragma mark -
+#pragma mark Override Methods
+
+- (NSString *)description{
+    return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
 }
 
 @end

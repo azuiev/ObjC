@@ -21,6 +21,7 @@
 		1D5CA4321EB0F1C700706B17 /* AZTestCreature.h in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */; };
 		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
 		1D5CA4511EB0F97F00706B17 /* AZBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4501EB0F97F00706B17 /* AZBuilding.m */; };
+		1D5FEDE61EB7543E003499D1 /* NSObject+AZInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */; };
 		1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E14C1EB1047200D0B5E4 /* AZCarWashRoom.m */; };
 		1D65E1501EB1047200D0B5E4 /* AZRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E14E1EB1047200D0B5E4 /* AZRoom.m */; };
 		1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1531EB1052900D0B5E4 /* AZHuman.m */; };
@@ -61,7 +62,9 @@
 		1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCreature.m; sourceTree = "<group>"; };
 		1D5CA44F1EB0F97F00706B17 /* AZBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZBuilding.h; path = CarWash/AZBuilding.h; sourceTree = "<group>"; };
 		1D5CA4501EB0F97F00706B17 /* AZBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZBuilding.m; path = CarWash/AZBuilding.m; sourceTree = "<group>"; };
-		1D5FEDDC1EB738A5003499D1 /* AZMoneyFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AZMoneyFlow.h; path = CarWash/AZMoneyFlow.h; sourceTree = "<group>"; };
+		1D5FEDE31EB7541C003499D1 /* AZMoneyFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZMoneyFlow.h; sourceTree = "<group>"; };
+		1D5FEDE41EB7543E003499D1 /* NSObject+AZInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AZInit.h"; path = "Categories/NSObject+AZInit.h"; sourceTree = "<group>"; };
+		1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AZInit.m"; path = "Categories/NSObject+AZInit.m"; sourceTree = "<group>"; };
 		1D65E14B1EB1047200D0B5E4 /* AZCarWashRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZCarWashRoom.h; path = CarWash/Room/AZCarWashRoom.h; sourceTree = "<group>"; };
 		1D65E14C1EB1047200D0B5E4 /* AZCarWashRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZCarWashRoom.m; path = CarWash/Room/AZCarWashRoom.m; sourceTree = "<group>"; };
 		1D65E14D1EB1047200D0B5E4 /* AZRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZRoom.h; path = CarWash/Room/AZRoom.h; sourceTree = "<group>"; };
@@ -137,9 +140,25 @@
 				1D5CA4501EB0F97F00706B17 /* AZBuilding.m */,
 				1D75D54B1EB38BC000813DB8 /* AZCarWashBuilding.h */,
 				1D75D54C1EB38BC000813DB8 /* AZCarWashBuilding.m */,
-				1D5FEDDC1EB738A5003499D1 /* AZMoneyFlow.h */,
 			);
 			name = CarWash;
+			sourceTree = "<group>";
+		};
+		1D5FEDE11EB75387003499D1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1D5FEDE41EB7543E003499D1 /* NSObject+AZInit.h */,
+				1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		1D5FEDE21EB7541C003499D1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1D5FEDE31EB7541C003499D1 /* AZMoneyFlow.h */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1D65E14A1EB1042D00D0B5E4 /* Room */ = {
@@ -197,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				1D5CA3F11EB0ECF500706B17 /* main.m */,
+				1D5FEDE21EB7541C003499D1 /* Protocols */,
+				1D5FEDE11EB75387003499D1 /* Categories */,
 				1D5BF96E1EB25EAE0093099B /* Generator */,
 				1D5CA4341EB0F23C00706B17 /* CarWash */,
 				1D5CA3DE1EB0ECCC00706B17 /* Creature */,
@@ -264,6 +285,7 @@
 			files = (
 				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
 				1D5CA42A1EB0F1C700706B17 /* AZCreature.h in Sources */,
+				1D5FEDE61EB7543E003499D1 /* NSObject+AZInit.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
 				1D75D54D1EB38BC000813DB8 /* AZCarWashBuilding.m in Sources */,
 				1D65E1611EB1070500D0B5E4 /* AZDirector.m in Sources */,
