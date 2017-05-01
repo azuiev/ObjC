@@ -6,11 +6,60 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZStringGenerator.h"
+#import "AZRandom.h"
 
-@implementation AZStringGenerator
+NSUInteger randomNumberInRange(NSRange range){
+    return 0;
+}
 
-static const u_int AZDefaultStringLength = 8;
+NSUInteger randomNumberWithMaxValue(NSUInteger maxValue){
+    return 0;
+}
+
+@implementation AZRandom
+
+static const NSUInteger AZDefaultStringLength = 8;
+
+#pragma mark -
+#pragma mark Public Methods
+
++ (NSString *)lowercaseString {
+    return [self stringFromAlphabet:[self lowercaseAlphabet] withLength:AZDefaultStringLength];
+}
+
++ (NSString *)uppercaseString {
+    return [self stringFromAlphabet:[self uppercaseAlphabet] withLength:AZDefaultStringLength];
+}
+
++ (NSString *)numericString {
+    return [self stringFromAlphabet:[self numericAlphabet] withLength:AZDefaultStringLength];
+}
+//+ (NSString *)alpanumericString;
+
+//+ (NSString *)lowercaseStringWithLength:(short)length;
+//+ (NSString *)uppercaseStringWithLength:(short)length;
+//+ (NSUInteger *)numericStringWithLength:(short)length;
+//
+//+ (NSString *)lowercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
+//+ (NSString *)uppercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
+//+ (NSUInteger *)numericStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
+
+#pragma mark -
+#pragma mark User Methods
+
++ (NSString *)randomName {
+    NSMutableString *result = [self stringFromAlphabet:[self lowercaseAlphabet] withLength:arc4random_uniform((uint32)AZDefaultStringLength)];
+    [[result substringToIndex:1] uppercaseString];
+    return result;
+}
+
++ (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue {
+    return [self randomNumberInRangeFrom:0 to:maxValue];
+}
+
++ (uint32_t)randomNumberInRangeFrom:(uint32_t)minValue to:(uint32_t)maxValue {
+    return minValue + arc4random_uniform(maxValue-minValue);
+}
 
 #pragma mark -
 #pragma mark Privat Methods
@@ -43,45 +92,6 @@ static const u_int AZDefaultStringLength = 8;
     return [self characterStringFromRange:NSMakeRange('0', '9')];
 }
 
-#pragma mark -
-#pragma mark Public Methods
 
-+ (NSString *)lowercaseString {
-    return [self stringFromAlphabet:[self lowercaseAlphabet] withLength:AZDefaultStringLength];
-}
-
-+ (NSString *)uppercaseString {
-    return [self stringFromAlphabet:[self uppercaseAlphabet] withLength:AZDefaultStringLength];
-}
-
-+ (NSString *)numericString {
-    return [self stringFromAlphabet:[self numericAlphabet] withLength:AZDefaultStringLength];
-}
-//+ (NSString *)alpanumericString;
-
-//+ (NSString *)lowercaseStringWithLength:(short)length;
-//+ (NSString *)uppercaseStringWithLength:(short)length;
-//+ (NSUInteger *)numericStringWithLength:(short)length;
-//
-//+ (NSString *)lowercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSString *)uppercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSUInteger *)numericStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-
-#pragma mark -
-#pragma mark User Methods
-
-+ (NSString *)randomName {
-    NSMutableString *result = [self stringFromAlphabet:[self uppercaseAlphabet] withLength:1];
-    [result appendString:[self stringFromAlphabet:[self lowercaseAlphabet] withLength:arc4random_uniform((uint32)AZDefaultStringLength)]];
-    return result;
-}
-
-+ (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue {
-    return [self randomNumberInRangeFrom:0 to:maxValue];
-}
-
-+ (uint32_t)randomNumberInRangeFrom:(uint32_t)minValue to:(uint32_t)maxValue {
-    return minValue + arc4random_uniform(maxValue-minValue);
-}
 
 @end

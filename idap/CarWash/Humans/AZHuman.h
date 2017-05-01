@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AZHuman : NSObject
+#import "AZMoneyFlow.h"
+
+@interface AZHuman : NSObject <AZMoneyFlow>
 
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   double       salary;

@@ -7,7 +7,11 @@
 //
 
 #import "AZHuman.h"
-#import "AZStringGenerator.h"
+#import "AZRandom.h"
+
+static const NSUInteger AZMinSalary = 1000;
+static const NSUInteger AZMaxSalary = 5000;
+static const NSUInteger AZMaxExperience = 50;
 
 @implementation AZHuman
 
@@ -26,9 +30,9 @@
 
 - (instancetype)init{
     [super init];
-    self.name = [AZStringGenerator randomName];
-    self.salary = [AZStringGenerator randomNumberInRangeFrom:1000 to:5000];
-    self.experience = [AZStringGenerator randomNumberInRangeFrom:0 to:50];
+    self.name = [AZRandom randomName];
+    self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
+    self.experience = randomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
     return self;
 }

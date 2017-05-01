@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AZStringGenerator : NSObject
+NSUInteger randomNumberInRange(NSRange range);
+NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
+
+@interface AZRandom : NSString
 
 + (NSString *)lowercaseString;
 + (NSString *)uppercaseString;
@@ -24,8 +27,5 @@
 //+ (NSString *)numericStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
 
 + (NSString *)randomName;
-
-+ (uint32_t)randomNumberInRangeFrom:(uint32_t)minValue to:(uint32_t)maxValue;
-+ (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue;
 
 @end
