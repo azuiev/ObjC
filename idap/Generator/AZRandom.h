@@ -16,7 +16,8 @@ NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
 + (NSString *)lowercaseString;
 + (NSString *)uppercaseString;
 + (NSString *)numericString;
-//+ (NSString *)alpanumericString;
++ (NSString *)alpanumericString;
++ (NSString *)letterString;
 
 //+ (NSString *)lowercaseStringWithLength:(short)length;
 //+ (NSString *)uppercaseStringWithLength:(short)length;

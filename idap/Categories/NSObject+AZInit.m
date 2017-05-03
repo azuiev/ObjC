@@ -11,7 +11,6 @@
 NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @implementation NSObject (AZInit)
-
 + (instancetype)init{
     return [[[self alloc] init] autorelease];
 }

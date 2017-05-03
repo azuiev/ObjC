@@ -9,11 +9,11 @@
 #import "AZRandom.h"
 
 NSUInteger randomNumberInRange(NSRange range){
-    return 0;
+    return range.location + arc4random_uniform((uint32_t)(range.length - range.location));
 }
 
 NSUInteger randomNumberWithMaxValue(NSUInteger maxValue){
-    return 0;
+    return randomNumberInRange(NSMakeRange(0, maxValue));
 }
 
 @implementation AZRandom
@@ -24,17 +24,24 @@ static const NSUInteger AZDefaultStringLength = 8;
 #pragma mark Public Methods
 
 + (NSString *)lowercaseString {
-    return [self stringFromAlphabet:[self lowercaseAlphabet] withLength:AZDefaultStringLength];
+    return [self stringWtihDefaultLength:[self lowercaseAlphabet]];
 }
 
 + (NSString *)uppercaseString {
-    return [self stringFromAlphabet:[self uppercaseAlphabet] withLength:AZDefaultStringLength];
+    return [self stringWtihDefaultLength:[self uppercaseAlphabet]];
 }
 
 + (NSString *)numericString {
-    return [self stringFromAlphabet:[self numericAlphabet] withLength:AZDefaultStringLength];
+    return [self stringWtihDefaultLength:[self numericAlphabet]];
 }
-//+ (NSString *)alpanumericString;
+
++ (NSString *)alpanumericString {
+    return [self stringWtihDefaultLength:[self alphanumericAlphabet]];
+}
+
++ (NSString *)letterString {
+    return [self stringWtihDefaultLength:[self letterAlphabet]];
+}
 
 //+ (NSString *)lowercaseStringWithLength:(short)length;
 //+ (NSString *)uppercaseStringWithLength:(short)length;
@@ -64,6 +71,10 @@ static const NSUInteger AZDefaultStringLength = 8;
 #pragma mark -
 #pragma mark Privat Methods
 
++ (NSString *)stringWtihDefaultLength:(NSString *)alphabet {
+    return [self stringFromAlphabet:[self lowercaseAlphabet] withLength:AZDefaultStringLength];
+}
+
 + (NSMutableString *)stringFromAlphabet:(NSString *)alphabet withLength:(u_int)length {
     NSMutableString *result = [NSMutableString string];
     for (u_int i = 0; i < length; i += 1) {
@@ -92,6 +103,12 @@ static const NSUInteger AZDefaultStringLength = 8;
     return [self characterStringFromRange:NSMakeRange('0', '9')];
 }
 
++ (NSString *)alphanumericAlphabet {
+    return [[self lowercaseAlphabet] stringByAppendingString:[[self uppercaseAlphabet] stringByAppendingString:[self numericAlphabet]]];
+}
 
++ (NSString *)letterAlphabet {
+    return [[self lowercaseAlphabet] stringByAppendingString:[self uppercaseAlphabet]];
+}
 
 @end
