@@ -12,7 +12,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         //[AZTestCreature performTest];
-        [AZTestCarWash performTtest];
+        [AZTestCarWash performTest];
     }
     
     return 0;

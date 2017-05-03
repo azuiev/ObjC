@@ -10,6 +10,6 @@
 
 @interface AZTestCarWash : NSObject
 
-+ (void)performTtest;
++ (void)performTest;
 
 @end

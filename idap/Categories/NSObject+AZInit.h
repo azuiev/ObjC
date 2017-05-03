@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (AZInit)
+
 + (instancetype)init;
 + (NSArray *)initWithCount:(NSUInteger)count;
 

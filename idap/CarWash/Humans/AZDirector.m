@@ -13,8 +13,10 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)getIncome:(AZAccountant *)accountant{
-    NSLog(@"%@ get income from %@. Total income - %5.2f dollars ", self, accountant, self.money);
+- (void)getIncome:(AZAccountant *)accountant {
+    
+    double income = accountant.money;
+    NSLog(@"%@ get income from %@ - %5.2f. Total - %5.2f dollars ", self, accountant, income, self.money + income);
 }
 
 #pragma mark -

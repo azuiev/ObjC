@@ -20,24 +20,27 @@ static const NSString *AZDelimeter = @"**********";
 
 @implementation AZTestCarWash
 
-+ (void)performTtest{
-    AZWasher *washer = [AZWasher init];
-    AZAccountant *accountant = [AZAccountant init];
-    AZDirector *director = [AZDirector init];
-    NSLog(@"%@",AZDelimeter);
-    NSArray *cars = [AZCar initWithCount:10];
-    AZEnterprise *enterprise = [AZEnterprise init];
-    NSLog(@"%@",AZDelimeter);
-    for (AZCar *car in cars) {
-        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
-        NSLog(@"%@",AZDelimeter);
-    }
++ (void)performTest{
+//    AZWasher *washer = [AZWasher init];
+//    AZAccountant *accountant = [AZAccountant init];
+//    AZDirector *director = [AZDirector init];
+//    NSLog(@"%@",AZDelimeter);
+//    NSArray *cars = [AZCar initWithCount:10];
+//    AZEnterprise *enterprise = [AZEnterprise init];
+//    NSLog(@"%@",AZDelimeter);
+//    for (AZCar *car in cars) {
+//        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
+//        NSLog(@"%@",AZDelimeter);
+//    }
     
-    NSLog(@"%@", [AZRandom alpanumericStringWithLength:12]);
+    NSLog(@"%@", [AZRandom lowercaseString]);
+    NSLog(@"%@", [AZRandom uppercaseStringWithLength:13]);
+    NSLog(@"%@", [AZRandom lowercaseStringWithLength:9]);
     NSLog(@"%@", [AZRandom numericStringWithLength:11]);
     NSLog(@"%@", [AZRandom letterStringWithLength:10]);
-    NSLog(@"%@", [AZRandom uppercaseStringWithLength:9]);
-    NSLog(@"%@", [AZRandom lowercaseStringWithLength:8]);
+    NSLog(@"%@", [AZRandom alphanumericStringWithLength:12]);
+    NSLog(@"%@", [AZRandom alphanumericStringWithLengthInRange:NSMakeRange(1, 2)]);
+    
     
 }
 

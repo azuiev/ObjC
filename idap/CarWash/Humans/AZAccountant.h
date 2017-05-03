@@ -11,8 +11,6 @@
 
 @interface AZAccountant : AZHuman
 
-@property (nonatomic,assign) double moneyFromWashers;
-
 - (void)calculateMoney:(AZWasher *)washer;
 
 @end

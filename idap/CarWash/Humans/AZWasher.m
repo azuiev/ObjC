@@ -11,15 +11,6 @@
 @implementation AZWasher
 
 #pragma mark -
-#pragma mark Initialization
-
-- (instancetype)init {
-    [super init];
-    self.moneyFromCars = 0;
-    return self;
-}
-
-#pragma mark -
 #pragma mark Public methods
 
 - (void)washCar:(AZCar *)car{
@@ -37,4 +28,5 @@
         NSLog(@"Achtung!!!");
     }
 }
+
 @end

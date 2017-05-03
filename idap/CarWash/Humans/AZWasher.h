@@ -11,8 +11,6 @@
 
 @interface AZWasher : AZHuman
 
-@property (nonatomic, assign) double moneyFromCars;
-
 - (void)washCar:(AZCar *)car;
 
 @end

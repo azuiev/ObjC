@@ -17,18 +17,14 @@
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
-+ (instancetype)init {
-    return [[[self alloc] init] autorelease];
-}
 
 - (instancetype)init {
-    self.mutableRooms = [NSMutableArray new] ;
+    self.mutableRooms = [NSMutableArray array] ;
     return self;
 }
 
 - (void)dealloc{
     [self.mutableRooms release];
-    self.mutableRooms = nil;
     [super dealloc];
 }
 

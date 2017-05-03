@@ -18,8 +18,6 @@
 
 @property (nonatomic, copy, readonly) NSArray *rooms;
 
-+ (instancetype)init;
-
 - (void)addRoom:(AZRoom *)room;
 
 @end
