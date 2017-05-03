@@ -16,13 +16,13 @@ NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
 + (NSString *)lowercaseString;
 + (NSString *)uppercaseString;
 + (NSString *)numericString;
-+ (NSString *)alpanumericString;
++ (NSString *)alphanumericString;
 + (NSString *)letterString;
 
 + (NSString *)lowercaseStringWithLength:(NSUInteger)length;
 + (NSString *)uppercaseStringWithLength:(NSUInteger)length;
 + (NSString *)numericStringWithLength:(NSUInteger)length;
-+ (NSString *)alpanumericStringWithLength:(NSUInteger)length;
++ (NSString *)alphanumericStringWithLength:(NSUInteger)length;
 + (NSString *)letterStringWithLength:(NSUInteger)length;
 
 + (NSString *)lowercaseStringWithLengthInRange:(NSRange)range;

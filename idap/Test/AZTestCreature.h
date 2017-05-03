@@ -9,6 +9,6 @@
 
 @interface AZTestCreature : NSObject
 
-+ (void)performTtest;
++ (void)performTest;
 
 @end

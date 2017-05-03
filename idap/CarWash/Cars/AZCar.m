@@ -77,7 +77,7 @@ const u_int AZMaxMoneyForCar = 5000;
 - (double)giveMoney:(id<AZMoneyFlow> *)human{
     double result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, human);
+    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, (id)human);
     return result;
 }
 

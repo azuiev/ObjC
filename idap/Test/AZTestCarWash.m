@@ -21,17 +21,17 @@ static const NSString *AZDelimeter = @"**********";
 @implementation AZTestCarWash
 
 + (void)performTest{
-//    AZWasher *washer = [AZWasher init];
-//    AZAccountant *accountant = [AZAccountant init];
-//    AZDirector *director = [AZDirector init];
-//    NSLog(@"%@",AZDelimeter);
-//    NSArray *cars = [AZCar initWithCount:10];
-//    AZEnterprise *enterprise = [AZEnterprise init];
-//    NSLog(@"%@",AZDelimeter);
-//    for (AZCar *car in cars) {
-//        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
-//        NSLog(@"%@",AZDelimeter);
-//    }
+    AZWasher *washer = [AZWasher init];
+    AZAccountant *accountant = [AZAccountant init];
+    AZDirector *director = [AZDirector init];
+    NSLog(@"%@",AZDelimeter);
+    NSArray *cars = [AZCar initWithCount:10];
+    AZEnterprise *enterprise = [AZEnterprise init];
+    NSLog(@"%@",AZDelimeter);
+    for (AZCar *car in cars) {
+        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
+        NSLog(@"%@",AZDelimeter);
+    }
     
     NSLog(@"%@", [AZRandom lowercaseString]);
     NSLog(@"%@", [AZRandom uppercaseStringWithLength:13]);
