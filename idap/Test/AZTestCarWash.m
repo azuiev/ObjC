@@ -14,6 +14,7 @@
 #import "AZCar.h"
 #import "AZEnterprise.h"
 #import "NSObject+AZInit.h"
+#import "AZRandom.h"
 
 static const NSString *AZDelimeter = @"**********";
 
@@ -31,6 +32,13 @@ static const NSString *AZDelimeter = @"**********";
         [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
         NSLog(@"%@",AZDelimeter);
     }
+    
+    NSLog(@"%@", [AZRandom alpanumericStringWithLength:12]);
+    NSLog(@"%@", [AZRandom numericStringWithLength:11]);
+    NSLog(@"%@", [AZRandom letterStringWithLength:10]);
+    NSLog(@"%@", [AZRandom uppercaseStringWithLength:9]);
+    NSLog(@"%@", [AZRandom lowercaseStringWithLength:8]);
+    
 }
 
 @end

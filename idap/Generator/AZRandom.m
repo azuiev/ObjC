@@ -24,32 +24,63 @@ static const NSUInteger AZDefaultStringLength = 8;
 #pragma mark Public Methods
 
 + (NSString *)lowercaseString {
-    return [self stringWtihDefaultLength:[self lowercaseAlphabet]];
+    return [self stringWithDefaultLength:[self lowercaseAlphabet]];
 }
 
 + (NSString *)uppercaseString {
-    return [self stringWtihDefaultLength:[self uppercaseAlphabet]];
+    return [self stringWithDefaultLength:[self uppercaseAlphabet]];
 }
 
 + (NSString *)numericString {
-    return [self stringWtihDefaultLength:[self numericAlphabet]];
+    return [self stringWithDefaultLength:[self numericAlphabet]];
 }
 
 + (NSString *)alpanumericString {
-    return [self stringWtihDefaultLength:[self alphanumericAlphabet]];
+    return [self stringWithDefaultLength:[self alphanumericAlphabet]];
 }
 
 + (NSString *)letterString {
-    return [self stringWtihDefaultLength:[self letterAlphabet]];
+    return [self stringWithDefaultLength:[self letterAlphabet]];
 }
 
-//+ (NSString *)lowercaseStringWithLength:(short)length;
-//+ (NSString *)uppercaseStringWithLength:(short)length;
-//+ (NSUInteger *)numericStringWithLength:(short)length;
-//
-//+ (NSString *)lowercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSString *)uppercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSUInteger *)numericStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
++ (NSString *)lowercaseStringWithLength:(NSUInteger)length {
+    return [self stringWith:[self lowercaseAlphabet] length:length];
+}
+
++ (NSString *)uppercaseStringWithLength:(NSUInteger)length {
+    return [self stringWith:[self uppercaseAlphabet] length:length];
+}
++ (NSString *)numericStringWithLength:(NSUInteger)length{
+    return [self stringWith:[self numericAlphabet] length:length];
+}
+
++ (NSString *)alpanumericStringWithLength:(NSUInteger)length {
+    return [self stringWith:[self alphanumericAlphabet] length:length];
+}
+
++ (NSString *)letterStringWithLength:(NSUInteger)length {
+    return [self stringWith:[self letterAlphabet] length:length];
+}
+
++ (NSString *)lowercaseStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength {
+    return [self stringWith:[self lowercaseAlphabet] minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength];
+}
+
++ (NSString *)uppercaseStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength {
+    return [self stringWith:[self uppercaseAlphabet] minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength];
+}
+
++ (NSString *)numericStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength {
+    return [self stringWith:[self numericAlphabet] minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength];
+}
+
++ (NSString *)alpanumericStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength {
+    return [self stringWith:[self alphanumericAlphabet] minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength];
+}
+
++ (NSString *)letterStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength {
+    return [self stringWith:[self uppercaseAlphabet] minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength];
+}
 
 #pragma mark -
 #pragma mark User Methods
@@ -60,22 +91,22 @@ static const NSUInteger AZDefaultStringLength = 8;
 
 }
 
-+ (uint32_t)randomNumberWithMaxValue:(uint32_t)maxValue {
-    return [self randomNumberInRangeFrom:0 to:maxValue];
-}
-
-+ (uint32_t)randomNumberInRangeFrom:(uint32_t)minValue to:(uint32_t)maxValue {
-    return minValue + arc4random_uniform(maxValue-minValue);
-}
-
 #pragma mark -
 #pragma mark Privat Methods
 
-+ (NSString *)stringWtihDefaultLength:(NSString *)alphabet {
-    return [self stringFromAlphabet:[self lowercaseAlphabet] withLength:AZDefaultStringLength];
++ (NSString *)stringWithDefaultLength:(NSString *)alphabet {
+    return [self stringFromAlphabet:alphabet withLength:AZDefaultStringLength];
 }
 
-+ (NSMutableString *)stringFromAlphabet:(NSString *)alphabet withLength:(u_int)length {
++ (NSString *)stringWith:(NSString *)alphabet length:(NSUInteger)length {
+    return [self stringFromAlphabet:alphabet withLength:length];
+}
+
++ (NSString *)stringWith:(NSString *)alphabet minLength:(NSUInteger)minLength maxLength:(NSUInteger)maxLength {
+    return [self stringFromAlphabet:alphabet withLength:randomNumberInRange(NSMakeRange(minLength, maxLength))];
+}
+
++ (NSMutableString *)stringFromAlphabet:(NSString *)alphabet withLength:(NSUInteger)length {
     NSMutableString *result = [NSMutableString string];
     for (u_int i = 0; i < length; i += 1) {
         [result appendFormat:@"%c",[alphabet characterAtIndex:arc4random_uniform((uint32_t)[alphabet length])]];
@@ -83,7 +114,7 @@ static const NSUInteger AZDefaultStringLength = 8;
     return result;
 }
 
-+ (NSString *)characterStringFromRange:(NSRange)range {
++ (NSMutableString *)characterStringFromRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];
     for (char character = range.location; character <= range.length; character += 1) {
         [result appendFormat:@"%c",character];
@@ -103,12 +134,18 @@ static const NSUInteger AZDefaultStringLength = 8;
     return [self characterStringFromRange:NSMakeRange('0', '9')];
 }
 
-+ (NSString *)alphanumericAlphabet {
-    return [[self lowercaseAlphabet] stringByAppendingString:[[self uppercaseAlphabet] stringByAppendingString:[self numericAlphabet]]];
++ (NSString *)letterAlphabet {
+    NSMutableString *result = (NSMutableString *)[self lowercaseAlphabet];
+    [result appendString:[self uppercaseAlphabet]];
+    
+    return result;
 }
 
-+ (NSString *)letterAlphabet {
-    return [[self lowercaseAlphabet] stringByAppendingString:[self uppercaseAlphabet]];
++ (NSString *)alphanumericAlphabet {
+    NSMutableString *result = (NSMutableString *)[self letterAlphabet];
+    [result appendString:[self numericAlphabet]];
+    
+    return result;
 }
 
 @end

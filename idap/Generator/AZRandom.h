@@ -19,13 +19,17 @@ NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
 + (NSString *)alpanumericString;
 + (NSString *)letterString;
 
-//+ (NSString *)lowercaseStringWithLength:(short)length;
-//+ (NSString *)uppercaseStringWithLength:(short)length;
-//+ (NSString *)numericStringWithLength:(short)length;
-//
-//+ (NSString *)lowercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSString *)uppercaseStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
-//+ (NSString *)numericStringWithLengthFromLength:(short)minLength toMaxLength:(short)maxLength;
++ (NSString *)lowercaseStringWithLength:(NSUInteger)length;
++ (NSString *)uppercaseStringWithLength:(NSUInteger)length;
++ (NSString *)numericStringWithLength:(NSUInteger)length;
++ (NSString *)alpanumericStringWithLength:(NSUInteger)length;
++ (NSString *)letterStringWithLength:(NSUInteger)length;
+
++ (NSString *)lowercaseStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength;
++ (NSString *)uppercaseStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength;
++ (NSString *)numericStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength;
++ (NSString *)alpanumericStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength;
++ (NSString *)letterStringWithLengthFrom:(NSUInteger)minLength toMaxLength:(NSUInteger)maxLength;
 
 + (NSString *)randomName;
 
