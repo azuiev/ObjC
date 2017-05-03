@@ -24,7 +24,17 @@
 
 - (void)calculateMoney:washer {
     NSLog(@"%@ calculate %@ money. %5.2f dollars ", self ,washer, [washer money]);
-    [self takeMoney:(id<AZMoneyFlow> *)washer];
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>  *)moneySpender {
+    if ([(id)moneySpender isMemberOfClass:[AZWasher class]]) {
+        [self calculateMoney:(AZWasher *)moneySpender];
+    } else {
+        NSLog(@"Achtung!!!");
+    }
 }
 
 @end

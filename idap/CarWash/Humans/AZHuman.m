@@ -48,13 +48,14 @@ extern NSString * AZDescriptionFormatter;
 #pragma mark -
 #pragma mark Implements protocols
 
-- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender{
+- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender {
+    [self performSpecificForClassOperation:moneySpender];
     double income = [(id<AZMoneyFlow>)moneySpender giveMoney:(id<AZMoneyFlow> *)self];
     self.money += income;
     NSLog(@"%@ take %5.2f dollars from %@ ", self, income, (id)moneySpender);
 }
 
-- (double)giveMoney:(id<AZMoneyFlow> *)moneyReceiver{
+- (double)giveMoney:(id<AZMoneyFlow> *)moneyReceiver {
     double result = self.money;
     self.money = 0;
     NSLog(@"%@ give %5.2f dollars to %@ ", self, result, (id)moneyReceiver);
@@ -66,6 +67,13 @@ extern NSString * AZDescriptionFormatter;
 
 - (NSString *)description{
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
+}
+
+#pragma mark -
+#pragma mark Override Methods
+
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>  *)moneySpender {
+    
 }
 
 @end

@@ -13,8 +13,8 @@
 @interface AZHuman : NSObject <AZMoneyFlow>
 
 @property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, assign)   double       salary;
-@property (nonatomic, assign)   double       experience;
+@property (nonatomic, assign)   double      salary;
+@property (nonatomic, assign)   double      experience;
 	
 - (instancetype)init;
 - (void)sayHi;

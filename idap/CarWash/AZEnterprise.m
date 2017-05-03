@@ -11,9 +11,9 @@
 @implementation AZEnterprise
 
 - (void)performBusinessProcess:(AZCar *)car washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director{
-    [washer washCar:car];
-    [accountant calculateMoney:washer];
-    [director getIncome:accountant];
+    [washer takeMoney:(id<AZMoneyFlow> *)car];
+    [accountant takeMoney:(id<AZMoneyFlow> *)washer];
+    [director takeMoney:(id<AZMoneyFlow> *)accountant];
 }
 
 @end
