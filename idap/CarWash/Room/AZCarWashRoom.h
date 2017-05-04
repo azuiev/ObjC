@@ -9,11 +9,18 @@
 #import "AZRoom.h"
 #import "AZCar.h"
 
+static const NSUInteger AZDefaultCarsCount = 1;
+
 @interface AZCarWashRoom : AZRoom
 
 @property (nonatomic, copy, readonly)   NSArray     *cars;
 @property (nonatomic, assign, readonly) NSUInteger  carsCapacity;
 
++ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity;
++ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity;
+
+- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity;
+- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity;
 
 - (void) addCar:(AZCar *) car;
 - (void) removeCar:(AZCar *) car;

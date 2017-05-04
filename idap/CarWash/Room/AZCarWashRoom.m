@@ -8,14 +8,85 @@
 
 #import "AZCarWashRoom.h"
 
-@implementation AZCarWashRoom
+@interface AZCarWashRoom ()
+@property (nonatomic, copy)   NSMutableArray    *mutableCars;
+@property (nonatomic, assign) NSUInteger        mutableCarsCapacity;
+@end
 
-- (void) addCar:(AZCar *) car{
-    
+@implementation AZCarWashRoom
+@dynamic cars;
+@dynamic carsCapacity;
+
+#pragma mark -
+#pragma mark Inicialization and Deallocation
+
++ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity {
+     return [[[self alloc] initWithCarsCapacity:carsCapacity humansCapacity:humansCapacity] autorelease];
 }
 
-- (void) removecar:(AZCar *) car{
++ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity {
+    return [[[self alloc] initWithCarsCapacity:carsCapacity] autorelease];
+}
+
+- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity{
+    [super initWithHumansCapacity:humansCapacity];
+    self.mutableCars = [NSMutableArray array];
+    self.mutableCarsCapacity = carsCapacity;
+    return self;
+}
+
+- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity {
+    [super init];
+    self.mutableCars = [NSMutableArray array];
+    self.mutableCarsCapacity = carsCapacity;
+    return self;
+}
+
+- (instancetype)init {
+    [super init];
+    self.mutableCars = [NSMutableArray array];
+    self.mutableCarsCapacity = AZDefaultCarsCount;
+    return self;
+}
+
+#pragma mark -
+#pragma mark Override parent initializer
+
+- (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
+    [super initWithHumansCapacity:humansCapacity];
+    self.mutableCars = [NSMutableArray array];
+    self.mutableCarsCapacity = AZDefaultCarsCount;
+    return self;
+}
+
+#pragma mark -
+#pragma mark Getters
+
+- (NSArray *)cars {
+    return [[self.mutableCars copy] autorelease];
+}
+
+- (NSUInteger)carsCapacity:(NSUInteger)humansCapacity {
+    return self.mutableCarsCapacity;
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void) addCar:(AZCar *)car {
+    if (!car) {
+        NSLog(@"Achtung!!!");
+    }
     
+    [self.mutableCars addObject:car];
+}
+
+- (void) removeCar:(AZCar *)car {
+    if (!car) {
+        NSLog(@"Achtung!!!");
+    }
+    
+    [self.mutableCars removeObject:car];
 }
 
 @end

@@ -10,7 +10,7 @@
 
 #import "AZHuman.h"
 
-static const NSUInteger AZDefaultHumanCount = 1;
+static const NSUInteger AZDefaultHumansCount = 1;
 
 @interface AZRoom : NSObject
 
@@ -19,6 +19,7 @@ static const NSUInteger AZDefaultHumanCount = 1;
 
 + (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
 
+- (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
 - (void)addHuman:(AZHuman *) human;
 - (void)removeHuman:(AZHuman *) human;
 

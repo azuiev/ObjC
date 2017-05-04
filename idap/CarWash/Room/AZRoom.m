@@ -18,15 +18,20 @@
 @dynamic humansCapacity;
 
 + (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
-    AZRoom *result = [[[self alloc] init] autorelease];
-    result.mutableHumansCapacity = humansCapacity;
-    return result;
+   return [[[self alloc] initWithHumansCapacity:humansCapacity] autorelease];
+}
+
+- (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
+    [super init];
+    self.mutableHumans = [NSMutableArray array];
+    self.mutableHumansCapacity = humansCapacity;
+    return self;
 }
 
 - (instancetype)init {
     [super init];
     self.mutableHumans = [NSMutableArray array];
-    self.mutableHumansCapacity = AZDefaultHumanCount;
+    self.mutableHumansCapacity = AZDefaultHumansCount;
     return self;
 }
 

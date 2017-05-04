@@ -15,6 +15,8 @@
 #import "AZEnterprise.h"
 #import "NSObject+AZInit.h"
 #import "AZRandom.h"
+#import "AZRoom.h"
+#import "AZCarWashRoom.h"
 
 static const NSString *AZDelimeter = @"**********";
 
@@ -40,6 +42,14 @@ static const NSString *AZDelimeter = @"**********";
     NSLog(@"%@", [AZRandom letterStringWithLength:10]);
     NSLog(@"%@", [AZRandom alphanumericStringWithLength:12]);
     NSLog(@"%@", [AZRandom alphanumericStringWithLengthInRange:NSMakeRange(1, 2)]);
+    
+    AZRoom *room = [AZRoom init];
+    AZRoom *room2 = [AZRoom initWithHumansCapacity:2];
+    AZCarWashRoom *room3 = [AZCarWashRoom init];
+    AZCarWashRoom *room4 = [AZCarWashRoom initWithCarsCapacity:5];
+    AZCarWashRoom *room5 = [AZCarWashRoom initWithHumansCapacity:4];
+    AZCarWashRoom *room6 = [AZCarWashRoom initWithCarsCapacity:3 humansCapacity:3];
+    
     
     
 }
