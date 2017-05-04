@@ -10,12 +10,16 @@
 
 #import "AZHuman.h"
 
+static const NSUInteger AZDefaultHumanCount = 1;
+
 @interface AZRoom : NSObject
 
-@property (nonatomic,assign,readonly) NSArray *humans;
-@property (nonatomic,assign) int humansCapacity;
+@property (nonatomic, copy, readonly)   NSArray     *humans;
+@property (nonatomic, assign, readonly) NSUInteger  humansCapacity;
 
-- (void) addHuman:(AZHuman *) human;
-- (void) removeHuman:(AZHuman *) human;
++ (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
+
+- (void)addHuman:(AZHuman *) human;
+- (void)removeHuman:(AZHuman *) human;
 
 @end

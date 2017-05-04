@@ -11,10 +11,11 @@
 
 @interface AZCarWashRoom : AZRoom
 
-@property (nonatomic, copy, readonly) NSArray *cars;
-@property (nonatomic,assign) int carsCapacity;
+@property (nonatomic, copy, readonly)   NSArray     *cars;
+@property (nonatomic, assign, readonly) NSUInteger  carsCapacity;
+
 
 - (void) addCar:(AZCar *) car;
-- (void) removecar:(AZCar *) car;
+- (void) removeCar:(AZCar *) car;
 
 @end

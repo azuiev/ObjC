@@ -29,7 +29,7 @@ extern NSString * AZDescriptionFormatter;
     [super dealloc];
 }
 
-- (instancetype)init{
+- (instancetype)init {
     [super init];
     self.name = [AZRandom randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
@@ -65,7 +65,7 @@ extern NSString * AZDescriptionFormatter;
 #pragma mark -
 #pragma mark Override Methods
 
-- (NSString *)description{
+- (NSString *)description {
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
 }
 

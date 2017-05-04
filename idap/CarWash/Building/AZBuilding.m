@@ -19,6 +19,7 @@
 
 
 - (instancetype)init {
+    [super init];
     self.mutableRooms = [NSMutableArray array] ;
     return self;
 }
@@ -36,7 +37,7 @@
 }
 
 #pragma mark -
-#pragma mark Getters
+#pragma mark Public Methods
 
 - (void)addRoom:(AZRoom *)room {
     if(!room){
@@ -46,6 +47,12 @@
     [self.mutableRooms addObject:room];
 }
 
-
+- (void)removeRoom:(AZRoom *)room {
+    if(!room){
+        NSLog(@"Achtung!!!");
+        return;
+    }
+    [self.mutableRooms removeObject:room];
+}
 
 @end
