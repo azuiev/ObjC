@@ -7,12 +7,13 @@
 //
 
 #import "AZHuman.h"
-#import "AZRandom.h"
+#import "AZRandomString.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
 static const NSUInteger AZMaxExperience = 50;
-extern NSString * AZDescriptionFormatter;
+
+extern NSString * const AZDescriptionFormatter;
 
 @interface AZHuman ()
 @property (nonatomic,assign) double money;
@@ -25,7 +26,6 @@ extern NSString * AZDescriptionFormatter;
 
 - (void)dealloc {
     [self.name release];
-    self.name = nil;
     [super dealloc];
 }
 

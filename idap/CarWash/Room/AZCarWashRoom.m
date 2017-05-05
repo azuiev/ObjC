@@ -9,6 +9,8 @@
 #import "AZCarWashRoom.h"
 
 @interface AZCarWashRoom ()
+@property (nonatomic, assign) NSMutableArray    *mutableHumans;
+@property (nonatomic, assign) NSUInteger        mutableHumansCapacity;
 @property (nonatomic, copy)   NSMutableArray    *mutableCars;
 @property (nonatomic, assign) NSUInteger        mutableCarsCapacity;
 @end
@@ -87,6 +89,13 @@
     }
     
     [self.mutableCars removeObject:car];
+}
+
+#pragma mark -
+#pragma mark Override Methods
+
+- (void)sayHi {
+    NSLog(@"Hi! I am %@ with humansCapacity - %lu, carsCapacity - %lu", [self class], self.mutableHumansCapacity, self.mutableCarsCapacity);
 }
 
 @end

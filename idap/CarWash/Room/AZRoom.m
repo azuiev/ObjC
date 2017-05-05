@@ -17,6 +17,9 @@
 @dynamic humans;
 @dynamic humansCapacity;
 
+#pragma mark -
+#pragma mark Initialization and Deallocation
+
 + (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
    return [[[self alloc] initWithHumansCapacity:humansCapacity] autorelease];
 }
@@ -35,22 +38,32 @@
     return self;
 }
 
-- (NSArray *) humans:(NSUInteger)humansCapacity {
+#pragma mark -
+#pragma mark Getters
+
+- (NSArray *)humans:(NSUInteger)humansCapacity {
     return [[self.mutableHumans copy] autorelease];
 }
 
-- (NSUInteger) humansCapacity:(NSUInteger)humansCapacity {
+- (NSUInteger)humansCapacity:(NSUInteger)humansCapacity {
     return self.mutableHumansCapacity;
 }
 
-- (void) addHuman:(AZHuman *)human {
+#pragma mark -
+#pragma mark Public methods
+
+- (void)sayHi {
+    NSLog(@"Hi! I am %@ with humansCapacity - %lu", [self class], (unsigned long)self.mutableHumansCapacity);
+}
+
+- (void)addHuman:(AZHuman *)human {
     if (!human) {
         NSLog(@"Achtung!!!");
     }
     [self.mutableHumans addObject:human];
 }
 
-- (void) removeHuman:(AZHuman *)human {
+- (void)removeHuman:(AZHuman *)human {
     if (!human) {
         NSLog(@"Achtung!!!");
     }
