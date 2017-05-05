@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */; };
 		1D5A9A391EBCE5C500649D51 /* AZRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A9A381EBCE5C500649D51 /* AZRandomString.m */; };
 		1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF96C1EB252980093099B /* AZTestCarWash.m */; };
 		1D5CA4291EB0F10C00706B17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA3F11EB0ECF500706B17 /* main.m */; };
@@ -40,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D3883AE1EBD427200CF5848 /* AZTestRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestRandomString.h; sourceTree = "<group>"; };
+		1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestRandomString.m; sourceTree = "<group>"; };
 		1D5A9A371EBCE5C500649D51 /* AZRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZRandomString.h; path = RandomString/AZRandomString.h; sourceTree = "<group>"; };
 		1D5A9A381EBCE5C500649D51 /* AZRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZRandomString.m; path = RandomString/AZRandomString.m; sourceTree = "<group>"; };
 		1D5BF96B1EB252980093099B /* AZTestCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCarWash.h; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */,
 				1D5BF96B1EB252980093099B /* AZTestCarWash.h */,
 				1D5BF96C1EB252980093099B /* AZTestCarWash.m */,
+				1D3883AE1EBD427200CF5848 /* AZTestRandomString.h */,
+				1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */,
+				1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */,
 				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
 				1D5FEDE61EB7543E003499D1 /* NSObject+AZInit.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,

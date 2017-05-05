@@ -11,7 +11,7 @@
 NSUInteger randomNumberInRange(NSRange range);
 NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
 
-@interface AZRandom : NSString
+@interface AZRandomString : NSString
 
 + (NSString *)lowercaseString;
 + (NSString *)uppercaseString;
@@ -33,16 +33,16 @@ NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
 
 + (NSString *)randomName;
 
-//+ (NSString *)stringFromAlphabet:(NSString *)alphabet;
-//+ (NSString *)stringFromAlphabetWith:(NSString *)alphabet length:(NSUInteger)length;
-//+ (NSString *)stringFromAlphabetWithLengthIn:(NSString *)alphabet range:(NSRange)range;
++ (NSString *)stringFromAlphabet:(NSString *)alphabet;
++ (NSString *)stringFromAlphabetWith:(NSString *)alphabet length:(NSUInteger)length;
++ (NSString *)stringFromAlphabetWithLengthIn:(NSString *)alphabet range:(NSRange)range;
 
-//+ (NSString *)stringFromRange:(NSRange)range;
-//+ (NSString *)stringFromRangeWith:(NSRange)range length:(NSUInteger)length;
-//+ (NSString *)stringFromRangeWithLengthIn:(NSRange)range range:(NSRange)length;
++ (NSString *)stringFromRange:(NSRange)range;
++ (NSString *)stringFromRangeWith:(NSRange)range length:(NSUInteger)length;
++ (NSString *)stringFromRangeWithLengthIn:(NSRange)range range:(NSRange)length;
 
-//+ (NSString *)stringFromArray:(NSarray)array;
-//+ (NSString *)stringFromArrayWith:(NSarray)array length:(NSUInteger)length;
-//+ (NSString *)stringFromArrayWithLengthIn:(NSarray)array range:(NSRange)length;
++ (NSString *)stringFromArray:(NSArray *)array;
++ (NSString *)stringFromArrayWith:(NSArray *)array length:(NSUInteger)length;
++ (NSString *)stringFromArrayWithLengthIn:(NSArray *)array range:(NSRange)length;
 
 @end

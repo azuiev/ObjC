@@ -22,7 +22,7 @@ static const NSString *AZDelimeter = @"**********";
 
 @implementation AZTestCarWash
 
-+ (void)performTest{
++ (void)performTest {
     AZBuilding *administration = [AZBuilding init];
     AZRoom *admininstrationRoom = [AZRoom init];
     AZAccountant *accountant = [AZAccountant init];

@@ -31,7 +31,7 @@ extern NSString * const AZDescriptionFormatter;
 
 - (instancetype)init {
     [super init];
-    self.name = [AZRandom randomName];
+    self.name = [AZRandomString randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = randomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
