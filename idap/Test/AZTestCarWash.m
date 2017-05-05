@@ -23,35 +23,28 @@ static const NSString *AZDelimeter = @"**********";
 @implementation AZTestCarWash
 
 + (void)performTest{
-    AZWasher *washer = [AZWasher init];
+    AZBuilding *administration = [AZBuilding init];
+    AZRoom *admininstrationRoom = [AZRoom init];
     AZAccountant *accountant = [AZAccountant init];
     AZDirector *director = [AZDirector init];
+    [administration addRoom:admininstrationRoom];
+    [admininstrationRoom addHuman:accountant];
+    [admininstrationRoom addHuman:director];
     NSLog(@"%@",AZDelimeter);
+    
+    AZBuilding *carWash = [AZBuilding init];
+    AZRoom *carWashRoom = [AZCarWashRoom init];
+    AZWasher *washer = [AZWasher init];
+    [carWash addRoom:carWashRoom];
+    [carWashRoom addHuman:washer];
     NSArray *cars = [AZCar initWithCount:10];
     AZEnterprise *enterprise = [AZEnterprise init];
     NSLog(@"%@",AZDelimeter);
+    
     for (AZCar *car in cars) {
-        [enterprise performBusinessProcess:car washer:washer accountant:accountant director:director];
+        [enterprise performBusinessProcess:car];
         NSLog(@"%@",AZDelimeter);
     }
-    
-    NSLog(@"%@", [AZRandom lowercaseString]);
-    NSLog(@"%@", [AZRandom uppercaseStringWithLength:13]);
-    NSLog(@"%@", [AZRandom lowercaseStringWithLength:9]);
-    NSLog(@"%@", [AZRandom numericStringWithLength:11]);
-    NSLog(@"%@", [AZRandom letterStringWithLength:10]);
-    NSLog(@"%@", [AZRandom alphanumericStringWithLength:12]);
-    NSLog(@"%@", [AZRandom alphanumericStringWithLengthInRange:NSMakeRange(1, 2)]);
-    
-    AZRoom *room1 = [AZRoom init];
-    AZRoom *room2 = [AZRoom initWithHumansCapacity:2];
-    AZCarWashRoom *room3 = [AZCarWashRoom init];
-    AZCarWashRoom *room4 = [AZCarWashRoom initWithCarsCapacity:5];
-    AZCarWashRoom *room5 = [AZCarWashRoom initWithHumansCapacity:4];
-    AZCarWashRoom *room6 = [AZCarWashRoom initWithCarsCapacity:3 humansCapacity:3];
-    
-    
-    
 }
 
 @end

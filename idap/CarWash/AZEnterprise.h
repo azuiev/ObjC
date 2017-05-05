@@ -10,6 +10,9 @@
 
 @interface AZEnterprise : NSObject
 
-- (void)performBusinessProcess:(AZCar *)cars washer:(AZWasher *)washer accountant:(AZAccountant *)accountant director:(AZDirector *)director;
+@property (nonatomic, retain, readonly) AZBuilding *administration;
+@property (nonatomic, retain, readonly) AZBuilding *carWash;
+
+- (void)performBusinessProcess:(AZCar *)car;
 
 @end
