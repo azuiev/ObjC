@@ -13,6 +13,9 @@
 @property (nonatomic, retain, readonly) AZBuilding *administration;
 @property (nonatomic, retain, readonly) AZBuilding *carWash;
 
++ (instancetype)initWithAdministration:(AZBuilding *)administration carWash:(AZBuilding *)carWash;
+- (instancetype)initWithAdministration:(AZBuilding *)administration carWash:(AZBuilding *)carWash;
+
 - (void)performBusinessProcess:(AZCar *)car;
 
 @end

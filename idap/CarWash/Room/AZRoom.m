@@ -41,11 +41,11 @@
 #pragma mark -
 #pragma mark Getters
 
-- (NSArray *)humans:(NSUInteger)humansCapacity {
+- (NSArray *)humans {
     return [[self.mutableHumans copy] autorelease];
 }
 
-- (NSUInteger)humansCapacity:(NSUInteger)humansCapacity {
+- (NSUInteger)humansCapacity {
     return self.mutableHumansCapacity;
 }
 

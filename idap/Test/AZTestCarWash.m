@@ -34,11 +34,15 @@ static const NSString *AZDelimeter = @"**********";
     
     AZBuilding *carWash = [AZBuilding init];
     AZRoom *carWashRoom = [AZCarWashRoom init];
+    [carWashRoom humans];
     AZWasher *washer = [AZWasher init];
     [carWash addRoom:carWashRoom];
     [carWashRoom addHuman:washer];
+    
+    AZEnterprise *enterprise = [AZEnterprise initWithAdministration:administration carWash:carWash];
+    
     NSArray *cars = [AZCar initWithCount:10];
-    AZEnterprise *enterprise = [AZEnterprise init];
+    
     NSLog(@"%@",AZDelimeter);
     
     for (AZCar *car in cars) {

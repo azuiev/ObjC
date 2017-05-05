@@ -20,8 +20,7 @@ static const NSUInteger AZDefaultHumansCount = 1;
 + (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
 
 - (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
-- (NSArray *)humans;
-- (NSUInteger)humansCapacity;
+
 - (void)sayHi;
 - (void)addHuman:(AZHuman *) human;
 - (void)removeHuman:(AZHuman *) human;
