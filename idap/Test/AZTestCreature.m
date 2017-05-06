@@ -17,7 +17,7 @@
 
 + (void)performTest {
 #define createCreature(parameter,name,gender,age,weight) \
-    AZCreature *parameter = [AZCreature##gender create]; \
+    AZCreature *parameter = [AZCreature##gender init]; \
     [AZTestCreature setProperties :parameter :@#name :age :weight]; \
     [childrenArray addObject:parameter]; \
 

@@ -11,25 +11,38 @@
 #import "AZCreature.h"
 
 @interface AZCreature ()
-    @property (nonatomic, retain)   NSMutableArray *mutableChildren;
+@property (nonatomic, retain)   NSMutableArray *mutableChildren;
 @end
 
 @implementation AZCreature
 @dynamic children;
 
--(NSArray *)children {
-    return [[self mutableChildren] copy];
-}
+#pragma mark -
+#pragma mark Initialization and Deallocation
 
--(void)remove {
-    [self setMutableChildren:nil];
-    [self.children dealloc];
-    [self dealloc];
+- (void)dealloc {
+    [self.mutableChildren release];
     [super dealloc];
 }
 
+- (instancetype)init {
+    [super init];
+    self.mutableChildren = [NSMutableArray array];
+    return self;
+}
+
+#pragma mark -
+#pragma mark Getters
+
+- (NSArray *)children {
+    return [[self.mutableChildren copy] autorelease];
+}
+
+#pragma mark -
+#pragma mark Public Methods
+
 -(void)sayHi {
-    NSLog(@"HI. I`am %@ (%@) - %3.1f years old, %3.1f kilo", [self name], [self class], [self age], [self weight]);
+    NSLog(@"HI. I`am %@", self);
     if (0 == [self.children count]){
         return;
     }
@@ -50,12 +63,15 @@
     [self.mutableChildren removeObject:child];
 }
 
--(void)create {
-    [self setMutableChildren:[NSMutableArray new]];
+-(void)performGenderSpecificOperation {
+    
 }
 
--(void)performGenderSpecificOperation{
-    
+#pragma mark -
+#pragma mark Override methods
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ (%@) - %3.1f years old, %3.1f kilo", [self class], self.name, self.age, self.weight];
 }
 
 @end

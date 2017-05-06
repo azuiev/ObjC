@@ -8,8 +8,6 @@
 
 #import "AZCreature.h"
 
-@class AZCreatureFemale;
-
 @interface AZCreatureFemale : AZCreature
 
 @end

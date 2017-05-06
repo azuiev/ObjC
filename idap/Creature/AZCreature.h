@@ -15,7 +15,6 @@
 
 @property (nonatomic, copy, readonly)   NSArray *children;
 
-- (void)remove;
 - (void)sayHi;
 - (void)addChild:(AZCreature *)child;
 - (void)removeChild:(AZCreature *)child;
