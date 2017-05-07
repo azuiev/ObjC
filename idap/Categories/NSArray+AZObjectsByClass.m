@@ -18,6 +18,6 @@
         }
     }
     
-    return result;
+    return [NSArray arrayWithArray:result];
 }
 @end

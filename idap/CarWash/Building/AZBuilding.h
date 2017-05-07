@@ -17,6 +17,7 @@
 @interface AZBuilding : NSObject
 @property (nonatomic, copy, readonly) NSArray *rooms;
 
+- (NSArray *)findEmployeeByClass:(Class)cls;
 - (void)addRoom:(AZRoom *)room;
 - (void)removeRoom:(AZRoom *)room;
 

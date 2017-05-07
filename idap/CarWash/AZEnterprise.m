@@ -39,33 +39,34 @@
 #pragma mark Private methods
 
 - (void)performBusinessProcess:(AZCar *)car {
-    AZHuman *washer = [self humanFromBuildingBy:self.carWashBuilding class:[AZWasher class]];
-    [washer takeMoney:(id<AZMoneyFlow>)car];
-    AZHuman *accountant = [self humanFromBuildingBy:self.adminBuilding class:[AZAccountant class]];
-    [accountant takeMoney:(id<AZMoneyFlow>)washer];
-    AZHuman *director = [self humanFromBuildingBy:self.adminBuilding class:[AZDirector class]];
-    [director takeMoney:(id<AZMoneyFlow>)accountant];
+    AZHuman *washer = [self.carWashBuilding findEmployeeByClass:[AZWasher class]][0];
+    AZHuman *accountant = [self.adminBuilding findEmployeeByClass:[AZAccountant class]][0];
+    AZHuman *director = [self.adminBuilding findEmployeeByClass:[AZDirector class]][0];
+    
+    [washer processObject:car];
+    [accountant processObject:washer];
+    [director processObject:accountant];
 }
 
 - (void)prepareEnterprise {
-    AZBuilding *administration = [AZBuilding object];
-    AZRoom *admininstrationRoom = [AZRoom object];
+    AZBuilding *adminBuilding = [AZBuilding object];
+    AZRoom *adminBuildingRoom = [AZRoom object];
     AZAccountant *accountant = [AZAccountant object];
     AZDirector *director = [AZDirector object];
-    [administration addRoom:admininstrationRoom];
-    [admininstrationRoom addHuman:accountant];
-    [admininstrationRoom addHuman:director];
     
-    AZBuilding *carWash = [AZBuilding object];
-    AZRoom *carWashRoom = [AZCarWashRoom object];
-    [carWashRoom humans];
+    [adminBuilding addRoom:adminBuildingRoom];
+    [adminBuildingRoom addHuman:accountant];
+    [adminBuildingRoom addHuman:director];
+    
+    AZBuilding *carWashBuilding = [AZBuilding object];
+    AZRoom *carWashBuildingRoom = [AZCarWashRoom object];
     AZWasher *washer = [AZWasher object];
-    [carWash addRoom:carWashRoom];
-    [carWashRoom addHuman:washer];
     
-    self.adminBuilding = administration;
-    self.carWashBuilding = carWash;
+    [carWashBuilding addRoom:carWashBuildingRoom];
+    [carWashBuildingRoom addHuman:washer];
     
+    self.adminBuilding = adminBuilding;
+    self.carWashBuilding = carWashBuilding;
 }
 
 - (AZHuman *)humanFromBuildingBy:(AZBuilding *)building class:(Class)cls {

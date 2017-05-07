@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 #import "AZBuilding.h"
+#import "NSArray+AZObjectsByClass.h"
 
 @interface AZBuilding ()
 @property (nonatomic, retain)   NSMutableArray *mutableRooms;
@@ -39,6 +40,15 @@
 
 #pragma mark -
 #pragma mark Public Methods
+
+- (NSArray *)findEmployeeByClass:(Class)cls {
+    NSMutableArray *result = [NSMutableArray array];
+    for (AZRoom *room in self.mutableRooms) {
+        [result addObjectsFromArray:[[room humans] arrayWithObjectsByClass:cls]];
+    }
+    
+    return [NSArray arrayWithArray:result];
+}
 
 - (void)addRoom:(AZRoom *)room {
     if(!room) {
