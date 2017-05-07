@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (AZInit)
+@interface NSObject (AZObjectExtension)
 
-+ (instancetype)init;
-+ (NSArray *)initWithCount:(NSUInteger)count;
++ (instancetype)object;
++ (NSArray *)arrayWithObjects:(NSUInteger)count;
 
 @end

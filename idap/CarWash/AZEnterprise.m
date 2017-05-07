@@ -25,6 +25,7 @@
     [super init];
     self.administration = administration;
     self.carWash = carWash;
+    
     return self;
 }
 
@@ -50,6 +51,7 @@
             return human;
         }
     }
+    
     return nil;
 }
 

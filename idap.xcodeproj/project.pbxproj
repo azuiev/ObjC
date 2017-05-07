@@ -16,7 +16,7 @@
 		1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */; };
 		1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */; };
 		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
-		1D5FEDE61EB7543E003499D1 /* NSObject+AZInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */; };
+		1D5FEDE61EB7543E003499D1 /* NSObject+AZObjectExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FEDE51EB7543E003499D1 /* NSObject+AZObjectExtension.m */; };
 		1D5FEDEA1EB75DD5003499D1 /* AZBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FEDE91EB75DD5003499D1 /* AZBuilding.m */; };
 		1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75D54C1EB38BC000813DB8 /* AZEnterprise.m */; };
 		1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E14C1EB1047200D0B5E4 /* AZCarWashRoom.m */; };
@@ -59,8 +59,8 @@
 		1D5CA4211EB0EFD400706B17 /* AZTestCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCreature.h; sourceTree = "<group>"; };
 		1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCreature.m; sourceTree = "<group>"; };
 		1D5FEDE31EB7541C003499D1 /* AZMoneyFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZMoneyFlow.h; sourceTree = "<group>"; };
-		1D5FEDE41EB7543E003499D1 /* NSObject+AZInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AZInit.h"; path = "Categories/NSObject+AZInit.h"; sourceTree = "<group>"; };
-		1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AZInit.m"; path = "Categories/NSObject+AZInit.m"; sourceTree = "<group>"; };
+		1D5FEDE41EB7543E003499D1 /* NSObject+AZObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AZObjectExtension.h"; path = "Categories/NSObject+AZObjectExtension.h"; sourceTree = "<group>"; };
+		1D5FEDE51EB7543E003499D1 /* NSObject+AZObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AZObjectExtension.m"; path = "Categories/NSObject+AZObjectExtension.m"; sourceTree = "<group>"; };
 		1D5FEDE81EB75DD5003499D1 /* AZBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZBuilding.h; path = CarWash/Building/AZBuilding.h; sourceTree = "<group>"; };
 		1D5FEDE91EB75DD5003499D1 /* AZBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZBuilding.m; path = CarWash/Building/AZBuilding.m; sourceTree = "<group>"; };
 		1D65E14B1EB1047200D0B5E4 /* AZCarWashRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZCarWashRoom.h; path = CarWash/Room/AZCarWashRoom.h; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		1D5FEDE11EB75387003499D1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				1D5FEDE41EB7543E003499D1 /* NSObject+AZInit.h */,
-				1D5FEDE51EB7543E003499D1 /* NSObject+AZInit.m */,
+				1D5FEDE41EB7543E003499D1 /* NSObject+AZObjectExtension.h */,
+				1D5FEDE51EB7543E003499D1 /* NSObject+AZObjectExtension.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -294,7 +294,7 @@
 				1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */,
 				1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */,
 				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
-				1D5FEDE61EB7543E003499D1 /* NSObject+AZInit.m in Sources */,
+				1D5FEDE61EB7543E003499D1 /* NSObject+AZObjectExtension.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
 				1D65E1611EB1070500D0B5E4 /* AZDirector.m in Sources */,
 				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
