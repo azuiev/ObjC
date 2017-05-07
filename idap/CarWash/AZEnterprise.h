@@ -10,11 +10,8 @@
 
 @interface AZEnterprise : NSObject
 
-@property (nonatomic, retain, readonly) AZBuilding *administration;
-@property (nonatomic, retain, readonly) AZBuilding *carWash;
-
-+ (instancetype)initWithAdministration:(AZBuilding *)administration carWash:(AZBuilding *)carWash;
-- (instancetype)initWithAdministration:(AZBuilding *)administration carWash:(AZBuilding *)carWash;
+@property (nonatomic, retain, readonly) AZBuilding *adminBuilding;
+@property (nonatomic, retain, readonly) AZBuilding *carWashBuilding;
 
 - (void)performBusinessProcess:(AZCar *)car;
 

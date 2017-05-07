@@ -66,10 +66,10 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark -
 #pragma mark Implements protocols
 
-- (double)giveMoney:(AZWasher *)human {
+- (double)giveMoney:(AZWasher *)washer {
     double result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, human);
+    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, washer);
     
     return result;
 }

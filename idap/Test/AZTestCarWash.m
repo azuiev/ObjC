@@ -8,43 +8,24 @@
 
 #import "AZTestCarWash.h"
 
-#import "AZAccountant.h"
-#import "AZDirector.h"
-#import "AZWasher.h"
 #import "AZCar.h"
 #import "AZEnterprise.h"
 #import "NSObject+AZObjectExtension.h"
 #import "AZRandomString.h"
 #import "AZRoom.h"
 #import "AZCarWashRoom.h"
+#import "NSArray+AZObjectsByClass.h"
 
 static const NSString *AZDelimeter = @"**********";
 
 @implementation AZTestCarWash
 
 + (void)performTest {
-    AZBuilding *administration = [AZBuilding object];
-    AZRoom *admininstrationRoom = [AZRoom object];
-    AZAccountant *accountant = [AZAccountant object];
-    AZDirector *director = [AZDirector object];
-    [administration addRoom:admininstrationRoom];
-    [admininstrationRoom addHuman:accountant];
-    [admininstrationRoom addHuman:director];
-    NSLog(@"%@",AZDelimeter);
-    
-    AZBuilding *carWash = [AZBuilding object];
-    AZRoom *carWashRoom = [AZCarWashRoom object];
-    [carWashRoom humans];
-    AZWasher *washer = [AZWasher object];
-    [carWash addRoom:carWashRoom];
-    [carWashRoom addHuman:washer];
-    
-    AZEnterprise *enterprise = [AZEnterprise initWithAdministration:administration carWash:carWash];
-    
+    AZEnterprise *enterprise = [AZEnterprise object];
     NSArray *cars = [AZCar objectsWithCount:10];
     
     NSLog(@"%@",AZDelimeter);
-    
+
     for (AZCar *car in cars) {
         [enterprise performBusinessProcess:car];
         NSLog(@"%@",AZDelimeter);
