@@ -14,18 +14,14 @@
 #pragma mark Public methods
 
 - (void)calculateMoney:washer {
-    NSLog(@"%@ calculate %@ money. %5.2f dollars ", self ,washer, [washer money]);
+    NSLog(@"%@ calculate %@ money. %lu dollars ", self ,washer, [washer money]);
 }
 
 #pragma mark -
 #pragma mark Private methods
 
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>  *)moneySpender {
-    if ([(id)moneySpender isMemberOfClass:[AZWasher class]]) {
-        [self calculateMoney:(AZWasher *)moneySpender];
-    } else {
-        NSLog(@"Achtung!!!");
-    }
+- (void)performSpecificForClassOperation:(AZWasher *)washer {
+    [self calculateMoney:(AZWasher *)washer];
 }
 
 @end

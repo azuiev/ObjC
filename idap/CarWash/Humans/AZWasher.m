@@ -21,12 +21,8 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>  *)moneySpender {
-    if ([(id)moneySpender isMemberOfClass:[AZCar class]]) {
-        [self washCar:(AZCar *)moneySpender];
-    } else {
-        NSLog(@"Achtung!!!");
-    }
+- (void)performSpecificForClassOperation:(AZCar  *)car {
+    [self washCar:(AZCar *)car];
 }
 
 @end

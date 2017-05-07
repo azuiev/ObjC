@@ -34,11 +34,11 @@
 
 - (void)performBusinessProcess:(AZCar *)car {
     AZHuman *washer = [self humanFromBuildingBy:self.carWash class:[AZWasher class]];
-    [washer takeMoney:(id<AZMoneyFlow> *)car];
+    [washer takeMoney:(id<AZMoneyFlow>)car];
     AZHuman *accountant = [self humanFromBuildingBy:self.administration class:[AZAccountant class]];
-    [accountant takeMoney:(id<AZMoneyFlow> *)washer];
+    [accountant takeMoney:(id<AZMoneyFlow>)washer];
     AZHuman *director = [self humanFromBuildingBy:self.administration class:[AZDirector class]];
-    [director takeMoney:(id<AZMoneyFlow> *)accountant];
+    [director takeMoney:(id<AZMoneyFlow>)accountant];
 }
 
 #pragma mark -

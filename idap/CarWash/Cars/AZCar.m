@@ -13,7 +13,7 @@
 static NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @interface AZCar ()
-@property (nonatomic, assign) double money;
+@property (nonatomic, assign) NSUInteger money;
 @end
 
 @implementation AZCar
@@ -60,7 +60,7 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark Implements methods
 
 - (void)sayHi {
-    NSLog(@"HI! I am %@ - %@. I have %4.2f dollars", [self class], self.mark, self.money);
+    NSLog(@"HI! I am %@ - %@. I have %lu dollars", [self class], self.mark, self.money);
 }
 
 #pragma mark -

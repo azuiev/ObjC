@@ -8,7 +8,7 @@
 
 @protocol AZMoneyFlow
 
-@property (nonatomic,readonly) double money;
+@property (nonatomic,readonly) NSUInteger money;
 
 - (double)giveMoney:(id<AZMoneyFlow>)moneyReceiver;
 

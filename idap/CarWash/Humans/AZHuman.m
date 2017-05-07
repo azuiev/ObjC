@@ -16,7 +16,7 @@ static const NSUInteger AZMaxExperience = 50;
 extern NSString * const AZDescriptionFormatter;
 
 @interface AZHuman ()
-@property (nonatomic,assign) double money;
+@property (nonatomic,assign) NSUInteger money;
 @end
 
 @implementation AZHuman
@@ -31,7 +31,7 @@ extern NSString * const AZDescriptionFormatter;
 }
 
 - (instancetype)init {
-    [super init];
+    self = [super init];
     
     self.name = [AZRandomString randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
@@ -44,24 +44,29 @@ extern NSString * const AZDescriptionFormatter;
 #pragma mark -
 #pragma mark Public methods
 
-- (void)sayHi{
+- (void)processObject:(id<AZMoneyFlow>)object {
+    [self performSpecificForClassOperation:object];
+    [self takeMoney:object];
+}
+
+- (void)sayHi {
     NSLog(@"HI! I am %@ - %@, salary - %4.2f, expirience - %2.1f", [self class], self.name, self.salary, self.experience);
 }
 
 #pragma mark -
 #pragma mark Implements protocols
 
-- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender {
-    [self performSpecificForClassOperation:moneySpender];
-    double income = [(id<AZMoneyFlow>)moneySpender giveMoney:(id<AZMoneyFlow> *)self];
+- (void)takeMoney:(id<AZMoneyFlow>)moneySpender {
+    NSUInteger income = [moneySpender giveMoney:self];
     self.money += income;
-    NSLog(@"%@ take %5.2f dollars from %@ ", self, income, (id)moneySpender);
+    NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
 }
 
-- (double)giveMoney:(id<AZMoneyFlow> *)moneyReceiver {
-    double result = self.money;
+- (double)giveMoney:(id<AZMoneyFlow>)moneyReceiver {
+    NSUInteger result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, (id)moneyReceiver);
+    NSLog(@"%@ give %lu dollars to %@ ", self, result, moneyReceiver);
+    
     return result;
 }
 
@@ -72,10 +77,7 @@ extern NSString * const AZDescriptionFormatter;
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
 }
 
-#pragma mark -
-#pragma mark Override Methods
-
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>  *)moneySpender {
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
     
 }
 

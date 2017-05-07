@@ -16,5 +16,6 @@
 @property (nonatomic, assign)   double      experience;
 	
 - (void)sayHi;
+- (void)processObject:(id<AZMoneyFlow>)object;
 
 @end

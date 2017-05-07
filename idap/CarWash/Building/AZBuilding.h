@@ -18,5 +18,6 @@
 @property (nonatomic, copy, readonly) NSArray *rooms;
 
 - (void)addRoom:(AZRoom *)room;
+- (void)removeRoom:(AZRoom *)room;
 
 @end

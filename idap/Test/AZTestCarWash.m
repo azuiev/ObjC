@@ -41,7 +41,7 @@ static const NSString *AZDelimeter = @"**********";
     
     AZEnterprise *enterprise = [AZEnterprise initWithAdministration:administration carWash:carWash];
     
-    NSArray *cars = [AZCar arrayWithObjects:10];
+    NSArray *cars = [AZCar objectsWithCount:10];
     
     NSLog(@"%@",AZDelimeter);
     

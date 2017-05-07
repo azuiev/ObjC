@@ -15,11 +15,11 @@ NSString * const AZDescriptionFormatter = @"%@: %@";
     return [[[self alloc] init] autorelease];
 }
 
-+ (NSArray *)arrayWithObjects:(NSUInteger)count {
-    return [self arrayWithObjects:count block:^(){ return [self object]; } ];
++ (NSArray *)objectsWithCount:(NSUInteger)count {
+    return [self objectsWithCount:count block:^(){ return [self object]; }];
 }
 
-+ (NSArray *)arrayWithObjects:(NSUInteger)count block:(id(^)())block {
++ (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
     for (NSUInteger i = 0; i < count; i += 1) {
         result[i] = block();

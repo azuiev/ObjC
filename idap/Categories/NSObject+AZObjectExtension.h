@@ -11,6 +11,6 @@
 @interface NSObject (AZObjectExtension)
 
 + (instancetype)object;
-+ (NSArray *)arrayWithObjects:(NSUInteger)count;
++ (NSArray *)objectsWithCount:(NSUInteger)count;
 
 @end
