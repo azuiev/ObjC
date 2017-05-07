@@ -25,16 +25,19 @@ extern NSString * const AZDescriptionFormatter;
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    [self.name release];
+    self.name = nil;
+    
     [super dealloc];
 }
 
 - (instancetype)init {
     [super init];
+    
     self.name = [AZRandomString randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = randomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
+    
     return self;
 }
 

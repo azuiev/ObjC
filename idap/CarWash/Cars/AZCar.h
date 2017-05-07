@@ -11,7 +11,6 @@
 #import "AZMoneyFlow.h"
 
 @interface AZCar : NSObject <AZMoneyFlow>
-
 @property (nonatomic, copy)   NSString  *mark;
 
 @property (nonatomic, assign, getter=isClear) BOOL      clear;

@@ -17,16 +17,16 @@
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
+- (void)dealloc {
+    [self.mutableRooms release];
+    [super dealloc];
+}
 
 - (instancetype)init {
     [super init];
     self.mutableRooms = [NSMutableArray array] ;
+    
     return self;
-}
-
-- (void)dealloc{
-    [self.mutableRooms release];
-    [super dealloc];
 }
 
 #pragma mark -
@@ -40,18 +40,20 @@
 #pragma mark Public Methods
 
 - (void)addRoom:(AZRoom *)room {
-    if(!room){
+    if(!room) {
         NSLog(@"Achtung!!!");
+        
         return;
     }
+    
     [self.mutableRooms addObject:room];
 }
 
 - (void)removeRoom:(AZRoom *)room {
-    if(!room){
+    if(!room) {
         NSLog(@"Achtung!!!");
-        return;
     }
+    
     [self.mutableRooms removeObject:room];
 }
 

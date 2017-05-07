@@ -10,7 +10,9 @@
 
 @property (nonatomic,readonly) double money;
 
-- (void)takeMoney:(id<AZMoneyFlow>  *)moneySpender;
-- (double)giveMoney:(id<AZMoneyFlow> *)monetReceiver;
+- (double)giveMoney:(id<AZMoneyFlow>)moneyReceiver;
+
+@optional
+- (void)takeMoney:(id<AZMoneyFlow>)moneySpender;
 
 @end

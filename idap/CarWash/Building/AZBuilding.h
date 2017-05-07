@@ -15,7 +15,6 @@
 #import "AZRoom.h"
 
 @interface AZBuilding : NSObject
-
 @property (nonatomic, copy, readonly) NSArray *rooms;
 
 - (void)addRoom:(AZRoom *)room;

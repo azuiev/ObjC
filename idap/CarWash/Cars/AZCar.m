@@ -7,8 +7,10 @@
 //
 
 #import "AZCar.h"
+#import "AZRandomString.h"
+#import "AZWasher.h"
 
-extern NSString * AZDescriptionFormatter;
+static NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @interface AZCar ()
 @property (nonatomic, assign) double money;
@@ -21,22 +23,19 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
-+ (instancetype)init{
-    return [[[self alloc] init] autorelease];
-}
-
 - (void)dealloc {
-    [self.mark release];
     self.mark = nil;
+    
     [super dealloc];
 }
 
-- (instancetype)init{
+- (instancetype)init {
     [super init];
     self.mark = [self randomMark];
-    self.money = arc4random_uniform((uint32_t)AZMaxMoneyForCar);
+    self.money = randomNumberWithMaxValue(AZMaxMoneyForCar);
     self.clear = NO;
     [self sayHi];
+    
     return self;
 }
 
@@ -44,8 +43,7 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark Private Methods
 
 - (NSString *)randomMark {
-    NSArray *listOfMarks = [NSArray arrayWithObjects:
-                           @"Alfa-romeo",
+    NSArray *listOfMarks = @[@"Alfa-romeo",
                            @"Bugatti",
                            @"Ferrary",
                            @"Ford",
@@ -53,31 +51,26 @@ const u_int AZMaxMoneyForCar = 5000;
                            @"Mazeratti",
                            @"Opel",
                            @"Porshe",
-                           @"Toyota",
-                           nil];
-    return [listOfMarks objectAtIndex:arc4random_uniform((uint32_t)[listOfMarks count])];
+                           @"Toyota"];
+    
+    return listOfMarks[arc4random_uniform((uint32_t)[listOfMarks count])];
 }
 
 #pragma mark -
 #pragma mark Implements methods
 
 - (void)sayHi {
-    NSLog(@"HI! I am %@ - %@. I have %4.2f dollars",[self class],self.mark,self.money);
+    NSLog(@"HI! I am %@ - %@. I have %4.2f dollars", [self class], self.mark, self.money);
 }
 
 #pragma mark -
 #pragma mark Implements protocols
 
-- (void)takeMoney:(id<AZMoneyFlow>  *)human{
-    double income = [(id<AZMoneyFlow>)human giveMoney:(id<AZMoneyFlow> *)self];
-    self.money += income;
-    NSLog(@"%@ take %5.2f dollars from %@ ", self, income, *human);
-}
-
-- (double)giveMoney:(id<AZMoneyFlow> *)human{
+- (double)giveMoney:(AZWasher *)human {
     double result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, (id)human);
+    NSLog(@"%@ give %5.2f dollars to %@ ", self, result, human);
+    
     return result;
 }
 
