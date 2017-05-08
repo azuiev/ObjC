@@ -32,16 +32,25 @@
     self = [super init];
     
     [self prepareEnterprise];
+    
     return self;
 }
 
 #pragma mark -
 #pragma mark Private methods
 
+- (AZHuman *)freeEmployeeFromArray:(NSArray *)employes {
+    return employes[0];
+}
+
 - (void)performBusinessProcess:(AZCar *)car {
-    AZHuman *washer = [self.carWashBuilding findEmployeeByClass:[AZWasher class]][0];
-    AZHuman *accountant = [self.adminBuilding findEmployeeByClass:[AZAccountant class]][0];
-    AZHuman *director = [self.adminBuilding findEmployeeByClass:[AZDirector class]][0];
+    NSArray *washers = [self.carWashBuilding findEmployeeByClass:[AZWasher class]];
+    NSArray *accountants = [self.adminBuilding findEmployeeByClass:[AZAccountant class]];
+    NSArray *directors = [self.adminBuilding findEmployeeByClass:[AZDirector class]];
+    
+    AZWasher *washer = (AZWasher *)[self freeEmployeeFromArray:washers];
+    AZAccountant *accountant = (AZAccountant *)[self freeEmployeeFromArray:accountants];
+    AZDirector *director = (AZDirector *)[self freeEmployeeFromArray:directors];
     
     [washer processObject:car];
     [accountant processObject:washer];
@@ -68,17 +77,5 @@
     self.adminBuilding = adminBuilding;
     self.carWashBuilding = carWashBuilding;
 }
-
-- (AZHuman *)humanFromBuildingBy:(AZBuilding *)building class:(Class)cls {
-    NSArray *humans = [[building rooms][0] humans];
-    for (AZHuman *human in humans) {
-        if ([human isKindOfClass:cls]) {
-            return human;
-        }
-    }
-    
-    return nil;
-}
-
 
 @end
