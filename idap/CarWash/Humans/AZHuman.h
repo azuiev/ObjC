@@ -12,8 +12,8 @@
 
 @interface AZHuman : NSObject <AZMoneyFlow>
 @property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, assign)   double      salary;
-@property (nonatomic, assign)   double      experience;
+@property (nonatomic, assign)   NSUInteger  salary;
+@property (nonatomic, assign)   NSUInteger  experience;
 	
 - (void)sayHi;
 - (void)processObject:(id<AZMoneyFlow>)object;

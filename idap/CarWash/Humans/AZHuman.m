@@ -7,7 +7,8 @@
 //
 
 #import "AZHuman.h"
-#import "AZRandomString.h"
+#import "NSString+AZRandomString.h"
+#import "NSNumber+AZRandomNumber.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
@@ -33,7 +34,7 @@ extern NSString * const AZDescriptionFormatter;
 - (instancetype)init {
     self = [super init];
     
-    self.name = [AZRandomString randomName];
+    self.name = [NSString randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = randomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
@@ -50,7 +51,7 @@ extern NSString * const AZDescriptionFormatter;
 }
 
 - (void)sayHi {
-    NSLog(@"HI! I am %@ - %@, salary - %4.2f, expirience - %2.1f", [self class], self.name, self.salary, self.experience);
+    NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
 }
 
 #pragma mark -
@@ -62,7 +63,7 @@ extern NSString * const AZDescriptionFormatter;
     NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
 }
 
-- (double)giveMoney:(id<AZMoneyFlow>)moneyReceiver {
+- (NSUInteger)giveMoney:(id<AZMoneyFlow>)moneyReceiver {
     NSUInteger result = self.money;
     self.money = 0;
     NSLog(@"%@ give %lu dollars to %@ ", self, result, moneyReceiver);

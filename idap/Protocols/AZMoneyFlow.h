@@ -10,7 +10,7 @@
 
 @property (nonatomic,readonly) NSUInteger money;
 
-- (double)giveMoney:(id<AZMoneyFlow>)moneyReceiver;
+- (NSUInteger)giveMoney:(id<AZMoneyFlow>)moneyReceiver;
 
 @optional
 - (void)takeMoney:(id<AZMoneyFlow>)moneySpender;

@@ -11,7 +11,7 @@
 #import "AZCar.h"
 #import "AZEnterprise.h"
 #import "NSObject+AZObjectExtension.h"
-#import "AZRandomString.h"
+#import "NSString+AZRandomString.h"
 #import "AZRoom.h"
 #import "AZCarWashRoom.h"
 #import "NSArray+AZObjectsByClass.h"
