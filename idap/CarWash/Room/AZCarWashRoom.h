@@ -12,12 +12,11 @@
 static const NSUInteger AZDefaultCarsCount = 1;
 
 @interface AZCarWashRoom : AZRoom
-
 @property (nonatomic, copy, readonly)   NSArray     *cars;
 @property (nonatomic, assign, readonly) NSUInteger  carsCapacity;
 
-+ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity;
-+ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity;
++ (instancetype)roomWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity;
++ (instancetype)roomWithCarsCapacity:(NSUInteger)carsCapacity;
 
 - (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity;
 - (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity;

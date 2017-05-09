@@ -10,8 +10,8 @@
 
 @implementation AZCreatureMale
 
--(void)performGenderSpecificOperation{
-    NSLog(@"%@ went to war",[self name]);
+- (void)performGenderSpecificOperation{
+    NSLog(@"%@ went to war", [self name]);
 }
 
 @end

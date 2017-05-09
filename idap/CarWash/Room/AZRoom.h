@@ -13,11 +13,10 @@
 static const NSUInteger AZDefaultHumansCount = 1;
 
 @interface AZRoom : NSObject
-
 @property (nonatomic, copy, readonly)   NSArray     *humans;
 @property (nonatomic, assign, readonly) NSUInteger  humansCapacity;
 
-+ (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
++ (instancetype)roomWithHumansCapacity:(NSUInteger) humansCapacity;
 
 - (instancetype)initWithHumansCapacity:(NSUInteger) humansCapacity;
 

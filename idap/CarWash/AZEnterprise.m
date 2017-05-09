@@ -30,7 +30,6 @@
 
 - (instancetype)init {
     self = [super init];
-    
     [self prepareEnterprise];
     
     return self;

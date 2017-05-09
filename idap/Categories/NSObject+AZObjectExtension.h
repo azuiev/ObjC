@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NSRange AZMakeRange(NSUInteger min, NSUInteger max);
+
 @interface NSObject (AZObjectExtension)
 
 + (instancetype)object;

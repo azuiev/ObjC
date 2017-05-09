@@ -10,6 +10,6 @@
 
 @interface AZCreature (AZCreatureCategory)
 
-+ (AZCreature *)init;
++ (AZCreature *)object;
 
 @end

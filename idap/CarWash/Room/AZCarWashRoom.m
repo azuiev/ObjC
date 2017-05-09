@@ -10,53 +10,46 @@
 
 @interface AZCarWashRoom ()
 @property (nonatomic, copy)   NSMutableArray    *mutableCars;
-@property (nonatomic, assign) NSUInteger        mutableCarsCapacity;
+@property (nonatomic, assign) NSUInteger        carsCapacity;
 @end
 
 @implementation AZCarWashRoom
 @dynamic cars;
-@dynamic carsCapacity;
 
 #pragma mark -
 #pragma mark Inicialization and Deallocation
 
-+ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity {
++ (instancetype)roomWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity {
      return [[[self alloc] initWithCarsCapacity:carsCapacity humansCapacity:humansCapacity] autorelease];
 }
 
-+ (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity {
++ (instancetype)roomWithCarsCapacity:(NSUInteger)carsCapacity {
     return [[[self alloc] initWithCarsCapacity:carsCapacity] autorelease];
 }
 
 - (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity{
-    [super initWithHumansCapacity:humansCapacity];
+    self = [super initWithHumansCapacity:humansCapacity];
     self.mutableCars = [NSMutableArray array];
-    self.mutableCarsCapacity = carsCapacity;
+    self.carsCapacity = carsCapacity;
+    
     return self;
 }
 
 - (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity {
-    [super init];
-    self.mutableCars = [NSMutableArray array];
-    self.mutableCarsCapacity = carsCapacity;
-    return self;
+    return [self initWithCarsCapacity:carsCapacity humansCapacity:AZDefaultHumansCount];
 }
 
 - (instancetype)init {
-    [super init];
-    self.mutableCars = [NSMutableArray array];
-    self.mutableCarsCapacity = AZDefaultCarsCount;
-    return self;
+    return [self initWithCarsCapacity:AZDefaultCarsCount];
 }
 
 #pragma mark -
 #pragma mark Override parent initializer
 
 - (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
-    [super initWithHumansCapacity:humansCapacity];
-    self.mutableCars = [NSMutableArray array];
-    self.mutableCarsCapacity = AZDefaultCarsCount;
-    return self;
+    self = [super initWithHumansCapacity:humansCapacity];
+    
+    return [self init];
 }
 
 #pragma mark -
@@ -67,7 +60,7 @@
 }
 
 - (NSUInteger)carsCapacity:(NSUInteger)humansCapacity {
-    return self.mutableCarsCapacity;
+    return self.carsCapacity;
 }
 
 #pragma mark -
@@ -76,6 +69,8 @@
 - (void) addCar:(AZCar *)car {
     if (!car) {
         NSLog(@"Achtung!!!");
+        
+        return;
     }
     
     [self.mutableCars addObject:car];
@@ -93,7 +88,7 @@
 #pragma mark Override Methods
 
 - (void)sayHi {
-    NSLog(@"Hi! I am %@ with humansCapacity - %@, carsCapacity - %lu", [self class], [self humans], self.mutableCarsCapacity);
+    NSLog(@"Hi! I am %@ with humansCapacity - %lu, carsCapacity - %lu", [self class], [self humansCapacity], self.carsCapacity);
 }
 
 @end

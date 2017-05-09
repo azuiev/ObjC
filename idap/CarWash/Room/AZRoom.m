@@ -10,32 +10,30 @@
 
 @interface AZRoom ()
 @property (nonatomic, assign) NSMutableArray    *mutableHumans;
-@property (nonatomic, assign) NSUInteger        mutableHumansCapacity;
+@property (nonatomic, assign) NSUInteger        humansCapacity;
 @end
 
 @implementation AZRoom
 @dynamic humans;
-@dynamic humansCapacity;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
-+ (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
++ (instancetype)roomWithHumansCapacity:(NSUInteger)humansCapacity {
    return [[[self alloc] initWithHumansCapacity:humansCapacity] autorelease];
 }
 
 - (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
-    [super init];
+    self = [super init];
     self.mutableHumans = [NSMutableArray array];
-    self.mutableHumansCapacity = humansCapacity;
+    self.humansCapacity = humansCapacity;
+    [self sayHi];
+    
     return self;
 }
 
 - (instancetype)init {
-    [super init];
-    self.mutableHumans = [NSMutableArray array];
-    self.mutableHumansCapacity = AZDefaultHumansCount;
-    return self;
+    return [self initWithHumansCapacity:AZDefaultHumansCount];
 }
 
 #pragma mark -
@@ -45,21 +43,20 @@
     return [[self.mutableHumans copy] autorelease];
 }
 
-- (NSUInteger)humansCapacity {
-    return self.mutableHumansCapacity;
-}
-
 #pragma mark -
 #pragma mark Public methods
 
 - (void)sayHi {
-    NSLog(@"Hi! I am %@ with humansCapacity - %lu", [self class], (unsigned long)self.mutableHumansCapacity);
+    NSLog(@"Hi! I am %@ with humansCapacity - %lu", [self class], self.humansCapacity);
 }
 
 - (void)addHuman:(AZHuman *)human {
     if (!human) {
         NSLog(@"Achtung!!!");
+        
+        return;
     }
+    
     [self.mutableHumans addObject:human];
 }
 
@@ -67,6 +64,7 @@
     if (!human) {
         NSLog(@"Achtung!!!");
     }
+    
     [self.mutableHumans removeObject:human];
 }
 

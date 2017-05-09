@@ -10,6 +10,10 @@
 
 NSString * const AZDescriptionFormatter = @"%@: %@";
 
+NSRange AZMakeRange(NSUInteger min, NSUInteger max) {
+    return NSMakeRange(min, max - min + 1);
+}
+
 @implementation NSObject (AZObjectExtension)
 
 + (instancetype)object {

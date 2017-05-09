@@ -8,6 +8,7 @@
 
 #import "NSString+AZRandomString.h"
 #import "NSNumber+AZRandomNumber.h"
+#import "NSObject+AZObjectExtension.h"
 
 static const NSUInteger AZDefaultStringLength = 8;
 
@@ -92,15 +93,15 @@ alphabetMethods(alphanumeric);
 #pragma mark Alphabet Methods
 
 + (instancetype)lowercaseAlphabet {
-    return [self alphabetFromRange:NSMakeRange('a', 'z')];
+    return [self alphabetFromRange:AZMakeRange('a', 'z')];
 }
 
 + (instancetype)uppercaseAlphabet {
-    return [self alphabetFromRange:NSMakeRange('A', 'Z')];
+    return [self alphabetFromRange:AZMakeRange('A', 'Z')];
 }
 
 + (instancetype)numericAlphabet {
-    return [self alphabetFromRange:NSMakeRange('0', '9')];
+    return [self alphabetFromRange:AZMakeRange('0', '9')];
 }
 
 + (instancetype)letterAlphabet {
@@ -122,7 +123,7 @@ alphabetMethods(alphanumeric);
 
 + (NSMutableString *)alphabetFromRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];
-    for (char character = range.location; character <= range.length; character += 1) {
+    for (char character = range.location; character < range.location + range.length; character += 1) {
         [result appendFormat:@"%c",character];
     }
     

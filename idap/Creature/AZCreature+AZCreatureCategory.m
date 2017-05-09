@@ -10,7 +10,7 @@
 
 @implementation AZCreature (AZCreatureCategory)
 
-+ (instancetype)init {
++ (instancetype)object {
     return [[[self alloc] init] autorelease];
 }
 

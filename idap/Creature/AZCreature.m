@@ -21,13 +21,15 @@
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    [self.mutableChildren release];
+    self.mutableChildren = nil;
+    
     [super dealloc];
 }
 
 - (instancetype)init {
-    [super init];
+    self = [super init];
     self.mutableChildren = [NSMutableArray array];
+    
     return self;
 }
 
@@ -41,7 +43,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
--(void)sayHi {
+- (void)sayHi {
     NSLog(@"HI. I`am %@", self);
     if (0 == [self.children count]){
         return;
@@ -55,15 +57,25 @@
     NSLog(@"\n");
 }
 
--(void)addChild:(AZCreature *)child {
+- (void)addChild:(AZCreature *)child {
+    if (!child){
+        NSLog(@"Achtung!!!");
+        
+        return;
+    }
+    
     [self.mutableChildren addObject:child];
 }
 
--(void)removeChild:(AZCreature *)child {
+- (void)removeChild:(AZCreature *)child {
+    if (!child){
+        NSLog(@"Achtung!!!");
+    }
+    
     [self.mutableChildren removeObject:child];
 }
 
--(void)performGenderSpecificOperation {
+- (void)performGenderSpecificOperation {
     
 }
 

@@ -31,7 +31,7 @@ const u_int AZMaxMoneyForCar = 5000;
 
 
 - (instancetype)init {
-    [super init];
+    self = [super init];
     self.mark = [self randomMark];
     self.money = randomNumberWithMaxValue(AZMaxMoneyForCar);
     self.clear = NO;

@@ -15,15 +15,15 @@ static const NSString *AZDelimeter = @"**********";
 
 + (void)performTest {
     NSLog(@"%@",[NSString stringFromAlphabet:@"abc"]);
-    NSLog(@"%@",[NSString stringFromRange:NSMakeRange(105, 107)]);
+    NSLog(@"%@",[NSString stringFromRange:NSMakeRange(105, 3)]);
     NSLog(@"%@",[NSString stringFromArray:[NSArray arrayWithObjects:@"A",@"E",nil]]);
     NSLog(@"%@",AZDelimeter);
     NSLog(@"%@",[NSString stringFromAlphabetWith:@"ixy" length:7]);
-    NSLog(@"%@",[NSString stringFromRangeWith:NSMakeRange(120, 127) length:7]);
+    NSLog(@"%@",[NSString stringFromRangeWith:NSMakeRange(120, 3) length:7]);
     NSLog(@"%@",[NSString stringFromArrayWith:[NSArray arrayWithObjects:@"A",@"E",nil] length:7]);
     NSLog(@"%@",AZDelimeter);
     NSLog(@"%@",[NSString stringFromAlphabetWithLengthIn:@"ixy" range:NSMakeRange(1, 5)]);
-    NSLog(@"%@",[NSString stringFromRangeWithLengthIn:NSMakeRange(120, 127) range:NSMakeRange(1, 5)]);
+    NSLog(@"%@",[NSString stringFromRangeWithLengthIn:NSMakeRange(120, 3) range:NSMakeRange(1, 5)]);
     NSLog(@"%@",[NSString stringFromArrayWithLengthIn:[NSArray arrayWithObjects:@"A",@"E",nil] range:NSMakeRange(1, 5)]);
 }
 
