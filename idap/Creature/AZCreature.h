@@ -9,9 +9,9 @@
 
 @interface AZCreature : NSObject
 
-@property (nonatomic, copy)       NSString       *name;
-@property (nonatomic, assign)     double         age;
-@property (nonatomic, assign)     double         weight;
+@property (nonatomic, copy, readonly)     NSString  *name;
+@property (nonatomic, assign)   NSUInteger    age;
+@property (nonatomic, assign)   NSUInteger    weight;
 
 @property (nonatomic, copy, readonly)   NSArray *children;
 

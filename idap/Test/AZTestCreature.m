@@ -11,45 +11,31 @@
 #import "AZTestCreature.h"
 #import "AZCreatureMale.h"
 #import "AZCreatureFemale.h"
-#import "AZCreature+AZCreatureCategory.h"
+#import "NSObject+AZObjectExtension.h"
+#import "NSNumber+AZRandomNumber.h"
+
+static const NSUInteger AZCreaturesCount = 10;
+static const NSUInteger AZParentalDependenciesCount = 40;
+
 
 @implementation AZTestCreature
 
 + (void)performTest {
-#define createCreature(parameter,name,gender,age,weight) \
-    AZCreature *parameter = [AZCreature##gender object]; \
-    [AZTestCreature setProperties :parameter :@#name :age :weight]; \
-    [childrenArray addObject:parameter]; \
-
-    NSMutableArray *childrenArray = [NSMutableArray new];
+    NSArray *creatures = [NSObject objectsWithCount:AZCreaturesCount block:^id {
+        return (randomNumberWithMaxValue(1)) ? [AZCreatureFemale object] : [AZCreatureMale object];
+    }];
     
-    createCreature(creature1, Yasya, Male, 25.4, 99.9);
-    createCreature(creature2, Natasha, Female, 9.4, 30);
-    createCreature(creature3, Yulia, Female, 11.4, 32.2);
-    createCreature(creature4, Dasha, Female, 101.0, 70.5);
-    createCreature(creature5, Petya, Male, 25.4, 80.8);
-    
-    [creature1 addChild:creature2];
-    [creature1 addChild:creature3];
-    [creature5 addChild:creature2];
-    [creature5 addChild:creature3];
-    [creature4 addChild:creature1];
-    [creature4 addChild:creature5];
-    
-    [creature4 sayHi];
-    
-    for (AZCreature *creature in childrenArray) {
-        [creature performGenderSpecificOperation];
+    for (NSUInteger i = 0; i < AZParentalDependenciesCount; i += 1) {
+        AZCreature *parent = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
+        AZCreature *child = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
+        [parent addChild:child];
+        
     }
     
-#undef createCreature
-    
-}
-
-+ (void)setProperties :(AZCreature *)creature :(NSString *)name :(double)age :(double)weight {
-    [creature setName:name];
-    [creature setAge:age];
-    [creature setWeight:weight];
+    for (AZCreature *creature in creatures) {
+        [creature performGenderSpecificOperation];
+        [creature sayHi];
+    }
 }
 
 @end

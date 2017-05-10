@@ -7,15 +7,16 @@
 //
 
 #import "NSNumber+AZRandomNumber.h"
+#import "NSObject+AZObjectExtension.h"
 
 @implementation NSObject (AZRandomNumber)
 
 NSUInteger randomNumberInRange(NSRange range) {
-    return range.location + arc4random_uniform((uint32_t)(range.length - range.location + 1));
+    return range.location + arc4random_uniform((uint32_t)(range.length - range.location));
 }
 
 NSUInteger randomNumberWithMaxValue(NSUInteger maxValue) {
-    return randomNumberInRange(NSMakeRange(0, maxValue));
+    return randomNumberInRange(AZMakeRange(0, maxValue));
 }
 
 @end

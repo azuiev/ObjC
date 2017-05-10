@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "AZCreature.h"
+#import "NSString+AZRandomString.h"
+#import "NSNumber+AZRandomNumber.h"
+
+static NSUInteger const AZMaxHumansAge = 100;
+static NSUInteger const AZMaxHumansWeight = 200;
 
 @interface AZCreature ()
-@property (nonatomic, retain)   NSMutableArray *mutableChildren;
+@property (nonatomic, retain)   NSMutableArray  *mutableChildren;
+@property (nonatomic, copy)     NSString        *name;
+
 @end
 
 @implementation AZCreature
@@ -22,13 +29,16 @@
 
 - (void)dealloc {
     self.mutableChildren = nil;
-    
+    self.name = nil;
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
     self.mutableChildren = [NSMutableArray array];
+    self.name = [NSString randomName];
+    self.age = randomNumberWithMaxValue(AZMaxHumansAge);
+    self.weight = randomNumberWithMaxValue(AZMaxHumansWeight);
     
     return self;
 }
@@ -64,14 +74,28 @@
         return;
     }
     
+    if ([self isEqual:(child)]) {
+        NSLog(@"Unable to be parent of themselfs");
+        
+        return;
+    }
+    
+    if (self.age < child.age) {
+        NSLog(@"Parent can`t be yunger then child");
+        
+        return;
+    }
+    
+    if ([self.mutableChildren containsObject:child]) {
+        NSLog(@"Already in child list");
+        
+        return;
+    }
+    
     [self.mutableChildren addObject:child];
 }
 
 - (void)removeChild:(AZCreature *)child {
-    if (!child){
-        NSLog(@"Achtung!!!");
-    }
-    
     [self.mutableChildren removeObject:child];
 }
 
@@ -83,7 +107,7 @@
 #pragma mark Override methods
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ (%@) - %3.1f years old, %3.1f kilo", [self class], self.name, self.age, self.weight];
+    return [NSString stringWithFormat:@"%@ (%@) - %lu years old, %lu kilo", [self class], self.name, self.age, self.weight];
 }
 
 @end

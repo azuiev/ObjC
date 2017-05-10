@@ -14,5 +14,6 @@ NSRange AZMakeRange(NSUInteger min, NSUInteger max);
 
 + (instancetype)object;
 + (NSArray *)objectsWithCount:(NSUInteger)count;
++ (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block;
 
 @end

@@ -14,7 +14,6 @@
 		1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF96C1EB252980093099B /* AZTestCarWash.m */; };
 		1D5CA4291EB0F10C00706B17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA3F11EB0ECF500706B17 /* main.m */; };
 		1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4161EB0EFCC00706B17 /* AZCreature.m */; };
-		1D5CA42D1EB0F1C700706B17 /* AZCreature+AZCreatureCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4181EB0EFCC00706B17 /* AZCreature+AZCreatureCategory.m */; };
 		1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */; };
 		1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41C1EB0EFCC00706B17 /* AZCreatureMale.m */; };
 		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
@@ -56,8 +55,6 @@
 		1D5CA3F11EB0ECF500706B17 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D5CA4151EB0EFCC00706B17 /* AZCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreature.h; sourceTree = "<group>"; };
 		1D5CA4161EB0EFCC00706B17 /* AZCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreature.m; sourceTree = "<group>"; };
-		1D5CA4171EB0EFCC00706B17 /* AZCreature+AZCreatureCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AZCreature+AZCreatureCategory.h"; sourceTree = "<group>"; };
-		1D5CA4181EB0EFCC00706B17 /* AZCreature+AZCreatureCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AZCreature+AZCreatureCategory.m"; sourceTree = "<group>"; };
 		1D5CA4191EB0EFCC00706B17 /* AZCreatureFemale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreatureFemale.h; sourceTree = "<group>"; };
 		1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreatureFemale.m; sourceTree = "<group>"; };
 		1D5CA41B1EB0EFCC00706B17 /* AZCreatureMale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreatureMale.h; sourceTree = "<group>"; };
@@ -104,8 +101,6 @@
 			children = (
 				1D5CA4151EB0EFCC00706B17 /* AZCreature.h */,
 				1D5CA4161EB0EFCC00706B17 /* AZCreature.m */,
-				1D5CA4171EB0EFCC00706B17 /* AZCreature+AZCreatureCategory.h */,
-				1D5CA4181EB0EFCC00706B17 /* AZCreature+AZCreatureCategory.m */,
 				1D5CA4191EB0EFCC00706B17 /* AZCreatureFemale.h */,
 				1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */,
 				1D5CA41B1EB0EFCC00706B17 /* AZCreatureMale.h */,
@@ -304,7 +299,6 @@
 				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
 				1D65E1581EB1053800D0B5E4 /* AZCar.m in Sources */,
 				1D65E15E1EB1065B00D0B5E4 /* AZWasher.m in Sources */,
-				1D5CA42D1EB0F1C700706B17 /* AZCreature+AZCreatureCategory.m in Sources */,
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */,
 				1D65E1501EB1047200D0B5E4 /* AZRoom.m in Sources */,
