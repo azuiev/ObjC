@@ -30,13 +30,14 @@ static NSUInteger const AZMaxHumansWeight = 200;
 - (void)dealloc {
     self.mutableChildren = nil;
     self.name = nil;
+    
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
     self.mutableChildren = [NSMutableArray array];
-    self.name = [NSString randomName];
+    self.name = [[NSString lowercaseString] capitalizedString];
     self.age = randomNumberWithMaxValue(AZMaxHumansAge);
     self.weight = randomNumberWithMaxValue(AZMaxHumansWeight);
     
@@ -44,14 +45,14 @@ static NSUInteger const AZMaxHumansWeight = 200;
 }
 
 #pragma mark -
-#pragma mark Getters
+#pragma mark Accessors
 
 - (NSArray *)children {
     return [[self.mutableChildren copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 - (void)sayHi {
     NSLog(@"HI. I`am %@", self);
@@ -80,7 +81,7 @@ static NSUInteger const AZMaxHumansWeight = 200;
         return;
     }
     
-    if (self.age < child.age) {
+    if (self.age <= child.age) {
         NSLog(@"Parent can`t be yunger then child");
         
         return;
@@ -104,7 +105,7 @@ static NSUInteger const AZMaxHumansWeight = 200;
 }
 
 #pragma mark -
-#pragma mark Override methods
+#pragma mark Description
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ (%@) - %lu years old, %lu kilo", [self class], self.name, self.age, self.weight];

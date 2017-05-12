@@ -9,15 +9,22 @@
 #import "AZHuman.h"
 #import "NSString+AZRandomString.h"
 #import "NSNumber+AZRandomNumber.h"
+#import "NSObject+AZObjectExtension.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
 static const NSUInteger AZMaxExperience = 50;
 
-extern NSString * const AZDescriptionFormatter;
+static NSString * const AZDescriptionFormatter = @"%@: %@";
+static NSUInteger const AZMinLengthName = 3;
+static NSUInteger const AZMaxLengthName = 12;
 
 @interface AZHuman ()
 @property (nonatomic,assign) NSUInteger money;
+
++ (NSString *)randomName;
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender;
+
 @end
 
 @implementation AZHuman
@@ -34,7 +41,7 @@ extern NSString * const AZDescriptionFormatter;
 - (instancetype)init {
     self = [super init];
     
-    self.name = [NSString randomName];
+    self.name = [AZHuman randomName];
     self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = randomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
@@ -55,7 +62,7 @@ extern NSString * const AZDescriptionFormatter;
 }
 
 #pragma mark -
-#pragma mark Implements protocols
+#pragma mark AZMoneyFlow
 
 - (void)takeMoney:(id<AZMoneyFlow>)moneySpender {
     NSUInteger income = [moneySpender giveMoney:self];
@@ -72,14 +79,21 @@ extern NSString * const AZDescriptionFormatter;
 }
 
 #pragma mark -
-#pragma mark Override Methods
+#pragma mark Description
 
 - (NSString *)description {
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
 }
 
+#pragma mark -
+#pragma mark Private
+
 - (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
     
+}
+
++ (NSString *)randomName {
+    return [[NSString lowercaseStringWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)] capitalizedString];
 }
 
 @end

@@ -11,7 +11,7 @@
 @implementation AZDirector
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Public
 
 - (void)getIncome:(AZAccountant *)accountant {
     NSUInteger income = accountant.money;
@@ -19,7 +19,7 @@
 }
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark Private 
 
 - (void)performSpecificForClassOperation:(AZAccountant *)accountant {
     [self getIncome:(AZAccountant *)accountant];

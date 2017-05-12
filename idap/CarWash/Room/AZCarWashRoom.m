@@ -27,7 +27,7 @@
     return [[[self alloc] initWithCarsCapacity:carsCapacity] autorelease];
 }
 
-- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity{
+- (instancetype)initWithCarsCapacity:(NSUInteger)carsCapacity humansCapacity:(NSUInteger)humansCapacity {
     self = [super initWithHumansCapacity:humansCapacity];
     self.mutableCars = [NSMutableArray array];
     self.carsCapacity = carsCapacity;
@@ -43,9 +43,7 @@
     return [self initWithCarsCapacity:AZDefaultCarsCount];
 }
 
-#pragma mark -
-#pragma mark Override parent initializer
-
+//parent initializer
 - (instancetype)initWithHumansCapacity:(NSUInteger)humansCapacity {
     self = [super initWithHumansCapacity:humansCapacity];
     
@@ -53,18 +51,14 @@
 }
 
 #pragma mark -
-#pragma mark Getters
+#pragma mark Accessors
 
 - (NSArray *)cars {
     return [[self.mutableCars copy] autorelease];
 }
 
-- (NSUInteger)carsCapacity:(NSUInteger)humansCapacity {
-    return self.carsCapacity;
-}
-
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 - (void) addCar:(AZCar *)car {
     if (!car) {
@@ -77,15 +71,11 @@
 }
 
 - (void) removeCar:(AZCar *)car {
-    if (!car) {
-        NSLog(@"Achtung!!!");
-    }
-    
     [self.mutableCars removeObject:car];
 }
 
 #pragma mark -
-#pragma mark Override Methods
+#pragma mark Override SayHi
 
 - (void)sayHi {
     NSLog(@"Hi! I am %@ with humansCapacity - %lu, carsCapacity - %lu", [self class], [self humansCapacity], self.carsCapacity);

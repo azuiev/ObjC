@@ -12,10 +12,15 @@
 
 static const NSUInteger AZDefaultStringLength = 8;
 
+@interface NSString (AZPrivateRandomString)
++ (NSMutableString *)alphabetFromRange:(NSRange)range;
++ (instancetype)alphabetFromArray:(NSArray *)array;
+@end
+
 @implementation NSString (AZRandomString)
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 //string from alphabet
 + (instancetype)stringFromAlphabet:(NSString *)alphabet {
@@ -80,14 +85,7 @@ alphabetMethods(alphanumeric);
 
 #undef alphabetMethods
 
-#pragma mark -
-#pragma mark User Methods
 
-+ (NSString *)randomName {
-    NSMutableString *result = (NSMutableString *)[self stringFromAlphabetWith:[self lowercaseAlphabet] length:2 + arc4random_uniform((uint32)AZDefaultStringLength)];
-    
-    return [result capitalizedString];
-}
 
 #pragma mark -
 #pragma mark Alphabet Methods
@@ -119,7 +117,7 @@ alphabetMethods(alphanumeric);
 }
 
 #pragma mark -
-#pragma mark Privat Methods
+#pragma mark Private
 
 + (NSMutableString *)alphabetFromRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];

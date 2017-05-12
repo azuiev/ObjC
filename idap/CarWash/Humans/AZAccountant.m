@@ -11,14 +11,14 @@
 @implementation AZAccountant
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Public
 
 - (void)calculateMoney:washer {
     NSLog(@"%@ calculate %@ money. %lu dollars ", self ,washer, [washer money]);
 }
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark Private
 
 - (void)performSpecificForClassOperation:(AZWasher *)washer {
     [self calculateMoney:(AZWasher *)washer];

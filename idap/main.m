@@ -13,8 +13,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         [AZTestCreature performTest];
-        //[AZTestRandomString performTest];
-        //[AZTestCarWash performTest];
+        [AZTestRandomString performTest];
+        [AZTestCarWash performTest];
     }
     
     return 0;

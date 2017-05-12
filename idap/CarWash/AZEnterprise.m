@@ -14,6 +14,11 @@
 @interface AZEnterprise ()
 @property (nonatomic, retain) AZBuilding *adminBuilding;
 @property (nonatomic, retain) AZBuilding *carWashBuilding;
+
+- (AZHuman *)freeEmployeeFromArray:(NSArray *)employes;
+- (void)performBusinessProcess:(AZCar *)car;
+- (void)prepareEnterprise;
+
 @end
 
 @implementation AZEnterprise
@@ -36,7 +41,7 @@
 }
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark Private
 
 - (AZHuman *)freeEmployeeFromArray:(NSArray *)employes {
     return employes[0];

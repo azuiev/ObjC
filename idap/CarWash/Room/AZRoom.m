@@ -37,14 +37,14 @@
 }
 
 #pragma mark -
-#pragma mark Getters
+#pragma mark Accessors
 
 - (NSArray *)humans {
     return [[self.mutableHumans copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Public
 
 - (void)sayHi {
     NSLog(@"Hi! I am %@ with humansCapacity - %lu", [self class], self.humansCapacity);

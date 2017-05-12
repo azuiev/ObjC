@@ -40,5 +40,4 @@
 + (instancetype)stringFromArrayWith:(NSArray *)array length:(NSUInteger)length;
 + (instancetype)stringFromArrayWithLengthIn:(NSArray *)array range:(NSRange)length;
 
-+ (NSString *)randomName;
 @end

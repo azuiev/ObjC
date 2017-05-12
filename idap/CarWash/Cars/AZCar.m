@@ -14,6 +14,9 @@ static NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @interface AZCar ()
 @property (nonatomic, assign) NSUInteger money;
+
+- (NSString *)randomMark;
+
 @end
 
 @implementation AZCar
@@ -29,43 +32,25 @@ const u_int AZMaxMoneyForCar = 5000;
     [super dealloc];
 }
 
-
 - (instancetype)init {
     self = [super init];
     self.mark = [self randomMark];
     self.money = randomNumberWithMaxValue(AZMaxMoneyForCar);
-    self.clear = NO;
+    self.clear = DIRTY;
     [self sayHi];
     
     return self;
 }
 
 #pragma mark -
-#pragma mark Private Methods
-
-- (NSString *)randomMark {
-    NSArray *listOfMarks = @[@"Alfa-romeo",
-                           @"Bugatti",
-                           @"Ferrary",
-                           @"Ford",
-                           @"Lamborgini",
-                           @"Mazeratti",
-                           @"Opel",
-                           @"Porshe",
-                           @"Toyota"];
-    
-    return listOfMarks[arc4random_uniform((uint32_t)[listOfMarks count])];
-}
-
-#pragma mark -
-#pragma mark Implements methods
+#pragma mark Public
 
 - (void)sayHi {
     NSLog(@"HI! I am %@ - %@. I have %lu dollars", [self class], self.mark, self.money);
 }
 
 #pragma mark -
-#pragma mark Implements protocols
+#pragma mark AZMoneyFlow
 
 - (NSUInteger)giveMoney:(AZWasher *)washer {
     NSUInteger result = self.money;
@@ -76,10 +61,27 @@ const u_int AZMaxMoneyForCar = 5000;
 }
 
 #pragma mark -
-#pragma mark Override Methods
+#pragma mark Description
 
 - (NSString *)description {
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.mark];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (NSString *)randomMark {
+    NSArray *listOfMarks = @[@"Alfa-romeo",
+                             @"Bugatti",
+                             @"Ferrary",
+                             @"Ford",
+                             @"Lamborgini",
+                             @"Mazeratti",
+                             @"Opel",
+                             @"Porshe",
+                             @"Toyota"];
+    
+    return listOfMarks[arc4random_uniform((uint32_t)[listOfMarks count])];
 }
 
 @end

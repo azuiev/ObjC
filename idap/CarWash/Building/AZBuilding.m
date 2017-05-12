@@ -32,14 +32,14 @@
 }
 
 #pragma mark -
-#pragma mark Getters
+#pragma mark Accessors
 
 - (NSArray *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
 - (NSArray *)findEmployeeByClass:(Class)cls {
     NSMutableArray *result = [NSMutableArray array];
@@ -61,10 +61,6 @@
 }
 
 - (void)removeRoom:(AZRoom *)room {
-    if(!room) {
-        NSLog(@"Achtung!!!");
-    }
-    
     [self.mutableRooms removeObject:room];
 }
 
