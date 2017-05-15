@@ -10,11 +10,7 @@
 
 #import "AZCar.h"
 #import "AZEnterprise.h"
-#import "NSObject+AZObjectExtension.h"
-#import "NSString+AZRandomString.h"
-#import "AZRoom.h"
-#import "AZCarWashRoom.h"
-#import "NSArray+AZObjectsByClass.h"
+#import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
 

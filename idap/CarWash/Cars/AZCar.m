@@ -8,7 +8,8 @@
 
 #import "AZCar.h"
 #import "AZWasher.h"
-#import "NSNumber+AZRandomNumber.h"
+
+#import "AZRandomNumber.h"
 
 static NSString * const AZDescriptionFormatter = @"%@: %@";
 

@@ -6,10 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 #import "AZBuilding.h"
-#import "NSArray+AZObjectsByClass.h"
+
+#import "NSArray+AZExtension.h"
 
 @interface AZBuilding ()
-@property (nonatomic, retain)   NSMutableArray *mutableRooms;
+@property (nonatomic, copy)   NSMutableArray *mutableRooms;
 @end
 
 @implementation AZBuilding
@@ -44,7 +45,7 @@
 - (NSArray *)findEmployeeByClass:(Class)cls {
     NSMutableArray *result = [NSMutableArray array];
     for (AZRoom *room in self.mutableRooms) {
-        [result addObjectsFromArray:[[room humans] arrayWithObjectsByClass:cls]];
+        [result addObjectsFromArray:[[room humans] objectsWithClass:cls]];
     }
     
     return [NSArray arrayWithArray:result];

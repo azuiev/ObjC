@@ -7,14 +7,17 @@
 //
 
 #import "NSString+AZRandomString.h"
-#import "NSNumber+AZRandomNumber.h"
-#import "NSObject+AZObjectExtension.h"
+#import "NSObject+AZExtension.h"
+
+#import "AZRandomNumber.h"
 
 static const NSUInteger AZDefaultStringLength = 8;
 
 @interface NSString (AZPrivateRandomString)
+
 + (NSMutableString *)alphabetFromRange:(NSRange)range;
 + (instancetype)alphabetFromArray:(NSArray *)array;
+
 @end
 
 @implementation NSString (AZRandomString)

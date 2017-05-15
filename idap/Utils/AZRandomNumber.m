@@ -1,15 +1,16 @@
 //
-//  NSObject+AZRandomNumber.m
+//  AZRandomNumber.m
 //  idap
 //
-//  Created by Aleksey Zuiev on 09/05/2017.
+//  Created by Aleksey Zuiev on 15/05/2017.
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "NSNumber+AZRandomNumber.h"
-#import "NSObject+AZObjectExtension.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSObject (AZRandomNumber)
+#import "AZRandomNumber.h"
+
+#import "NSObject+AZExtension.h"
 
 NSUInteger randomNumberInRange(NSRange range) {
     return range.location + arc4random_uniform((uint32_t)(range.length - range.location));
@@ -18,5 +19,3 @@ NSUInteger randomNumberInRange(NSRange range) {
 NSUInteger randomNumberWithMaxValue(NSUInteger maxValue) {
     return randomNumberInRange(AZMakeRange(0, maxValue));
 }
-
-@end

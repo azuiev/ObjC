@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "AZCreature.h"
+
+#import "AZRandomNumber.h"
+
 #import "NSString+AZRandomString.h"
-#import "NSNumber+AZRandomNumber.h"
 
 static NSUInteger const AZMaxHumansAge = 100;
 static NSUInteger const AZMaxHumansWeight = 200;

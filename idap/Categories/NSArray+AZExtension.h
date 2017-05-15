@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (AZObjectsByClass)
+@interface NSArray (AZExtension)
 
-- (instancetype)arrayWithObjectsByClass:(Class)cls;
++ (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block;
+
+- (instancetype)objectsWithClass:(Class)cls;
 
 @end
