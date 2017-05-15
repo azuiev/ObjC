@@ -33,14 +33,14 @@ static const NSUInteger AZDefaultStringLength = 8;
 + (instancetype)stringFromAlphabetWith:(NSString *)alphabet length:(NSUInteger)length {
     NSMutableString *result = [NSMutableString string];
     for (u_int i = 0; i < length; i += 1) {
-        [result appendFormat:@"%c",[alphabet characterAtIndex:arc4random_uniform((uint32_t)[alphabet length])]];
+        [result appendFormat:@"%c",[alphabet characterAtIndex:AZRandomNumberWithMaxValue(alphabet.length - 1)]];
     }
     
     return result;
 }
 
 + (instancetype)stringFromAlphabetWithLengthIn:(NSString *)alphabet range:(NSRange)range {
-    return [self stringFromAlphabetWith:alphabet length:randomNumberInRange(range)];
+    return [self stringFromAlphabetWith:alphabet length:AZRandomNumberInRange(range)];
 }
 
 //string from range
@@ -53,7 +53,7 @@ static const NSUInteger AZDefaultStringLength = 8;
 }
 
 + (instancetype)stringFromRangeWithLengthIn:(NSRange)range range:(NSRange)length{
-    return [self stringFromAlphabetWith:[self alphabetFromRange:range] length:randomNumberInRange(length)];
+    return [self stringFromAlphabetWith:[self alphabetFromRange:range] length:AZRandomNumberInRange(length)];
 }
 
 //string from array
@@ -66,10 +66,10 @@ static const NSUInteger AZDefaultStringLength = 8;
 }
 
 + (instancetype)stringFromArrayWithLengthIn:(NSArray *)array range:(NSRange)length {
-    return [self stringFromAlphabetWith:[self alphabetFromArray:array] length:randomNumberInRange(length)];
+    return [self stringFromAlphabetWith:[self alphabetFromArray:array] length:AZRandomNumberInRange(length)];
 }
 
-#define alphabetMethods(alphabet)  \
+#define AZAlphabetMethods(alphabet)  \
 + (instancetype) alphabet ##String { \
 return [self stringFromAlphabet:[self alphabet ##Alphabet]]; \
 } \
@@ -80,15 +80,13 @@ return [self stringFromAlphabetWith:[self alphabet ##Alphabet] length:length];\
 return [self stringFromAlphabetWithLengthIn:[self alphabet ##Alphabet] range:(NSRange)range]; \
 } \
 
-alphabetMethods(lowercase);
-alphabetMethods(uppercase);
-alphabetMethods(numeric);
-alphabetMethods(letter);
-alphabetMethods(alphanumeric);
+AZAlphabetMethods(lowercase);
+AZAlphabetMethods(uppercase);
+AZAlphabetMethods(numeric);
+AZAlphabetMethods(letter);
+AZAlphabetMethods(alphanumeric);
 
-#undef alphabetMethods
-
-
+#undef AZAlphabetMethods
 
 #pragma mark -
 #pragma mark Alphabet Methods

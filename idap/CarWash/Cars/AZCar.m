@@ -36,8 +36,8 @@ const u_int AZMaxMoneyForCar = 5000;
 - (instancetype)init {
     self = [super init];
     self.mark = [self randomMark];
-    self.money = randomNumberWithMaxValue(AZMaxMoneyForCar);
-    self.clear = DIRTY;
+    self.money = AZRandomNumberWithMaxValue(AZMaxMoneyForCar);
+    self.state = AZDirtyCar;
     [self sayHi];
     
     return self;
@@ -53,10 +53,10 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark -
 #pragma mark AZMoneyFlow
 
-- (NSUInteger)giveMoney:(AZWasher *)washer {
+- (NSUInteger)giveMoney {
     NSUInteger result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %lu dollars to %@ ", self, result, washer);
+    NSLog(@"%@ give %lu dollars ", self, result);
     
     return result;
 }
@@ -82,7 +82,7 @@ const u_int AZMaxMoneyForCar = 5000;
                              @"Porshe",
                              @"Toyota"];
     
-    return listOfMarks[arc4random_uniform((uint32_t)[listOfMarks count])];
+    return listOfMarks[AZRandomNumberWithMaxValue([listOfMarks count] - 1)];
 }
 
 @end

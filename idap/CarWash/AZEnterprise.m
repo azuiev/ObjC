@@ -11,6 +11,7 @@
 #import "AZCarWashRoom.h"
 
 #import "NSObject+AZExtension.h"
+#import "NSArray+AZExtension.h"
 
 @interface AZEnterprise ()
 @property (nonatomic, retain)   AZBuilding  *adminBuilding;
@@ -52,10 +53,10 @@
     NSArray *buildings = [NSArray arrayWithObjects:self.adminBuilding, self.carWashBuilding, nil];
     NSMutableArray *employees = [NSMutableArray array];
     for (AZBuilding *building in buildings) {
-        [employees addObjectsFromArray:[building findEmployeeByClass:cls]];
+        [employees addObjectsFromArray:[building employees]];
     }
     
-    return [self freeEmployeeFromArray:[[employees copy] autorelease]];
+    return [self freeEmployeeFromArray:[employees objectsWithClass:cls]];
 }
                           
 - (void)performBusinessProcess:(AZCar *)car {
@@ -77,6 +78,7 @@
     [adminBuilding addRoom:adminRoom];
     [adminRoom addHuman:accountant];
     [adminRoom addHuman:director];
+
     
     AZBuilding *carWashBuilding = [AZBuilding object];
     AZRoom *carWashRoom = [AZCarWashRoom object];

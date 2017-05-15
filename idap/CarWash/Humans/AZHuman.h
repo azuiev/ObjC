@@ -18,4 +18,7 @@
 - (void)sayHi;
 - (void)processObject:(id<AZMoneyFlow>)object;
 
+//method to override. Do not call this method
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender;
+
 @end

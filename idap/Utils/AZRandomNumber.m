@@ -12,10 +12,10 @@
 
 #import "NSObject+AZExtension.h"
 
-NSUInteger randomNumberInRange(NSRange range) {
-    return range.location + arc4random_uniform((uint32_t)(range.length - range.location));
+NSUInteger AZRandomNumberInRange(NSRange range) {
+    return range.location + arc4random_uniform((uint32_t)(range.length));
 }
 
-NSUInteger randomNumberWithMaxValue(NSUInteger maxValue) {
-    return randomNumberInRange(AZMakeRange(0, maxValue));
+NSUInteger AZRandomNumberWithMaxValue(NSUInteger maxValue) {
+    return AZRandomNumberInRange(AZMakeRange(0, maxValue));
 }

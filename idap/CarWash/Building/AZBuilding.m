@@ -10,7 +10,7 @@
 #import "NSArray+AZExtension.h"
 
 @interface AZBuilding ()
-@property (nonatomic, copy)   NSMutableArray *mutableRooms;
+@property (nonatomic, retain)   NSMutableArray *mutableRooms;
 @end
 
 @implementation AZBuilding
@@ -42,10 +42,10 @@
 #pragma mark -
 #pragma mark Public
 
-- (NSArray *)findEmployeeByClass:(Class)cls {
+- (NSArray *)employees {
     NSMutableArray *result = [NSMutableArray array];
     for (AZRoom *room in self.mutableRooms) {
-        [result addObjectsFromArray:[[room humans] objectsWithClass:cls]];
+        [result addObjectsFromArray:[room humans]];
     }
     
     return [NSArray arrayWithArray:result];

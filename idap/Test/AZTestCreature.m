@@ -24,14 +24,13 @@ static const NSUInteger AZParentalDependenciesCount = 40;
 
 + (void)performTest {
     NSArray *creatures = [NSArray objectsWithCount:AZCreaturesCount block:^id {
-        return (randomNumberWithMaxValue(1)) ? [AZCreatureFemale object] : [AZCreatureMale object];
+        return (AZRandomNumberWithMaxValue(1)) ? [AZCreatureFemale object] : [AZCreatureMale object];
     }];
     
     for (NSUInteger i = 0; i < AZParentalDependenciesCount; i += 1) {
-        AZCreature *parent = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
-        AZCreature *child = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
+        AZCreature *parent = creatures[AZRandomNumberWithMaxValue(AZCreaturesCount - 1)];
+        AZCreature *child = creatures[AZRandomNumberWithMaxValue(AZCreaturesCount - 1)];
         [parent addChild:child];
-        
     }
     
     for (AZCreature *creature in creatures) {

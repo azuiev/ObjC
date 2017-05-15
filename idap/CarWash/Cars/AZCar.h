@@ -10,14 +10,14 @@
 
 #import "AZMoneyFlow.h"
 
-typedef NS_ENUM(NSUInteger, clearStatus) {
-    CLEAR,
-    DIRTY
+typedef NS_ENUM(NSUInteger, AZCarState) {
+    AZDirtyCar,
+    AZCleanCar
 };
 
 @interface AZCar : NSObject <AZMoneyFlow>
 @property (nonatomic, copy)   NSString      *mark;
-@property (nonatomic, assign) clearStatus   clear;
+@property (nonatomic, assign) AZCarState    state;
 
 - (void)sayHi;
 

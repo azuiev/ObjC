@@ -7,9 +7,12 @@
 //
 
 #import "AZHuman.h"
+
 #import "NSString+AZRandomString.h"
-#import "AZRandomNumber.h"
 #import "NSObject+AZExtension.h"
+#import "NSString+AZRandomName.h"
+
+#import "AZRandomNumber.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
@@ -21,9 +24,6 @@ static NSUInteger const AZMaxLengthName = 12;
 
 @interface AZHuman ()
 @property (nonatomic, assign) NSUInteger money;
-
-+ (NSString *)randomName;
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender;
 
 @end
 
@@ -42,8 +42,8 @@ static NSUInteger const AZMaxLengthName = 12;
     self = [super init];
     
     self.name = [AZHuman randomName];
-    self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
-    self.experience = randomNumberWithMaxValue(AZMaxExperience);
+    self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
+    self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     [self sayHi];
     
     return self;

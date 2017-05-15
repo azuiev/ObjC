@@ -6,5 +6,5 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-NSUInteger randomNumberInRange(NSRange range);
-NSUInteger randomNumberWithMaxValue(NSUInteger maxValue);
+NSUInteger AZRandomNumberInRange(NSRange range);
+NSUInteger AZRandomNumberWithMaxValue(NSUInteger maxValue);
