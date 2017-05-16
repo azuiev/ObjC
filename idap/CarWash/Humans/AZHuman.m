@@ -44,6 +44,7 @@ static NSUInteger const AZMaxLengthName = 12;
     self.name = [AZHuman randomName];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
+    self.state = AZFreeEmployee;
     [self sayHi];
     
     return self;
@@ -59,6 +60,11 @@ static NSUInteger const AZMaxLengthName = 12;
 
 - (void)sayHi {
     NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
+}
+
+//method to override. Do not call this method
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
+    
 }
 
 #pragma mark -
@@ -92,10 +98,6 @@ static NSUInteger const AZMaxLengthName = 12;
 
 #pragma mark -
 #pragma mark Private
-
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
-    
-}
 
 + (NSString *)randomName {
     return [[NSString lowercaseStringWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)] capitalizedString];

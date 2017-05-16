@@ -11,6 +11,9 @@
 @implementation NSArray (AZExtension)
 
 + (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block {
+    if (!block) {
+        return nil;
+    }
     
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
     for (NSUInteger i = 0; i < count; i += 1) {

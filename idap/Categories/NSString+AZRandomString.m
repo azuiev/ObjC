@@ -27,10 +27,10 @@ static const NSUInteger AZDefaultStringLength = 8;
 
 //string from alphabet
 + (instancetype)stringFromAlphabet:(NSString *)alphabet {
-    return [self stringFromAlphabetWith:alphabet length:AZDefaultStringLength];
+    return [self stringFromAlphabet:alphabet length:AZDefaultStringLength];
 }
 
-+ (instancetype)stringFromAlphabetWith:(NSString *)alphabet length:(NSUInteger)length {
++ (instancetype)stringFromAlphabet:(NSString *)alphabet length:(NSUInteger)length {
     NSMutableString *result = [NSMutableString string];
     for (u_int i = 0; i < length; i += 1) {
         [result appendFormat:@"%c",[alphabet characterAtIndex:AZRandomNumberWithMaxValue(alphabet.length - 1)]];
@@ -39,34 +39,34 @@ static const NSUInteger AZDefaultStringLength = 8;
     return result;
 }
 
-+ (instancetype)stringFromAlphabetWithLengthIn:(NSString *)alphabet range:(NSRange)range {
-    return [self stringFromAlphabetWith:alphabet length:AZRandomNumberInRange(range)];
++ (instancetype)stringFromAlphabet:(NSString *)alphabet lengthInRange:(NSRange)range {
+    return [self stringFromAlphabet:alphabet length:AZRandomNumberInRange(range)];
 }
 
 //string from range
 + (instancetype)stringFromRange:(NSRange)range {
-    return [self stringFromAlphabetWith:[self alphabetFromRange:range] length:AZDefaultStringLength];
+    return [self stringFromAlphabet:[self alphabetFromRange:range] length:AZDefaultStringLength];
 }
 
-+ (instancetype)stringFromRangeWith:(NSRange)range length:(NSUInteger)length {
-    return [self stringFromAlphabetWith:[self alphabetFromRange:range] length:length];
++ (instancetype)stringFromRange:(NSRange)range length:(NSUInteger)length {
+    return [self stringFromAlphabet:[self alphabetFromRange:range] length:length];
 }
 
-+ (instancetype)stringFromRangeWithLengthIn:(NSRange)range range:(NSRange)length{
-    return [self stringFromAlphabetWith:[self alphabetFromRange:range] length:AZRandomNumberInRange(length)];
++ (instancetype)stringFromRange:(NSRange)range lengthInRange:(NSRange)length{
+    return [self stringFromAlphabet:[self alphabetFromRange:range] length:AZRandomNumberInRange(length)];
 }
 
 //string from array
 + (instancetype)stringFromArray:(NSArray *)array {
-    return [self stringFromAlphabetWith:[self alphabetFromArray:array] length:AZDefaultStringLength];
+    return [self stringFromAlphabet:[self alphabetFromArray:array] length:AZDefaultStringLength];
 }
 
-+ (instancetype)stringFromArrayWith:(NSArray *)array length:(NSUInteger)length {
-    return [self stringFromAlphabetWith:[self alphabetFromArray:array] length:length];
++ (instancetype)stringFromArray:(NSArray *)array length:(NSUInteger)length {
+    return [self stringFromAlphabet:[self alphabetFromArray:array] length:length];
 }
 
-+ (instancetype)stringFromArrayWithLengthIn:(NSArray *)array range:(NSRange)length {
-    return [self stringFromAlphabetWith:[self alphabetFromArray:array] length:AZRandomNumberInRange(length)];
++ (instancetype)stringFromArray:(NSArray *)array lengthInRange:(NSRange)length {
+    return [self stringFromAlphabet:[self alphabetFromArray:array] length:AZRandomNumberInRange(length)];
 }
 
 #define AZAlphabetMethods(alphabet)  \
@@ -74,10 +74,10 @@ static const NSUInteger AZDefaultStringLength = 8;
 return [self stringFromAlphabet:[self alphabet ##Alphabet]]; \
 } \
 + (instancetype)alphabet ##StringWithLength:(NSUInteger)length { \
-return [self stringFromAlphabetWith:[self alphabet ##Alphabet] length:length];\
+return [self stringFromAlphabet:[self alphabet ##Alphabet] length:length];\
 }\
 + (instancetype)alphabet ##StringWithLengthInRange:(NSRange)range { \
-return [self stringFromAlphabetWithLengthIn:[self alphabet ##Alphabet] range:(NSRange)range]; \
+return [self stringFromAlphabet:[self alphabet ##Alphabet] lengthInRange:(NSRange)range]; \
 } \
 
 AZAlphabetMethods(lowercase);
@@ -104,17 +104,11 @@ AZAlphabetMethods(alphanumeric);
 }
 
 + (instancetype)letterAlphabet {
-    NSMutableString *result = (NSMutableString *)[self lowercaseAlphabet];
-    [result appendString:[self uppercaseAlphabet]];
-    
-    return result;
+    return [[self lowercaseAlphabet] stringByAppendingString:[self uppercaseAlphabet]];;
 }
 
 + (instancetype)alphanumericAlphabet {
-    NSMutableString *result = (NSMutableString *)[self letterAlphabet];
-    [result appendString:[self numericAlphabet]];
-    
-    return result;
+    return [[self letterAlphabet] stringByAppendingString:[self numericAlphabet]];
 }
 
 #pragma mark -
