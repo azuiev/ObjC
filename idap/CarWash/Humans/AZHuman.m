@@ -7,9 +7,12 @@
 //
 
 #import "AZHuman.h"
+
 #import "NSString+AZRandomString.h"
-#import "NSNumber+AZRandomNumber.h"
-#import "NSObject+AZObjectExtension.h"
+#import "NSObject+AZExtension.h"
+#import "NSString+AZRandomName.h"
+
+#import "AZRandomNumber.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
@@ -20,10 +23,7 @@ static NSUInteger const AZMinLengthName = 3;
 static NSUInteger const AZMaxLengthName = 12;
 
 @interface AZHuman ()
-@property (nonatomic,assign) NSUInteger money;
-
-+ (NSString *)randomName;
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender;
+@property (nonatomic, assign) NSUInteger money;
 
 @end
 
@@ -42,8 +42,9 @@ static NSUInteger const AZMaxLengthName = 12;
     self = [super init];
     
     self.name = [AZHuman randomName];
-    self.salary = randomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
-    self.experience = randomNumberWithMaxValue(AZMaxExperience);
+    self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
+    self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
+    self.state = AZFreeEmployee;
     [self sayHi];
     
     return self;
@@ -54,28 +55,38 @@ static NSUInteger const AZMaxLengthName = 12;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     [self performSpecificForClassOperation:object];
-    [self takeMoney:object];
+    [self takeMoneyFromObject:object];
 }
 
 - (void)sayHi {
     NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
 }
 
+//method to override. Do not call this method
+- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
+    
+}
+
 #pragma mark -
 #pragma mark AZMoneyFlow
 
-- (void)takeMoney:(id<AZMoneyFlow>)moneySpender {
-    NSUInteger income = [moneySpender giveMoney:self];
+- (void)takeMoneyFromObject:(id<AZMoneyFlow>)moneySpender {
+    NSUInteger income = [moneySpender giveMoney];
     self.money += income;
     NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
 }
 
-- (NSUInteger)giveMoney:(id<AZMoneyFlow>)moneyReceiver {
+- (NSUInteger)giveMoney {
     NSUInteger result = self.money;
     self.money = 0;
-    NSLog(@"%@ give %lu dollars to %@ ", self, result, moneyReceiver);
+    NSLog(@"%@ give %lu dollars", self, result);
     
     return result;
+}
+
+- (void)takeMoney:(NSUInteger)money {
+    self.money += money;
+    NSLog(@"%@ recieve %lu dollars", self, money);
 }
 
 #pragma mark -
@@ -87,10 +98,6 @@ static NSUInteger const AZMaxLengthName = 12;
 
 #pragma mark -
 #pragma mark Private
-
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
-    
-}
 
 + (NSString *)randomName {
     return [[NSString lowercaseStringWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)] capitalizedString];

@@ -11,25 +11,26 @@
 #import "AZTestCreature.h"
 #import "AZCreatureMale.h"
 #import "AZCreatureFemale.h"
-#import "NSObject+AZObjectExtension.h"
-#import "NSNumber+AZRandomNumber.h"
+
+#import "NSObject+AZExtension.h"
+#import "NSArray+AZExtension.h"
+
+#import "AZRandomNumber.h"
 
 static const NSUInteger AZCreaturesCount = 10;
 static const NSUInteger AZParentalDependenciesCount = 40;
 
-
 @implementation AZTestCreature
 
 + (void)performTest {
-    NSArray *creatures = [NSObject objectsWithCount:AZCreaturesCount block:^id {
-        return (randomNumberWithMaxValue(1)) ? [AZCreatureFemale object] : [AZCreatureMale object];
+    NSArray *creatures = [NSArray objectsWithCount:AZCreaturesCount block:^id {
+        return (AZRandomNumberWithMaxValue(1)) ? [AZCreatureFemale object] : [AZCreatureMale object];
     }];
     
     for (NSUInteger i = 0; i < AZParentalDependenciesCount; i += 1) {
-        AZCreature *parent = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
-        AZCreature *child = creatures[randomNumberWithMaxValue(AZCreaturesCount - 1)];
+        AZCreature *parent = creatures[AZRandomNumberWithMaxValue(AZCreaturesCount - 1)];
+        AZCreature *child = creatures[AZRandomNumberWithMaxValue(AZCreaturesCount - 1)];
         [parent addChild:child];
-        
     }
     
     for (AZCreature *creature in creatures) {

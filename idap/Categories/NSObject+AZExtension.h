@@ -10,10 +10,9 @@
 
 NSRange AZMakeRange(NSUInteger min, NSUInteger max);
 
-@interface NSObject (AZObjectExtension)
+@interface NSObject (AZExtension)
 
 + (instancetype)object;
 + (NSArray *)objectsWithCount:(NSUInteger)count;
-+ (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block;
 
 @end

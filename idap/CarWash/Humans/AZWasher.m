@@ -14,7 +14,7 @@
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car{
-    [car setClear:CLEAR];
+    car.state = AZCleanCar;
     NSLog(@"%@ wash the %@\n", self, car);
 }
 

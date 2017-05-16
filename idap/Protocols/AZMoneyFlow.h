@@ -7,12 +7,12 @@
 //
 
 @protocol AZMoneyFlow
+@property (nonatomic, readonly) NSUInteger money;
 
-@property (nonatomic,readonly) NSUInteger money;
-
-- (NSUInteger)giveMoney:(id<AZMoneyFlow>)moneyReceiver;
+- (NSUInteger)giveMoney;
 
 @optional
-- (void)takeMoney:(id<AZMoneyFlow>)moneySpender;
+- (void)takeMoney:(NSUInteger)money;
+- (NSUInteger)giveMoneyFromObject:(id)object;
 
 @end

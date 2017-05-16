@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "AZCreature.h"
+
+#import "AZRandomNumber.h"
+
 #import "NSString+AZRandomString.h"
-#import "NSNumber+AZRandomNumber.h"
+#import "NSString+AZRandomName.h"
 
 static NSUInteger const AZMaxHumansAge = 100;
 static NSUInteger const AZMaxHumansWeight = 200;
@@ -37,9 +40,9 @@ static NSUInteger const AZMaxHumansWeight = 200;
 - (instancetype)init {
     self = [super init];
     self.mutableChildren = [NSMutableArray array];
-    self.name = [[NSString lowercaseString] capitalizedString];
-    self.age = randomNumberWithMaxValue(AZMaxHumansAge);
-    self.weight = randomNumberWithMaxValue(AZMaxHumansWeight);
+    self.name = [NSString randomName];
+    self.age = AZRandomNumberWithMaxValue(AZMaxHumansAge);
+    self.weight = AZRandomNumberWithMaxValue(AZMaxHumansWeight);
     
     return self;
 }

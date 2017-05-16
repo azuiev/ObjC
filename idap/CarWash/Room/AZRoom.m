@@ -9,7 +9,7 @@
 #import "AZRoom.h"
 
 @interface AZRoom ()
-@property (nonatomic, assign) NSMutableArray    *mutableHumans;
+@property (nonatomic, retain) NSMutableArray    *mutableHumans;
 @property (nonatomic, assign) NSUInteger        humansCapacity;
 @end
 

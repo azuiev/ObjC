@@ -29,15 +29,15 @@
 + (instancetype)letterStringWithLengthInRange:(NSRange)range;
 
 + (instancetype)stringFromAlphabet:(NSString *)alphabet;
-+ (instancetype)stringFromAlphabetWith:(NSString *)alphabet length:(NSUInteger)length;
-+ (instancetype)stringFromAlphabetWithLengthIn:(NSString *)alphabet range:(NSRange)range;
++ (instancetype)stringFromAlphabet:(NSString *)alphabet length:(NSUInteger)length;
++ (instancetype)stringFromAlphabet:(NSString *)alphabet lengthInRange:(NSRange)length;
 
 + (instancetype)stringFromRange:(NSRange)range;
-+ (instancetype)stringFromRangeWith:(NSRange)range length:(NSUInteger)length;
-+ (instancetype)stringFromRangeWithLengthIn:(NSRange)range range:(NSRange)length;
++ (instancetype)stringFromRange:(NSRange)range length:(NSUInteger)length;
++ (instancetype)stringFromRange:(NSRange)range lengthInRange:(NSRange)length;
 
 + (instancetype)stringFromArray:(NSArray *)array;
-+ (instancetype)stringFromArrayWith:(NSArray *)array length:(NSUInteger)length;
-+ (instancetype)stringFromArrayWithLengthIn:(NSArray *)array range:(NSRange)length;
++ (instancetype)stringFromArray:(NSArray *)array length:(NSUInteger)length;
++ (instancetype)stringFromArray:(NSArray *)array lengthInRange:(NSRange)length;
 
 @end

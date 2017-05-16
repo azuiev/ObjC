@@ -8,21 +8,19 @@
 
 #import "AZTestCarWash.h"
 
-#import "AZCar.h"
 #import "AZEnterprise.h"
-#import "NSObject+AZObjectExtension.h"
-#import "NSString+AZRandomString.h"
-#import "AZRoom.h"
-#import "AZCarWashRoom.h"
-#import "NSArray+AZObjectsByClass.h"
+#import "AZCar.h"
+
+#import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
+static const NSUInteger AZCarsCount = 10;
 
 @implementation AZTestCarWash
 
 + (void)performTest {
     AZEnterprise *enterprise = [AZEnterprise object];
-    NSArray *cars = [AZCar objectsWithCount:10];
+    NSArray *cars = [AZCar objectsWithCount:AZCarsCount];
     
     NSLog(@"%@",AZDelimeter);
 
