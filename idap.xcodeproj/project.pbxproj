@@ -10,6 +10,10 @@
 		1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */; };
 		1D5062471EC1322200CCA4F3 /* NSString+AZRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5062461EC1322200CCA4F3 /* NSString+AZRandomString.m */; };
 		1D5576301EBFD7C60043C714 /* NSArray+AZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D55762F1EBFD7C60043C714 /* NSArray+AZExtension.m */; };
+		1D559FB11ECB8A550001AE5C /* AZAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D559FB01ECB8A550001AE5C /* AZAlphabet.m */; };
+		1D559FB41ECB8B950001AE5C /* AZRangeAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D559FB31ECB8B950001AE5C /* AZRangeAlphabet.m */; };
+		1D559FB71ECB8BEE0001AE5C /* AZClusterAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D559FB61ECB8BEE0001AE5C /* AZClusterAlphabet.m */; };
+		1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D559FB91ECB8C620001AE5C /* AZStringsAlphabet.m */; };
 		1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF96C1EB252980093099B /* AZTestCarWash.m */; };
 		1D5C0A831ECA43390080761D /* AZRandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C0A821ECA43390080761D /* AZRandomNumber.m */; };
 		1D5C0A871ECA55FE0080761D /* NSString+AZRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C0A861ECA55FE0080761D /* NSString+AZRandomName.m */; };
@@ -49,6 +53,14 @@
 		1D5062461EC1322200CCA4F3 /* NSString+AZRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AZRandomString.m"; path = "Categories/NSString+AZRandomString.m"; sourceTree = "<group>"; };
 		1D55762E1EBFD7C60043C714 /* NSArray+AZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+AZExtension.h"; path = "Categories/NSArray+AZExtension.h"; sourceTree = "<group>"; };
 		1D55762F1EBFD7C60043C714 /* NSArray+AZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+AZExtension.m"; path = "Categories/NSArray+AZExtension.m"; sourceTree = "<group>"; };
+		1D559FAF1ECB8A550001AE5C /* AZAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZAlphabet.h; sourceTree = "<group>"; };
+		1D559FB01ECB8A550001AE5C /* AZAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZAlphabet.m; sourceTree = "<group>"; };
+		1D559FB21ECB8B950001AE5C /* AZRangeAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZRangeAlphabet.h; sourceTree = "<group>"; };
+		1D559FB31ECB8B950001AE5C /* AZRangeAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZRangeAlphabet.m; sourceTree = "<group>"; };
+		1D559FB51ECB8BEE0001AE5C /* AZClusterAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZClusterAlphabet.h; sourceTree = "<group>"; };
+		1D559FB61ECB8BEE0001AE5C /* AZClusterAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZClusterAlphabet.m; sourceTree = "<group>"; };
+		1D559FB81ECB8C620001AE5C /* AZStringsAlphabet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZStringsAlphabet.h; sourceTree = "<group>"; };
+		1D559FB91ECB8C620001AE5C /* AZStringsAlphabet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZStringsAlphabet.m; sourceTree = "<group>"; };
 		1D5BF96B1EB252980093099B /* AZTestCarWash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestCarWash.h; sourceTree = "<group>"; };
 		1D5BF96C1EB252980093099B /* AZTestCarWash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestCarWash.m; sourceTree = "<group>"; };
 		1D5C0A821ECA43390080761D /* AZRandomNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZRandomNumber.m; sourceTree = "<group>"; };
@@ -99,11 +111,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D559FAD1ECB8A170001AE5C /* Alphabet */ = {
+			isa = PBXGroup;
+			children = (
+				1D559FAF1ECB8A550001AE5C /* AZAlphabet.h */,
+				1D559FB01ECB8A550001AE5C /* AZAlphabet.m */,
+				1D559FAE1ECB8A170001AE5C /* Private */,
+			);
+			path = Alphabet;
+			sourceTree = "<group>";
+		};
+		1D559FAE1ECB8A170001AE5C /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				1D559FB21ECB8B950001AE5C /* AZRangeAlphabet.h */,
+				1D559FB31ECB8B950001AE5C /* AZRangeAlphabet.m */,
+				1D559FB51ECB8BEE0001AE5C /* AZClusterAlphabet.h */,
+				1D559FB61ECB8BEE0001AE5C /* AZClusterAlphabet.m */,
+				1D559FB81ECB8C620001AE5C /* AZStringsAlphabet.h */,
+				1D559FB91ECB8C620001AE5C /* AZStringsAlphabet.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		1D5C0A7E1ECA429A0080761D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				1D5C0A841ECA43570080761D /* AZRandomNumber.h */,
 				1D5C0A821ECA43390080761D /* AZRandomNumber.m */,
+				1D559FAD1ECB8A170001AE5C /* Alphabet */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -304,6 +340,7 @@
 				1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */,
 				1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */,
 				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
+				1D559FB11ECB8A550001AE5C /* AZAlphabet.m in Sources */,
 				1D5FEDE61EB7543E003499D1 /* NSObject+AZExtension.m in Sources */,
 				1D5C0A871ECA55FE0080761D /* NSString+AZRandomName.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
@@ -314,13 +351,16 @@
 				1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */,
 				1D65E1581EB1053800D0B5E4 /* AZCar.m in Sources */,
 				1D65E15E1EB1065B00D0B5E4 /* AZWasher.m in Sources */,
+				1D559FB41ECB8B950001AE5C /* AZRangeAlphabet.m in Sources */,
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D65E14F1EB1047200D0B5E4 /* AZCarWashRoom.m in Sources */,
 				1D65E1501EB1047200D0B5E4 /* AZRoom.m in Sources */,
 				1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */,
 				1D5FEDEA1EB75DD5003499D1 /* AZBuilding.m in Sources */,
+				1D559FB71ECB8BEE0001AE5C /* AZClusterAlphabet.m in Sources */,
 				1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */,
 				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
+				1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

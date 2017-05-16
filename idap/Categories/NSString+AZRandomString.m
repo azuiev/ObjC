@@ -25,6 +25,18 @@ static const NSUInteger AZDefaultStringLength = 8;
 #pragma mark -
 #pragma mark Public
 
+- (NSArray *)symbols {
+    NSUInteger length = self.length;
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:length];
+    
+    for (NSUInteger index = 0; index < length; index += 1) {
+        unichar character = [self characterAtIndex:index];
+        [result addObject:[NSString stringWithFormat:@"%c", character]];
+    }
+    
+    return [[result copy] autorelease];
+}
+
 //string from alphabet
 + (instancetype)stringFromAlphabet:(NSString *)alphabet {
     return [self stringFromAlphabet:alphabet length:AZDefaultStringLength];

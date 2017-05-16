@@ -40,4 +40,5 @@
 + (instancetype)stringFromArray:(NSArray *)array length:(NSUInteger)length;
 + (instancetype)stringFromArray:(NSArray *)array lengthInRange:(NSRange)length;
 
+- (NSArray *)symbols;
 @end
