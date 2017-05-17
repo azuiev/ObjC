@@ -20,9 +20,14 @@
 - (instancetype)initWithStrings:(NSArray *)strings;
 - (instancetype)initWithSymbols:(NSString *)string;
 
+// the method should be overrided
 - (NSUInteger)count;
+
+// the method should be overrided
 - (NSString *)stringAtIndex:(NSUInteger)index;
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (NSString *)string;
 
 @end

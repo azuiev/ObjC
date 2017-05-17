@@ -7,7 +7,10 @@
 //
 
 #import "AZTestRandomString.h"
+#import "AZAlphabet.h"
+
 #import "NSString+AZRandomString.h"
+#import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
 
@@ -25,6 +28,16 @@ static const NSString *AZDelimeter = @"**********";
     NSLog(@"%@",[NSString stringFromAlphabet:@"ixy" lengthInRange:NSMakeRange(1, 5)]);
     NSLog(@"%@",[NSString stringFromRange:NSMakeRange(120, 3) lengthInRange:NSMakeRange(1, 5)]);
     NSLog(@"%@",[NSString stringFromArray:[NSArray arrayWithObjects:@"A",@"E",nil] lengthInRange:NSMakeRange(1, 5)]);
+    
+    NSRange range = AZMakeRange('A', 'z');
+    AZAlphabet *alphabet = [AZAlphabet alphabetWithRange:range];
+    NSMutableString *string = [NSMutableString stringWithCapacity:[alphabet count]];
+    for (NSString *character in alphabet) {
+        [string appendString:character];
+    }
+    
+    NSLog(@"%@ - %lu", string , string.length);
+    
 }
 
 @end

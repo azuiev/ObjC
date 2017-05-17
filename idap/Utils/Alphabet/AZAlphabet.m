@@ -8,6 +8,8 @@
 
 #import "AZAlphabet.h"
 
+#import "math.h"
+
 #import "AZRangeAlphabet.h"
 #import "AZClusterAlphabet.h"
 #import "AZStringsAlphabet.h"
@@ -79,14 +81,34 @@
     return [self stringAtIndex:index];
 }
 
+- (NSString *)string {
+    NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
+    for (NSString *symbol in self) {
+        [string appendString:symbol];
+    }
+    return [[string copy] autorelease];
+}
+
 #pragma mark -
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
                                   objects:(id __unsafe_unretained _Nullable [_Nonnull])buffer
-                                    count:(NSUInteger)len
+                                    count:(NSUInteger)resultLength
 {
-    return 0;
+    state->mutationsPtr = (unsigned long *)self;
+    NSUInteger length = MIN(state->state + resultLength, [self count]);
+    resultLength = length - state->state;
+    if (resultLength) {
+        for (NSUInteger index = 0, sourceIndex = state->state; sourceIndex < length; index += 1, sourceIndex += 1) {
+            buffer[index] = self[sourceIndex];
+        }
+    }
+    
+    state->itemsPtr = buffer;
+    state->state += resultLength;
+    
+    return resultLength;
 }
 
 @end
