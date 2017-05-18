@@ -11,7 +11,7 @@
 @interface AZAlphabet : NSObject <NSFastEnumeration>
 
 + (instancetype)alphabetWithRange:(NSRange)range;
-+ (instancetype)alphabetWithAlphabet:(NSArray *)alphabets;
++ (instancetype)alphabetWithAlphabets:(NSArray *)alphabets;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithSymbols:(NSString *)string;
 

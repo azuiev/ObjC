@@ -9,6 +9,7 @@
 #import "AZAlphabet.h"
 
 @interface AZStringsAlphabet : AZAlphabet
+@property (nonatomic, readonly) NSArray   *strings;
 
 - (instancetype)initWithStrings:(NSArray *)strings;
 

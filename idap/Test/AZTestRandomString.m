@@ -30,13 +30,32 @@ static const NSString *AZDelimeter = @"**********";
     NSLog(@"%@",[NSString stringFromArray:[NSArray arrayWithObjects:@"A",@"E",nil] lengthInRange:NSMakeRange(1, 5)]);
     
     NSRange range = AZMakeRange('A', 'z');
-    AZAlphabet *alphabet = [AZAlphabet alphabetWithRange:range];
-    NSMutableString *string = [NSMutableString stringWithCapacity:[alphabet count]];
-    for (NSString *character in alphabet) {
+    AZAlphabet *rangeAlphabet = [AZAlphabet alphabetWithRange:range];
+    AZAlphabet *stringAlphabet = [AZAlphabet alphabetWithStrings:@[@"AA", @"BB", @"CC", @"DD", @"EE"]];
+    NSArray *alphabets = [NSArray arrayWithObjects:rangeAlphabet, stringAlphabet, nil];
+    AZAlphabet *clusterAlphabet = [AZAlphabet alphabetWithAlphabets:alphabets];
+    
+    
+    NSMutableString *string = [NSMutableString stringWithCapacity:[rangeAlphabet count]];
+    for (NSString *character in rangeAlphabet) {
         [string appendString:character];
     }
     
     NSLog(@"%@ - %lu", string , string.length);
+    
+    NSMutableString *string2 = [NSMutableString string];
+    for (NSString *character in stringAlphabet) {
+        [string2 appendString:character];
+    }
+    
+    NSLog(@"%@ - %lu", string2 , string2.length);
+    
+    NSMutableString *string3 = [NSMutableString string];
+    for (NSString *character in clusterAlphabet) {
+        [string3 appendString:character];
+    }
+    
+    NSLog(@"%@ - %lu", string3 , string3.length);
     
 }
 
