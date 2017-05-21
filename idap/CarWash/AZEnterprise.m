@@ -45,18 +45,20 @@
 #pragma mark -
 #pragma mark Private
 
-- (id)freeEmployeeFromArray:(NSArray *)employees {
-    return [employees firstObject];
+- (id)freeEmployeeWithClass:(Class)cls {
+    return [[[self employees] objectsWithBlock: ^BOOL(AZHuman *obj) {
+        return ([obj isMemberOfClass:cls] && obj.state == AZEmployeeFree);
+    }] firstObject];
 }
 
-- (id)freeEmployeeWithClass:(Class)cls {
-    NSArray *buildings = [NSArray arrayWithObjects:self.adminBuilding, self.carWashBuilding, nil];
+- (id)employees {
+    NSArray *buildings = @[self.adminBuilding, self.carWashBuilding];
     NSMutableArray *employees = [NSMutableArray array];
     for (AZBuilding *building in buildings) {
         [employees addObjectsFromArray:[building employees]];
     }
     
-    return [self freeEmployeeFromArray:[employees objectsWithClass:cls]];
+    return employees;
 }
                           
 - (void)performBusinessProcess:(AZCar *)car {

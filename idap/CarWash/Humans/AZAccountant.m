@@ -20,7 +20,7 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)performSpecificForClassOperation:(AZWasher *)washer {
+- (void)performOperationWithObject:(AZWasher *)washer {
     [self calculateMoney:(AZWasher *)washer];
 }
 

@@ -44,7 +44,7 @@ static NSUInteger const AZMaxLengthName = 12;
     self.name = [AZHuman randomName];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
-    self.state = AZFreeEmployee;
+    self.state = AZEmployeeFree;
     [self sayHi];
     
     return self;
@@ -54,8 +54,10 @@ static NSUInteger const AZMaxLengthName = 12;
 #pragma mark Public methods
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    [self performSpecificForClassOperation:object];
+    self.state = AZEmployeeBusy;
+    [self performOperationWithObject:object];
     [self takeMoneyFromObject:object];
+    self.state = AZEmployeeFree;
 }
 
 - (void)sayHi {
@@ -63,7 +65,7 @@ static NSUInteger const AZMaxLengthName = 12;
 }
 
 //method to override. Do not call this method
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender {
+- (void)performOperationWithObject:(id<AZMoneyFlow>)moneySpender {
     
 }
 

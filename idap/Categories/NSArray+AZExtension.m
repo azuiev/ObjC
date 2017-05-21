@@ -23,6 +23,18 @@
     return [NSArray arrayWithArray:result];
 }
 
+- (instancetype)objectsWithBlock:(BOOL(^)(id obj))block {
+    if (!block) {
+        return nil;
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithBlock: ^BOOL(id obj, NSDictionary *bind) {
+        return block(obj);
+    }];
+    
+    return [self filteredArrayUsingPredicate:predicate];
+}
+
 - (instancetype)objectsWithClass:(Class)cls {
     NSPredicate *predicate = [NSPredicate predicateWithBlock: ^BOOL(id obj, NSDictionary *bind) {
         return [obj isMemberOfClass:cls];

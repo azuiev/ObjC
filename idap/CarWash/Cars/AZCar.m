@@ -22,7 +22,7 @@ static NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @implementation AZCar
 
-const u_int AZMaxMoneyForCar = 5000;
+const u_int AZMoneyForCar = 5000;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -36,7 +36,8 @@ const u_int AZMaxMoneyForCar = 5000;
 - (instancetype)init {
     self = [super init];
     self.mark = [self randomMark];
-    self.money = AZRandomNumberWithMaxValue(AZMaxMoneyForCar);
+    //self.money = AZRandomNumberWithMaxValue(AZMaxMoneyForCar);
+    self.money = AZMoneyForCar;
     self.state = AZDirtyCar;
     [self sayHi];
     
@@ -72,7 +73,7 @@ const u_int AZMaxMoneyForCar = 5000;
 #pragma mark Private
 
 - (NSString *)randomMark {
-    NSArray *listOfMarks = @[@"Alfa-romeo",
+    NSArray *models = @[@"Alfa-romeo",
                              @"Bugatti",
                              @"Ferrary",
                              @"Ford",
@@ -82,7 +83,7 @@ const u_int AZMaxMoneyForCar = 5000;
                              @"Porshe",
                              @"Toyota"];
     
-    return listOfMarks[AZRandomNumberWithMaxValue([listOfMarks count] - 1)];
+    return models[AZRandomNumberWithMaxValue([models count] - 1)];
 }
 
 @end

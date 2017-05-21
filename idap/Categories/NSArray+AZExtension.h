@@ -13,5 +13,6 @@
 + (NSArray *)objectsWithCount:(NSUInteger)count block:(id(^)())block;
 
 - (instancetype)objectsWithClass:(Class)cls;
+- (instancetype)objectsWithBlock:(BOOL(^)(id obj))block;
 
 @end

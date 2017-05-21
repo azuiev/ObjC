@@ -21,7 +21,7 @@
 #pragma mark -
 #pragma mark Private 
 
-- (void)performSpecificForClassOperation:(AZAccountant *)accountant {
+- (void)performOperationWithObject:(AZAccountant *)accountant {
     [self getIncome:(AZAccountant *)accountant];
 }
 

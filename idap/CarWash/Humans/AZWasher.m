@@ -21,7 +21,7 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)performSpecificForClassOperation:(AZCar  *)car {
+- (void)performOperationWithObject:(AZCar  *)car {
     [self washCar:(AZCar *)car];
 }
 

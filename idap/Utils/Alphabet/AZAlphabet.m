@@ -86,6 +86,7 @@
     for (NSString *symbol in self) {
         [string appendString:symbol];
     }
+    
     return [[string copy] autorelease];
 }
 

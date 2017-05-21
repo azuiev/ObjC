@@ -11,8 +11,8 @@
 #import "AZMoneyFlow.h"
 
 typedef NS_ENUM(NSUInteger, AZEmployeeState) {
-    AZFreeEmployee,
-    AZBusyEmployee
+    AZEmployeeFree,
+    AZEmployeeBusy
 };
 
 @interface AZHuman : NSObject <AZMoneyFlow>
@@ -25,6 +25,6 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)processObject:(id<AZMoneyFlow>)object;
 
 //method to override. Do not call this method
-- (void)performSpecificForClassOperation:(id<AZMoneyFlow>)moneySpender;
+- (void)performOperationWithObject:(id<AZMoneyFlow>)moneySpender;
 
 @end
