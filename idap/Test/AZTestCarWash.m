@@ -22,11 +22,11 @@ static const NSUInteger AZCarsCount = 10;
     AZEnterprise *enterprise = [AZEnterprise object];
     NSArray *cars = [AZCar objectsWithCount:AZCarsCount];
     
-    NSLog(@"%@",AZDelimeter);
+    NSLog(@"%@", AZDelimeter);
 
     for (AZCar *car in cars) {
         [enterprise performBusinessProcess:car];
-        NSLog(@"%@",AZDelimeter);
+        NSLog(@"%@", AZDelimeter);
     }
 }
 

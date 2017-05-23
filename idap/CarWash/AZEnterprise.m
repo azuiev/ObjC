@@ -8,17 +8,27 @@
 
 #import "AZEnterprise.h"
 
-#import "AZCarWashRoom.h"
+#import "AZDirector.h"
+#import "AZAccountant.h"
+#import "AZWasher.h"
+#import "AZCar.h"
+
+#import "AZQueue.h"
+#import "AZRandomNumber.h"
 
 #import "NSObject+AZExtension.h"
 #import "NSArray+AZExtension.h"
 
-@interface AZEnterprise ()
-@property (nonatomic, retain)   AZBuilding  *adminBuilding;
-@property (nonatomic, retain)   AZBuilding  *carWashBuilding;
+static const NSUInteger AZMinWashersCount = 2;
+static const NSUInteger AZMaxWashersCount = 20;
 
-- (AZHuman *)freeEmployeeFromArray:(NSArray *)employes;
-- (void)performBusinessProcess:(AZCar *)car;
+@interface AZEnterprise ()
+@property (nonatomic, retain)   AZDirector      *director;
+@property (nonatomic, retain)   AZAccountant    *accountant;
+@property (nonatomic, copy)     NSArray         *washers;
+@property (nonatomic, copy)     AZQueue         *washersQueue;
+
+- (AZWasher *)freeWasher;
 - (void)prepareEnterprise;
 
 @end
@@ -29,8 +39,10 @@
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    self.adminBuilding = nil;
-    self.carWashBuilding = nil;
+    self.accountant = nil;
+    self.director = nil;
+    self.washers = nil;
+    self.washersQueue = nil;
     
     [super dealloc];
 }
@@ -45,26 +57,14 @@
 #pragma mark -
 #pragma mark Private
 
-- (id)freeEmployeeWithClass:(Class)cls {
-    return [[[self employees] objectsWithBlock: ^BOOL(AZHuman *obj) {
-        return ([obj isMemberOfClass:cls] && obj.state == AZEmployeeFree);
-    }] firstObject];
+- (id)freeWasher {
+    return [self.washersQueue dequeue];
 }
 
-- (id)employees {
-    NSArray *buildings = @[self.adminBuilding, self.carWashBuilding];
-    NSMutableArray *employees = [NSMutableArray array];
-    for (AZBuilding *building in buildings) {
-        [employees addObjectsFromArray:[building employees]];
-    }
-    
-    return employees;
-}
-                          
 - (void)performBusinessProcess:(AZCar *)car {
-    AZWasher *washer = [self freeEmployeeWithClass:[AZWasher class]];
-    AZAccountant *accountant = [self freeEmployeeWithClass:[AZAccountant class]];
-    AZDirector *director = [self freeEmployeeWithClass:[AZDirector class]];
+    AZWasher *washer = [self freeWasher];
+    AZDirector *director = self.director;
+    AZAccountant *accountant = self.accountant;
     
     [washer processObject:car];
     [accountant processObject:washer];
@@ -72,25 +72,15 @@
 }
 
 - (void)prepareEnterprise {
-    AZBuilding *adminBuilding = [AZBuilding object];
-    AZRoom *adminRoom = [AZRoom object];
-    AZAccountant *accountant = [AZAccountant object];
-    AZDirector *director = [AZDirector object];
+    self.accountant = [AZAccountant object];
+    self.director = [AZDirector object];
+    NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
+    NSMutableArray *washers = [NSMutableArray arrayWithCapacity:washersCount];
+    for (NSUInteger i = 0; i < washersCount; i += 1) {
+        [washers addObject:[AZWasher object]];
+    }
     
-    [adminBuilding addRoom:adminRoom];
-    [adminRoom addHuman:accountant];
-    [adminRoom addHuman:director];
-
-    
-    AZBuilding *carWashBuilding = [AZBuilding object];
-    AZRoom *carWashRoom = [AZCarWashRoom object];
-    AZWasher *washer = [AZWasher object];
-    
-    [carWashBuilding addRoom:carWashRoom];
-    [carWashRoom addHuman:washer];
-    
-    self.adminBuilding = adminBuilding;
-    self.carWashBuilding = carWashBuilding;
+    self.washers = [NSArray arrayWithArray:washers];
 }
 
 @end
