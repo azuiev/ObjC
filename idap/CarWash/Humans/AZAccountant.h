@@ -6,10 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZHuman.h"
+#import "AZEmployee.h"
+
 #import "AZWasher.h"
 
-@interface AZAccountant : AZHuman
+@interface AZAccountant : AZEmployee
 
 - (void)calculateMoney:(AZWasher *)washer;
 

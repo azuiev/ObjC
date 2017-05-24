@@ -8,18 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AZObservableObject.h"
 #import "AZMoneyFlow.h"
+
+@class AZEmployee;
 
 typedef NS_ENUM(NSUInteger, AZEmployeeState) {
     AZEmployeeFree,
     AZEmployeeBusy
 };
 
-@interface AZHuman : NSObject <AZMoneyFlow>
+@protocol AZEmployeeObserver <NSObject>
+
+@optional
+- (void)employeeDidStartWork:(AZEmployee *)employee;
+- (void)employeeDidFinishWork:(AZEmployee *)employee;
+
+@end
+
+@interface AZEmployee : AZObservableObject <AZMoneyFlow, AZEmployeeObserver>
 @property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, assign)   NSUInteger      salary;
 @property (nonatomic, assign)   NSUInteger      experience;
-@property (nonatomic, assign)   AZEmployeeState state;
 
 - (void)sayHi;
 - (void)processObject:(id<AZMoneyFlow>)object;

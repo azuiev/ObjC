@@ -9,13 +9,32 @@
 #import "AZQueue.h"
 
 @interface AZQueue ()
-@property (nonatomic, copy) NSMutableArray *data;
+@property (nonatomic, retain) NSMutableArray *data;
 
 @end
 
 @implementation AZQueue
 
 @dynamic queue;
+
+#pragma mark -
+#pragma mark Initialization and Deallocations
+
+- (void)dealloc {
+    self.data = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    self.data = [NSMutableArray array];
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Public
 
 - (void)enqueue:(id)object {
     if (!object) {
@@ -29,6 +48,8 @@
     id result = [self.data firstObject];
     if (nil != result) {
         [self.data removeObjectAtIndex:0];
+    } else {
+        NSLog(@"No objects in Queue");
     }
     
     return result;

@@ -26,7 +26,7 @@ static const NSUInteger AZMaxWashersCount = 20;
 @property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   AZAccountant    *accountant;
 @property (nonatomic, copy)     NSArray         *washers;
-@property (nonatomic, copy)     AZQueue         *washersQueue;
+@property (nonatomic, retain)   AZQueue         *washersQueue;
 
 - (AZWasher *)freeWasher;
 - (void)prepareEnterprise;
@@ -42,13 +42,13 @@ static const NSUInteger AZMaxWashersCount = 20;
     self.accountant = nil;
     self.director = nil;
     self.washers = nil;
-    self.washersQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
+    self.washersQueue = [AZQueue object];
     [self prepareEnterprise];
     
     return self;
@@ -57,30 +57,43 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark -
 #pragma mark Private
 
+- (void)setWashers:(NSArray *)washers {
+    if (washers != _washers) {
+        _washers = nil;
+        _washers = washers;
+        self.washersQueue = nil;
+        self.washersQueue = [AZQueue object];
+        for (AZWasher *washer in _washers) {
+            [_washersQueue enqueue:washer];
+        }
+    }
+}
+
 - (id)freeWasher {
     return [self.washersQueue dequeue];
 }
 
 - (void)performBusinessProcess:(AZCar *)car {
-    AZWasher *washer = [self freeWasher];
-    AZDirector *director = self.director;
-    AZAccountant *accountant = self.accountant;
-    
-    [washer processObject:car];
-    [accountant processObject:washer];
-    [director processObject:accountant];
+    [[self freeWasher] processObject:car];
 }
 
 - (void)prepareEnterprise {
-    self.accountant = [AZAccountant object];
     self.director = [AZDirector object];
+    AZDirector *director = self.director;
+    self.accountant = [AZAccountant object];
+    AZAccountant *accountant = self.accountant;
+    [accountant addObserver:director];
+    
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     NSMutableArray *washers = [NSMutableArray arrayWithCapacity:washersCount];
     for (NSUInteger i = 0; i < washersCount; i += 1) {
-        [washers addObject:[AZWasher object]];
+        AZWasher *washer = [AZWasher object];
+        [washers addObject:washer];
+        [washer addObserver:accountant];
     }
     
     self.washers = [NSArray arrayWithArray:washers];
+
 }
 
 @end

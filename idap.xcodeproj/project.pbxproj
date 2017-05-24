@@ -24,7 +24,8 @@
 		1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4221EB0EFD400706B17 /* AZTestCreature.m */; };
 		1D5FEDE61EB7543E003499D1 /* NSObject+AZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5FEDE51EB7543E003499D1 /* NSObject+AZExtension.m */; };
 		1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D75D54C1EB38BC000813DB8 /* AZEnterprise.m */; };
-		1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1531EB1052900D0B5E4 /* AZHuman.m */; };
+		1D63663D1ED62A38002A7B3A /* AZObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D63663C1ED62A38002A7B3A /* AZObservableObject.m */; };
+		1D65E1541EB1052900D0B5E4 /* AZEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1531EB1052900D0B5E4 /* AZEmployee.m */; };
 		1D65E1581EB1053800D0B5E4 /* AZCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1571EB1053800D0B5E4 /* AZCar.m */; };
 		1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15A1EB1062000D0B5E4 /* AZAccountant.m */; };
 		1D65E15E1EB1065B00D0B5E4 /* AZWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15D1EB1065B00D0B5E4 /* AZWasher.m */; };
@@ -77,8 +78,10 @@
 		1D5FEDE31EB7541C003499D1 /* AZMoneyFlow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZMoneyFlow.h; sourceTree = "<group>"; };
 		1D5FEDE41EB7543E003499D1 /* NSObject+AZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AZExtension.h"; path = "Categories/NSObject+AZExtension.h"; sourceTree = "<group>"; };
 		1D5FEDE51EB7543E003499D1 /* NSObject+AZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AZExtension.m"; path = "Categories/NSObject+AZExtension.m"; sourceTree = "<group>"; };
-		1D65E1521EB1052900D0B5E4 /* AZHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZHuman.h; path = CarWash/Humans/AZHuman.h; sourceTree = "<group>"; };
-		1D65E1531EB1052900D0B5E4 /* AZHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZHuman.m; path = CarWash/Humans/AZHuman.m; sourceTree = "<group>"; };
+		1D63663B1ED62A38002A7B3A /* AZObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZObservableObject.h; path = Observer/AZObservableObject.h; sourceTree = "<group>"; };
+		1D63663C1ED62A38002A7B3A /* AZObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZObservableObject.m; path = Observer/AZObservableObject.m; sourceTree = "<group>"; };
+		1D65E1521EB1052900D0B5E4 /* AZEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZEmployee.h; path = CarWash/Humans/AZEmployee.h; sourceTree = "<group>"; };
+		1D65E1531EB1052900D0B5E4 /* AZEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZEmployee.m; path = CarWash/Humans/AZEmployee.m; sourceTree = "<group>"; };
 		1D65E1561EB1053800D0B5E4 /* AZCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZCar.h; path = CarWash/Cars/AZCar.h; sourceTree = "<group>"; };
 		1D65E1571EB1053800D0B5E4 /* AZCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZCar.m; path = CarWash/Cars/AZCar.m; sourceTree = "<group>"; };
 		1D65E1591EB1062000D0B5E4 /* AZAccountant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZAccountant.h; path = CarWash/Humans/AZAccountant.h; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		1D5C0A7E1ECA429A0080761D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1D6366391ED629CE002A7B3A /* Observer */,
 				1D5C0A841ECA43570080761D /* AZRandomNumber.h */,
 				1D5C0A821ECA43390080761D /* AZRandomNumber.m */,
 				1D559FAD1ECB8A170001AE5C /* Alphabet */,
@@ -200,11 +204,20 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		1D6366391ED629CE002A7B3A /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				1D63663B1ED62A38002A7B3A /* AZObservableObject.h */,
+				1D63663C1ED62A38002A7B3A /* AZObservableObject.m */,
+			);
+			name = Observer;
+			sourceTree = "<group>";
+		};
 		1D65E1511EB104DA00D0B5E4 /* Humans */ = {
 			isa = PBXGroup;
 			children = (
-				1D65E1521EB1052900D0B5E4 /* AZHuman.h */,
-				1D65E1531EB1052900D0B5E4 /* AZHuman.m */,
+				1D65E1521EB1052900D0B5E4 /* AZEmployee.h */,
+				1D65E1531EB1052900D0B5E4 /* AZEmployee.m */,
 				1D65E1591EB1062000D0B5E4 /* AZAccountant.h */,
 				1D65E15A1EB1062000D0B5E4 /* AZAccountant.m */,
 				1D65E15C1EB1065B00D0B5E4 /* AZWasher.h */,
@@ -313,10 +326,11 @@
 			files = (
 				1D5FEDEB1EB75F57003499D1 /* AZEnterprise.m in Sources */,
 				1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */,
-				1D65E1541EB1052900D0B5E4 /* AZHuman.m in Sources */,
+				1D65E1541EB1052900D0B5E4 /* AZEmployee.m in Sources */,
 				1D559FB11ECB8A550001AE5C /* AZAlphabet.m in Sources */,
 				1D5FEDE61EB7543E003499D1 /* NSObject+AZExtension.m in Sources */,
 				1D5C0A871ECA55FE0080761D /* NSString+AZRandomName.m in Sources */,
+				1D63663D1ED62A38002A7B3A /* AZObservableObject.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
 				1D9DD5001ED4E80B00A68363 /* AZQueue.m in Sources */,
 				1D5062471EC1322200CCA4F3 /* NSString+AZRandomString.m in Sources */,

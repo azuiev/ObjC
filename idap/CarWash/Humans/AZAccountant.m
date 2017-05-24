@@ -18,6 +18,13 @@
 }
 
 #pragma mark -
+#pragma mark Observer
+
+- (void)employeeDidFinishWork:(AZEmployee *)employee {
+    [self processObject:employee];
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (void)performOperationWithObject:(AZWasher *)washer {

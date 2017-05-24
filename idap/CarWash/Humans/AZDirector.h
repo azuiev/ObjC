@@ -6,10 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZHuman.h"
+#import "AZEmployee.h"
+
 #import "AZAccountant.h"
 
-@interface AZDirector : AZHuman
+@interface AZDirector : AZEmployee
 
 - (void)getIncome:(AZAccountant *)accountant;
 

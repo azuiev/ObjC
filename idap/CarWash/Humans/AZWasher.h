@@ -6,10 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZHuman.h"
+#import "AZEmployee.h"
+
 #import "AZCar.h"
 
-@interface AZWasher : AZHuman
+@interface AZWasher : AZEmployee
 
 - (void)washCar:(AZCar *)car;
 

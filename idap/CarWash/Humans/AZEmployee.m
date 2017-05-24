@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-#import "AZHuman.h"
+#import "AZEmployee.h"
 
 #import "NSString+AZRandomString.h"
 #import "NSObject+AZExtension.h"
@@ -22,12 +22,12 @@ static NSString * const AZDescriptionFormatter = @"%@: %@";
 static NSUInteger const AZMinLengthName = 3;
 static NSUInteger const AZMaxLengthName = 12;
 
-@interface AZHuman ()
+@interface AZEmployee ()
 @property (nonatomic, assign) NSUInteger money;
 
 @end
 
-@implementation AZHuman
+@implementation AZEmployee
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -41,7 +41,7 @@ static NSUInteger const AZMaxLengthName = 12;
 - (instancetype)init {
     self = [super init];
     
-    self.name = [AZHuman randomName];
+    self.name = [AZEmployee randomName];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZEmployeeFree;
@@ -90,6 +90,23 @@ static NSUInteger const AZMaxLengthName = 12;
     self.money += money;
     NSLog(@"%@ recieve %lu dollars", self, money);
 }
+
+#pragma mark -
+#pragma mark Observer
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case AZEmployeeBusy:
+            return @selector(employeeDidStartWork:);
+        
+        case AZEmployeeFree:
+            return @selector(employeeDidFinishWork:);
+            
+        default:
+            return nil;
+    }
+}
+
 
 #pragma mark -
 #pragma mark Description
