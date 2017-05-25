@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D319F161ED7719300605E30 /* AZAssignReference.m */; };
 		1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */; };
 		1D5062471EC1322200CCA4F3 /* NSString+AZRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5062461EC1322200CCA4F3 /* NSString+AZRandomString.m */; };
 		1D5576301EBFD7C60043C714 /* NSArray+AZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D55762F1EBFD7C60043C714 /* NSArray+AZExtension.m */; };
@@ -46,6 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D319F151ED7719300605E30 /* AZAssignReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZAssignReference.h; path = ReferenceWrapper/AZAssignReference.h; sourceTree = "<group>"; };
+		1D319F161ED7719300605E30 /* AZAssignReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZAssignReference.m; path = ReferenceWrapper/AZAssignReference.m; sourceTree = "<group>"; };
 		1D3883AE1EBD427200CF5848 /* AZTestRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZTestRandomString.h; sourceTree = "<group>"; };
 		1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZTestRandomString.m; sourceTree = "<group>"; };
 		1D5062451EC1322200CCA4F3 /* NSString+AZRandomString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+AZRandomString.h"; path = "Categories/NSString+AZRandomString.h"; sourceTree = "<group>"; };
@@ -108,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D319F141ED7717200605E30 /* ReferenceWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				1D319F151ED7719300605E30 /* AZAssignReference.h */,
+				1D319F161ED7719300605E30 /* AZAssignReference.m */,
+			);
+			name = ReferenceWrapper;
+			sourceTree = "<group>";
+		};
 		1D559FAD1ECB8A170001AE5C /* Alphabet */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +146,7 @@
 		1D5C0A7E1ECA429A0080761D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1D319F141ED7717200605E30 /* ReferenceWrapper */,
 				1D6366391ED629CE002A7B3A /* Observer */,
 				1D5C0A841ECA43570080761D /* AZRandomNumber.h */,
 				1D5C0A821ECA43390080761D /* AZRandomNumber.m */,
@@ -346,6 +359,7 @@
 				1D559FB71ECB8BEE0001AE5C /* AZClusterAlphabet.m in Sources */,
 				1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */,
 				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
+				1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */,
 				1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
 			);

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AZAssignReference.h"
+
 @interface AZObservableObject : NSObject
 @property (nonatomic, assign)   NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observers;

@@ -41,7 +41,13 @@
 #pragma mark Accessors
 
 - (instancetype)observers {
-    return [[self.mutableObservers copy] autorelease];
+    NSSet *observers = self.mutableObservers;
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:observers.count];
+    for (AZAssignReference *reference in observers) {
+        [result addObject: reference.target];
+    }
+    
+    return [[result copy] autorelease];
 }
 
 - (void)setState:(NSUInteger)state {
@@ -60,15 +66,15 @@
         NSLog(@"%@", NSInvalidArgumentException);
     }
     
-    [self.mutableObservers addObject:observer];
+    [self.mutableObservers addObject:[AZAssignReference referenceWithTarger:observer]];
 }
 
 - (void)removeObserver:(id)observer {
-    [self.mutableObservers removeObject:observer];
+    [self.mutableObservers removeObject:[AZAssignReference referenceWithTarger:observer]];
 }
 
 - (BOOL)isObservedByObject:(id)object {
-    return [self.mutableObservers containsObject:object];
+    return [self.mutableObservers containsObject:[AZAssignReference referenceWithTarger:object]];
 }
 
 #pragma mark -
@@ -82,9 +88,9 @@
 
 - (void)notifyOfStateWithSelector:(SEL)selector {
     NSMutableSet *observers = self.mutableObservers;
-    for (id observer in observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self];
+    for (AZAssignReference *reference in observers) {
+        if ([reference.target respondsToSelector:selector]) {
+            [reference.target performSelector:selector withObject:self];
         }
     }
 }
