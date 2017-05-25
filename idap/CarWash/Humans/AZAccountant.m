@@ -13,22 +13,23 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)calculateMoney:washer {
-    NSLog(@"%@ calculate %@ money. %lu dollars ", self ,washer, [washer money]);
+- (void)calculateMoney {
+    NSLog(@"%@ calculate money. %lu dollars ", self , self.money);
 }
 
 #pragma mark -
 #pragma mark Observer
 
 - (void)employeeDidFinishWork:(AZEmployee *)employee {
+    NSLog(@"%@ notified %@ about finish work", employee, self);
     [self processObject:employee];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)performOperationWithObject:(AZWasher *)washer {
-    [self calculateMoney:(AZWasher *)washer];
+- (void)performSpecificOperation {
+    [self calculateMoney];
 }
 
 @end

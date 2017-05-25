@@ -6,9 +6,11 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
+#import "AZEmployee.h"
 #import "AZCar.h"
 
-@interface AZEnterprise : NSObject
+
+@interface AZEnterprise : NSObject <AZEmployeeObserver>
 
 - (void)performBusinessProcess:(AZCar *)car;
 

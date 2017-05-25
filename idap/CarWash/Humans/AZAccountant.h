@@ -12,6 +12,6 @@
 
 @interface AZAccountant : AZEmployee
 
-- (void)calculateMoney:(AZWasher *)washer;
+- (void)calculateMoney;
 
 @end

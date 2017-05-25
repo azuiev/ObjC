@@ -55,8 +55,8 @@ static NSUInteger const AZMaxLengthName = 12;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     self.state = AZEmployeeBusy;
-    [self performOperationWithObject:object];
     [self takeMoneyFromObject:object];
+    [self performSpecificOperation];
     self.state = AZEmployeeFree;
 }
 

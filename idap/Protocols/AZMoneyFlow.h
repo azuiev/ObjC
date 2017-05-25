@@ -12,7 +12,7 @@
 - (NSUInteger)giveMoney;
 
 @optional
-- (void)takeMoney:(NSUInteger)money;
-- (NSUInteger)giveMoneyFromObject:(id)object;
+- (NSUInteger)giveMoney:(NSUInteger)money;
+- (void)takeMoneyFromObject:(id)object;
 
 @end

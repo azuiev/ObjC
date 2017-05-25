@@ -13,9 +13,8 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)getIncome:(AZAccountant *)accountant {
-    NSUInteger income = accountant.money;
-    NSLog(@"%@ get income from %@ - %lu. Total - %lu dollars ", self, accountant, income, self.money + income);
+- (void)getIncome {
+    NSLog(@"%@ get income - %lu dollars ", self, self.money);
 }
 
 #pragma mark -
@@ -28,8 +27,8 @@
 #pragma mark -
 #pragma mark Private 
 
-- (void)performOperationWithObject:(AZAccountant *)accountant {
-    [self getIncome:(AZAccountant *)accountant];
+- (void)performSpecificOperation {
+    [self getIncome];
 }
 
 @end

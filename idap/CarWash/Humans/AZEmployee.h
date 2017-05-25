@@ -35,6 +35,6 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)processObject:(id<AZMoneyFlow>)object;
 
 //method to override. Do not call this method
-- (void)performOperationWithObject:(id<AZMoneyFlow>)moneySpender;
+- (void)performSpecificOperation;
 
 @end

@@ -44,7 +44,6 @@
     NSUInteger count = self.count;
     NSArray *alphabets = self.alphabets;
     NSAssert(index < count, NSRangeException);
-    NSUInteger iterator = 0;
     NSUInteger length = 0;
     for (AZAlphabet *alphabet in alphabets) {
         length = [alphabet count];

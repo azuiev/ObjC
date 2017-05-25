@@ -12,6 +12,6 @@
 
 @interface AZDirector : AZEmployee
 
-- (void)getIncome:(AZAccountant *)accountant;
+- (void)getIncome;
 
 @end

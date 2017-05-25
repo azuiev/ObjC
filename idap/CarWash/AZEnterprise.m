@@ -55,6 +55,14 @@ static const NSUInteger AZMaxWashersCount = 20;
 }
 
 #pragma mark -
+#pragma mark AZEmployeeObserver
+
+- (void)employeeDidFinishWork:(AZEmployee *)employee {
+    NSLog(@"%@ notified %@ about finish work", employee, self);
+    [self.washersQueue enqueue:employee];
+}
+
+#pragma mark -
 #pragma mark Private
 
 - (void)setWashers:(NSArray *)washers {
@@ -90,6 +98,7 @@ static const NSUInteger AZMaxWashersCount = 20;
         AZWasher *washer = [AZWasher object];
         [washers addObject:washer];
         [washer addObserver:accountant];
+        [washer addObserver:self];
     }
     
     self.washers = [NSArray arrayWithArray:washers];
