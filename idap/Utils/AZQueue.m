@@ -9,7 +9,7 @@
 #import "AZQueue.h"
 
 @interface AZQueue ()
-@property (nonatomic, retain) NSMutableArray *data;
+@property (nonatomic, copy) NSMutableArray *mutableQueue;
 
 @end
 
@@ -21,14 +21,14 @@
 #pragma mark Initialization and Deallocations
 
 - (void)dealloc {
-    self.data = nil;
+    self.mutableQueue = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.data = [NSMutableArray array];
+    self.mutableQueue = [NSMutableArray array];
     
     return self;
 }
@@ -41,22 +41,22 @@
         NSLog(@"%@", NSInvalidArgumentException);
     }
     
-    [self.data addObject:object];
+    [self.mutableQueue arrayByAddingObject:object];
 }
 
 - (id)dequeue {
-    id result = [self.data firstObject];
+    id result = [self.mutableQueue firstObject];
     if (nil != result) {
-        [self.data removeObjectAtIndex:0];
+        [self.mutableQueue removeObjectAtIndex:0];
     } else {
         NSLog(@"No objects in Queue");
     }
     
-    return result;
+    return [[result retain] autorelease];
 }
 
-- (instancetype)queue {
-    return [[self.data copy] autorelease];
+- (NSArray *)queue {
+    return [[self.mutableQueue copy] autorelease];
 }
 
 @end

@@ -8,11 +8,11 @@
 
 #import "AZEmployee.h"
 
+#import "AZRandomNumber.h"
+
 #import "NSString+AZRandomString.h"
 #import "NSObject+AZExtension.h"
 #import "NSString+AZRandomName.h"
-
-#import "AZRandomNumber.h"
 
 static const NSUInteger AZMinSalary = 1000;
 static const NSUInteger AZMaxSalary = 5000;
@@ -23,7 +23,7 @@ static NSUInteger const AZMinLengthName = 3;
 static NSUInteger const AZMaxLengthName = 12;
 
 @interface AZEmployee ()
-@property (nonatomic, assign) NSUInteger money;
+@property (nonatomic, assign)   NSUInteger    money;
 
 @end
 
@@ -41,7 +41,7 @@ static NSUInteger const AZMaxLengthName = 12;
 - (instancetype)init {
     self = [super init];
     
-    self.name = [AZEmployee randomName];
+    self.name = [NSString randomNameWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZEmployeeFree;
@@ -55,8 +55,10 @@ static NSUInteger const AZMaxLengthName = 12;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     self.state = AZEmployeeBusy;
+    
     [self takeMoneyFromObject:object];
-    [self performSpecificOperation];
+    [self performOperationWithObject:object];
+    
     self.state = AZEmployeeFree;
 }
 
@@ -86,40 +88,27 @@ static NSUInteger const AZMaxLengthName = 12;
     return result;
 }
 
-- (void)takeMoney:(NSUInteger)money {
-    self.money += money;
-    NSLog(@"%@ recieve %lu dollars", self, money);
-}
-
 #pragma mark -
 #pragma mark Observer
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case AZEmployeeBusy:
-            return @selector(employeeDidStartWork:);
+            return @selector(employeeDidBecameBusy:);
         
         case AZEmployeeFree:
-            return @selector(employeeDidFinishWork:);
+            return @selector(employeeDidBecameFree:);
             
         default:
             return nil;
     }
 }
 
-
 #pragma mark -
 #pragma mark Description
 
 - (NSString *)description {
     return [NSString stringWithFormat:AZDescriptionFormatter, [self class], self.name];
-}
-
-#pragma mark -
-#pragma mark Private
-
-+ (NSString *)randomName {
-    return [[NSString lowercaseStringWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)] capitalizedString];
 }
 
 @end

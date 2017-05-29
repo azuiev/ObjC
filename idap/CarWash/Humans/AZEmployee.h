@@ -21,8 +21,8 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 @protocol AZEmployeeObserver <NSObject>
 
 @optional
-- (void)employeeDidStartWork:(AZEmployee *)employee;
-- (void)employeeDidFinishWork:(AZEmployee *)employee;
+- (void)employeeDidBecameFree:(AZEmployee *)employee;
+- (void)employeeDidBecameBusy:(AZEmployee *)employee;
 
 @end
 
@@ -35,6 +35,6 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)processObject:(id<AZMoneyFlow>)object;
 
 //method to override. Do not call this method
-- (void)performSpecificOperation;
+- (void)performOperationWithObject:(id<AZMoneyFlow>)object;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "AZEmployee.h"
 
-#import "AZCar.h"
+@class AZCar;
 
 @interface AZWasher : AZEmployee
 

@@ -8,6 +8,8 @@
 
 #import "AZWasher.h"
 
+#import "AZCar.h"
+
 @implementation AZWasher
 
 #pragma mark -
@@ -19,13 +21,10 @@
 }
 
 #pragma mark -
-#pragma mark AZMoneyFlow
+#pragma mark Private
 
-- (void)processObject:(AZCar *)car {
-    self.state = AZEmployeeBusy;
-    [self washCar:(AZCar *)car];
-    [self takeMoneyFromObject:car];
-    self.state = AZEmployeeFree;
+- (void)performSpecificOperationWithObject:(AZCar *)car {
+    [self washCar:car];
 }
 
 @end

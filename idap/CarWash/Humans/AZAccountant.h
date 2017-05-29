@@ -8,8 +8,6 @@
 
 #import "AZEmployee.h"
 
-#import "AZWasher.h"
-
 @interface AZAccountant : AZEmployee
 
 - (void)calculateMoney;
