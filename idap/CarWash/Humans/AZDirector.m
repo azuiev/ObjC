@@ -16,6 +16,8 @@
 #pragma mark Public
 
 - (void)getIncome {
+    NSLog(@"%@ start getting income", self);
+    
     NSLog(@"%@ get income - %lu dollars ", self, self.money);
 }
 
@@ -30,7 +32,7 @@
 #pragma mark -
 #pragma mark Private 
 
-- (void)performSpecificOperationWithObject:(AZAccountant *)accountant {
+- (void)performOperationWithObject:(AZAccountant *)accountant {
     [self getIncome];
 }
 

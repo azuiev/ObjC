@@ -16,7 +16,11 @@
 #pragma mark Public
 
 - (void)calculateMoney {
-    NSLog(@"%@ calculate money. %lu dollars ", self, self.money);
+    NSLog(@"%@ start calculate money.", self);
+    
+    [self imitateWorkingProcess];
+    
+    NSLog(@"%@ finish calculate money. %lu dollars ", self, self.money);
 }
 
 #pragma mark -

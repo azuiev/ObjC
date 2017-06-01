@@ -14,15 +14,17 @@
 @class AZEmployee;
 
 typedef NS_ENUM(NSUInteger, AZEmployeeState) {
-    AZEmployeeFree,
-    AZEmployeeBusy
+    AZEmployeeReadyToWork,
+    AZEmployeeWorking,
+    AZEmployeeRequiredProcessing
 };
 
 @protocol AZEmployeeObserver <NSObject>
 
 @optional
-- (void)employeeDidBecameFree:(AZEmployee *)employee;
-- (void)employeeDidBecameBusy:(AZEmployee *)employee;
+- (void)employeeDidBecameReadyToWork:(AZEmployee *)employee;
+- (void)employeeDidStartWorking:(AZEmployee *)employee;
+- (void)employeeDidBecameRequiredProcissing:(AZEmployee *)employee;
 
 @end
 
@@ -32,9 +34,11 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 @property (nonatomic, assign)   NSUInteger      experience;
 
 - (void)sayHi;
+- (void)imitateWorkingProcess;
 - (void)processObject:(id<AZMoneyFlow>)object;
 
-//method to override. Do not call this method
+//methods to override. Do not call this methods directly
 - (void)performOperationWithObject:(id<AZMoneyFlow>)object;
+- (void)__processObject:(id<AZMoneyFlow>)object;
 
 @end

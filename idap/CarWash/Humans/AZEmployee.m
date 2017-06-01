@@ -14,13 +14,15 @@
 #import "NSObject+AZExtension.h"
 #import "NSString+AZRandomName.h"
 
-static const NSUInteger AZMinSalary = 1000;
-static const NSUInteger AZMaxSalary = 5000;
-static const NSUInteger AZMaxExperience = 50;
-
 static NSString * const AZDescriptionFormatter = @"%@: %@";
-static NSUInteger const AZMinLengthName = 3;
-static NSUInteger const AZMaxLengthName = 12;
+
+static const NSUInteger AZMinSalary         = 1000;
+static const NSUInteger AZMaxSalary         = 5000;
+static const NSUInteger AZMaxExperience     = 50;
+static const NSUInteger AZMinLengthName     = 3;
+static const NSUInteger AZMaxLengthName     = 12;
+static const NSUInteger AZMinDurationOfWork = 20;
+static const NSUInteger AZMaxDurationOfWork = 100;
 
 @interface AZEmployee ()
 @property (nonatomic, assign)   NSUInteger    money;
@@ -51,16 +53,16 @@ static NSUInteger const AZMaxLengthName = 12;
 }
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    self.state = AZEmployeeBusy;
-    
-    [self takeMoneyFromObject:object];
-    [self performOperationWithObject:object];
-    
-    self.state = AZEmployeeFree;
+    [self performSelectorInBackground:@selector(__processObject:) withObject:object];
 }
+
+- (void)imitateWorkingProcess {
+    usleep((uint32_t)(1000 * AZRandomNumberInRange(AZMakeRange(AZMinDurationOfWork, AZMaxDurationOfWork))));
+}
+
 
 - (void)sayHi {
     NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
@@ -69,6 +71,15 @@ static NSUInteger const AZMaxLengthName = 12;
 //method to override. Do not call this method
 - (void)performOperationWithObject:(id<AZMoneyFlow>)moneySpender {
     
+}
+
+- (void)__processObject:(id<AZMoneyFlow>)object {
+    self.state = AZEmployeeBusy;
+    
+    [self takeMoneyFromObject:object];
+    [self performOperationWithObject:object];
+    
+    self.state = AZEmployeeFree;
 }
 
 #pragma mark -

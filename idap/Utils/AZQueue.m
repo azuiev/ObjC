@@ -37,35 +37,36 @@
 #pragma mark Accessors
 
 - (void)setMutableQueue:(NSMutableArray *)queue {
-    
     if ( _mutableQueue != queue ) {
         [_mutableQueue release];
         _mutableQueue = [queue mutableCopy];
     }
-    
-    return;
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)enqueue:(id)object {
-    if (!object) {
-        NSLog(@"%@", NSInvalidArgumentException);
+    @synchronized (self) {
+        if (!object) {
+            NSLog(@"%@", NSInvalidArgumentException);
+        }
+        
+        [self.mutableQueue addObject:object];
     }
-    
-    [self.mutableQueue addObject:object];
 }
 
 - (id)dequeue {
-    id result = [self.mutableQueue firstObject];
-    if (result) {
-        [self.mutableQueue removeObjectAtIndex:0];
-    } else {
-        NSLog(@"No objects in Queue");
+    @synchronized (self) {
+        id result = [self.mutableQueue firstObject];
+        if (result) {
+            [self.mutableQueue removeObjectAtIndex:0];
+        } else {
+            NSLog(@"No objects in Queue");
+        }
+        
+        return [[result retain] autorelease];
     }
-    
-    return [[result retain] autorelease];
 }
 
 - (NSArray *)queue {

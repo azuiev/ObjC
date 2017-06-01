@@ -8,6 +8,8 @@
 
 #import "AZEnterprise.h"
 
+#import "AZWashController.h"
+
 #import "AZDirector.h"
 #import "AZAccountant.h"
 #import "AZWasher.h"
@@ -25,8 +27,9 @@ static const NSUInteger AZMaxWashersCount = 20;
 @interface AZEnterprise ()
 @property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   AZAccountant    *accountant;
-@property (nonatomic, retain)     NSMutableArray  *washers;
-@property (nonatomic, retain)   AZQueue         *washersQueue;
+@property (nonatomic, retain)   NSMutableArray  *washers;
+
+@property (nonatomic, retain)   AZWashController    *washController;
 
 - (AZWasher *)freeWasher;
 - (void)prepareEnterprise;
@@ -49,7 +52,7 @@ static const NSUInteger AZMaxWashersCount = 20;
 
 - (instancetype)init {
     self = [super init];
-    self.washersQueue = [AZQueue object];
+    
     [self prepareEnterprise];
     
     return self;
@@ -59,6 +62,7 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
+    [self.carsQueue enqueue:car];
     [[self freeWasher] processObject:car];
 }
 
