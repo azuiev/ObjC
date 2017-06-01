@@ -12,6 +12,8 @@
 
 @interface AZEnterprise : NSObject <AZEmployeeObserver>
 
-- (void)performBusinessProcess:(AZCar *)car;
+- (void)washCar:(AZCar *)car;
+- (void)hireEmployee:(AZEmployee *)employee;
+- (void)fireEmployee:(AZEmployee *)employee;
 
 @end

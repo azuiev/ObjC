@@ -8,8 +8,6 @@
 
 #import "AZEmployee.h"
 
-#import "AZAccountant.h"
-
 @interface AZDirector : AZEmployee
 
 - (void)getIncome;

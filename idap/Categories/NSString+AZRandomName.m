@@ -16,4 +16,12 @@
     return [[NSString lowercaseString] capitalizedString];
 }
 
++ (NSString *)randomNameWithLength:(NSUInteger)length {
+    return [[NSString lowercaseStringWithLength:length] capitalizedString];
+}
+
++ (NSString *)randomNameWithLengthInRange:(NSRange)range {
+    return [[NSString lowercaseStringWithLengthInRange:range] capitalizedString];
+}
+
 @end

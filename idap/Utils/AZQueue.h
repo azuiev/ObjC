@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface AZQueue : NSObject
-@property (nonatomic, readonly) NSMutableArray *queue;
+@property (nonatomic, readonly) NSArray *queue;
 
 - (void)enqueue:(id)object;
 - (id)dequeue;
-- (instancetype)queue;
+- (NSArray *)queue;
 
 @end

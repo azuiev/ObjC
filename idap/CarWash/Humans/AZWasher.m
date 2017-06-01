@@ -8,23 +8,34 @@
 
 #import "AZWasher.h"
 
+#import "AZCar.h"
+
 @implementation AZWasher
 
 #pragma mark -
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    car.state = AZCleanCar;
     NSLog(@"%@ wash the %@\n", self, car);
+    car.state = AZCleanCar;
 }
 
 #pragma mark -
-#pragma mark AZMoneyFlow
+#pragma mark Private
+
+- (void)performOperationWithObject:(AZCar *)car {
+    [self washCar:car];
+}
+
+#pragma mark -
+#pragma mark Override
 
 - (void)processObject:(AZCar *)car {
     self.state = AZEmployeeBusy;
-    [self washCar:(AZCar *)car];
+    
+    [self performOperationWithObject:car];
     [self takeMoneyFromObject:car];
+    
     self.state = AZEmployeeFree;
 }
 

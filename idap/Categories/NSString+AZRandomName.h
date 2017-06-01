@@ -11,5 +11,7 @@
 @interface NSString (AZRandomName)
 
 + (NSString *)randomName;
++ (NSString *)randomNameWithLength:(NSUInteger)length;
++ (NSString *)randomNameWithLengthInRange:(NSRange)range;
 
 @end

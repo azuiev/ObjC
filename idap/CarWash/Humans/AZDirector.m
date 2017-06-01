@@ -8,6 +8,8 @@
 
 #import "AZDirector.h"
 
+@class AZAccountant;
+
 @implementation AZDirector
 
 #pragma mark -
@@ -20,14 +22,15 @@
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeDidFinishWork:(AZEmployee *)employee {
+- (void)employeeDidBecameFree:(AZEmployee *)employee {
+    NSLog(@"%@ notified %@ about finish work", employee, self);
     [self processObject:employee];
 }
 
 #pragma mark -
 #pragma mark Private 
 
-- (void)performSpecificOperation {
+- (void)performSpecificOperationWithObject:(AZAccountant *)accountant {
     [self getIncome];
 }
 

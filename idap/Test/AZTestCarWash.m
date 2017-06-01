@@ -25,7 +25,7 @@ static const NSUInteger AZCarsCount = 10;
     NSLog(@"%@", AZDelimeter);
 
     for (AZCar *car in cars) {
-        [enterprise performBusinessProcess:car];
+        [enterprise washCar:car];
         NSLog(@"%@", AZDelimeter);
     }
 }
