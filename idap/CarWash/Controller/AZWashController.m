@@ -14,6 +14,8 @@
 @property (nonatomic, copy)   AZQueue         *washersQueue;
 @property (nonatomic, copy)   AZQueue         *carsQueue;
 
+- (void)addCarToQueue:(AZCar *)car;
+    
 @end
 
 @implementation AZWashController
@@ -48,13 +50,28 @@
     }
 }
 
-
 - (NSArray *)washers {
     return self.washersQueue.queue;
 }
 
 - (NSArray *)cars {
     return self.washersQueue.queue;
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (void)processCar:(AZCar *)car {
+    [self addCarToQueue:car];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)addCarToQueue:(AZCar *)car {
+    @synchronized (_carsQueue) {
+        [self.carsQueue enqueue:car];
+    }
 }
 
 #pragma mark -

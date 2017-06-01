@@ -46,7 +46,8 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.name = [NSString randomNameWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
-    self.state = AZEmployeeFree;
+    self.state = NSUIntegerMax
+    ;
     [self sayHi];
     
     return self;
@@ -74,12 +75,12 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)__processObject:(id<AZMoneyFlow>)object {
-    self.state = AZEmployeeBusy;
+    self.state = AZEmployeeWorking;
     
     [self takeMoneyFromObject:object];
     [self performOperationWithObject:object];
     
-    self.state = AZEmployeeFree;
+    self.state = AZEmployeeRequiredProcessing;
 }
 
 #pragma mark -
@@ -104,11 +105,14 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case AZEmployeeBusy:
-            return @selector(employeeDidBecameBusy:);
+        case AZEmployeeWorking:
+            return @selector(employeeDidStartWorking:);
         
-        case AZEmployeeFree:
-            return @selector(employeeDidBecameFree:);
+        case AZEmployeeReadyToWork:
+            return @selector(employeeDidBecameReadyToWork:);
+            
+        case AZEmployeeRequiredProcessing:
+            return @selector(employeeDidBecameRequiredProcissing:);
             
         default:
             return nil;

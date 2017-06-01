@@ -35,12 +35,12 @@
 #pragma mark Override
 
 - (void)processObject:(AZCar *)car {
-    self.state = AZEmployeeBusy;
+    self.state = AZEmployeeWorking;
     
     [self performOperationWithObject:car];
     [self takeMoneyFromObject:car];
     
-    self.state = AZEmployeeFree;
+    self.state = AZEmployeeRequiredProcessing;
 }
 
 @end

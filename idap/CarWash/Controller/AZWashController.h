@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #import "AZEmployee.h"
+#import "AZCar.h"
 
 #import "AZQueue.h"
+
 
 @interface AZWashController : NSObject <AZEmployeeObserver>
 @property (nonatomic, readonly)   NSArray   *washers;
 @property (nonatomic, readonly)   NSArray   *cars;
+
+- (void)processCar:(AZCar *)car;
 
 @end

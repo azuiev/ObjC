@@ -31,7 +31,6 @@ static const NSUInteger AZMaxWashersCount = 20;
 
 @property (nonatomic, retain)   AZWashController    *washController;
 
-- (AZWasher *)freeWasher;
 - (void)prepareEnterprise;
 
 @end
@@ -62,8 +61,7 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    [self.carsQueue enqueue:car];
-    [[self freeWasher] processObject:car];
+    [self.washController processCar:car];
 }
 
 - (void)hireEmployee:(AZEmployee *)employee {
@@ -87,30 +85,19 @@ static const NSUInteger AZMaxWashersCount = 20;
 }
 
 #pragma mark -
-#pragma mark AZEmployeeObserver
-
-- (void)employeeDidBecameFree:(AZEmployee *)employee {
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-    [self.washersQueue enqueue:employee];
-}
-
-#pragma mark -
 #pragma mark Private
 
 - (void)removeObservers {
     AZAccountant *accountant = self.accountant;
+    AZWashController *controller = self.washController;
     [self.director removeObserver:accountant];
     
     NSArray *washers = self.washers;
     
     for (AZWasher *washer in washers) {
         [washer removeObserver:accountant];
-        [washer removeObserver:self];
+        [washer removeObserver:controller];
     }
-}
-
-- (AZWasher *)freeWasher {
-    return [self.washersQueue dequeue];
 }
 
 - (void)prepareEnterprise {
@@ -126,7 +113,6 @@ static const NSUInteger AZMaxWashersCount = 20;
     }];
    
     self.washers = [NSMutableArray array];
-    self.washersQueue = [AZQueue object];
     
     for (AZWasher *washer in washers) {
         [self hireWasher:washer];
@@ -134,12 +120,11 @@ static const NSUInteger AZMaxWashersCount = 20;
 }
 
 - (void)hireWasher:(AZWasher *)washer {
-    [washer setState:AZEmployeeFree];
+    [washer setState:AZEmployeeReadyToWork];
     [washer addObserver:self.accountant];
-    [washer addObserver:self];
+    [washer addObserver:self.washController];
     
     [self.washers addObject:washer];
-    [self.washersQueue enqueue:washer];
 }
 
 
