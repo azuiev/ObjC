@@ -16,15 +16,27 @@
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    car.state = AZCleanCar;
     NSLog(@"%@ wash the %@\n", self, car);
+    car.state = AZCleanCar;
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)performSpecificOperationWithObject:(AZCar *)car {
+- (void)performOperationWithObject:(AZCar *)car {
     [self washCar:car];
+}
+
+#pragma mark -
+#pragma mark Override
+
+- (void)processObject:(AZCar *)car {
+    self.state = AZEmployeeBusy;
+    
+    [self performOperationWithObject:car];
+    [self takeMoneyFromObject:car];
+    
+    self.state = AZEmployeeFree;
 }
 
 @end

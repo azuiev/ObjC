@@ -25,7 +25,7 @@ static const NSUInteger AZMaxWashersCount = 20;
 @interface AZEnterprise ()
 @property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   AZAccountant    *accountant;
-@property (nonatomic, copy)     NSMutableArray  *washers;
+@property (nonatomic, retain)     NSMutableArray  *washers;
 @property (nonatomic, retain)   AZQueue         *washersQueue;
 
 - (AZWasher *)freeWasher;
@@ -66,15 +66,15 @@ static const NSUInteger AZMaxWashersCount = 20;
     Class cls = [employee class];
     
     if (cls == [AZWasher class]) {
-        [self hireWasher:employee];
+        [self hireWasher:(AZWasher *)employee];
     }
     
     if (cls == [AZAccountant class]) {
-        [self hireAccountant:employee];
+        [self hireAccountant:(AZAccountant *)employee];
     }
     
     if (cls == [AZDirector class]) {
-        [self hireDirector:employee];
+        [self hireDirector:(AZDirector *)employee];
     }
 }
 
@@ -120,17 +120,19 @@ static const NSUInteger AZMaxWashersCount = 20;
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
         return [AZWasher object];
     }];
-    self.washers = [NSMutableArray arrayWithCapacity:10];
+   
+    self.washers = [NSMutableArray array];
     self.washersQueue = [AZQueue object];
     
     for (AZWasher *washer in washers) {
-        [self.washers addObject:washer];
+        [self hireWasher:washer];
     }
 }
 
 - (void)hireWasher:(AZWasher *)washer {
     [washer setState:AZEmployeeFree];
     [washer addObserver:self.accountant];
+    [washer addObserver:self];
     
     [self.washers addObject:washer];
     [self.washersQueue enqueue:washer];

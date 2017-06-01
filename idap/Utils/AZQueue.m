@@ -34,6 +34,19 @@
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setMutableQueue:(NSMutableArray *)queue {
+    
+    if ( _mutableQueue != queue ) {
+        [_mutableQueue release];
+        _mutableQueue = [queue mutableCopy];
+    }
+    
+    return;
+}
+
+#pragma mark -
 #pragma mark Public
 
 - (void)enqueue:(id)object {
@@ -41,12 +54,12 @@
         NSLog(@"%@", NSInvalidArgumentException);
     }
     
-    [self.mutableQueue arrayByAddingObject:object];
+    [self.mutableQueue addObject:object];
 }
 
 - (id)dequeue {
     id result = [self.mutableQueue firstObject];
-    if (nil != result) {
+    if (result) {
         [self.mutableQueue removeObjectAtIndex:0];
     } else {
         NSLog(@"No objects in Queue");
