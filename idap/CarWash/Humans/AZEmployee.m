@@ -46,8 +46,8 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.name = [NSString randomNameWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
-    self.state = NSUIntegerMax
-    ;
+    self.state = NSUIntegerMax;
+    
     [self sayHi];
     
     return self;
@@ -57,7 +57,9 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    [self performSelectorInBackground:@selector(__processObject:) withObject:object];
+    @synchronized (self) {
+        [self performSelectorInBackground:@selector(__processObject:) withObject:object];
+    }
 }
 
 - (void)imitateWorkingProcess {
@@ -75,12 +77,23 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)__processObject:(id<AZMoneyFlow>)object {
+//    [self performSelectorOnMainThread:@selector(notifyWith:)
+//                           withObject:[NSNumber numberWithInteger:AZEmployeeWorking]
+//                        waitUntilDone:NO];
     self.state = AZEmployeeWorking;
     
     [self takeMoneyFromObject:object];
     [self performOperationWithObject:object];
     
-    self.state = AZEmployeeRequiredProcessing;
+    NSNumber *number = [NSNumber numberWithInteger:AZEmployeeRequiredProcessing];
+//    [self performSelectorOnMainThread:@selector(notifyWith:)
+//                           withObject:number
+//                        waitUntilDone:NO];
+    [self notifyWith:number];
+}
+
+- (void)notifyWith:(NSNumber *)state {
+    self.state = [state integerValue];
 }
 
 #pragma mark -
@@ -89,6 +102,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 - (void)takeMoneyFromObject:(id<AZMoneyFlow>)moneySpender {
     NSUInteger income = [moneySpender giveMoney];
     self.money += income;
+    
     NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
 }
 
@@ -112,7 +126,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
             return @selector(employeeDidBecameReadyToWork:);
             
         case AZEmployeeRequiredProcessing:
-            return @selector(employeeDidBecameRequiredProcissing:);
+            return @selector(employeeDidBecameRequiredProcessing:);
             
         default:
             return nil;

@@ -27,8 +27,10 @@ static const NSUInteger AZCarsCount = 3;
     for (AZCar *car in cars) {
         
         [enterprise performSelectorInBackground:@selector(washCar:) withObject:car];
-        NSLog(@"%@", AZDelimeter);
+        //[enterprise washCar:car];
     }
+    
+    sleep(100);
 }
 
 @end

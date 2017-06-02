@@ -14,9 +14,9 @@
 @class AZEmployee;
 
 typedef NS_ENUM(NSUInteger, AZEmployeeState) {
-    AZEmployeeReadyToWork,
-    AZEmployeeWorking,
-    AZEmployeeRequiredProcessing
+    AZEmployeeReadyToWork = 0,
+    AZEmployeeWorking = 1,
+    AZEmployeeRequiredProcessing = 2
 };
 
 @protocol AZEmployeeObserver <NSObject>
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 @optional
 - (void)employeeDidBecameReadyToWork:(AZEmployee *)employee;
 - (void)employeeDidStartWorking:(AZEmployee *)employee;
-- (void)employeeDidBecameRequiredProcissing:(AZEmployee *)employee;
+- (void)employeeDidBecameRequiredProcessing:(AZEmployee *)employee;
 
 @end
 
@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)sayHi;
 - (void)imitateWorkingProcess;
 - (void)processObject:(id<AZMoneyFlow>)object;
+
+- (void)notifyWith:(NSNumber *)state;
 
 //methods to override. Do not call this methods directly
 - (void)performOperationWithObject:(id<AZMoneyFlow>)object;

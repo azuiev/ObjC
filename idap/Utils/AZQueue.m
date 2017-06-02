@@ -46,6 +46,10 @@
 #pragma mark -
 #pragma mark Public
 
+- (NSUInteger)count {
+    return self.mutableQueue.count;
+}
+
 - (void)enqueue:(id)object {
     @synchronized (self) {
         if (!object) {

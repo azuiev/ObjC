@@ -22,7 +22,7 @@ static NSString * const AZDescriptionFormatter = @"%@: %@";
 
 @implementation AZCar
 
-const u_int AZMoneyForCar = 5000;
+const u_int AZMoneyForCar = 1;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation

@@ -24,15 +24,17 @@
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeDidBecameFree:(AZEmployee *)employee {
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-    [self processObject:employee];
+- (void)employeeDidBecameRequiredProcessing:(AZEmployee *)accountant {
+    NSLog(@"%@ notified %@ about finish work", accountant, self);
+    [self processObject:accountant];
 }
 
 #pragma mark -
 #pragma mark Private 
 
 - (void)performOperationWithObject:(AZAccountant *)accountant {
+    [accountant setState:AZEmployeeReadyToWork];
+    
     [self getIncome];
 }
 

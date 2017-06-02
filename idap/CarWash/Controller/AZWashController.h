@@ -13,7 +13,6 @@
 
 #import "AZQueue.h"
 
-
 @interface AZWashController : NSObject <AZEmployeeObserver>
 @property (nonatomic, readonly)   NSArray   *washers;
 @property (nonatomic, readonly)   NSArray   *cars;

@@ -26,7 +26,7 @@
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeDidBecameFree:(AZEmployee *)employee {
+- (void)employeeDidBecameRequiredProcessing:(AZEmployee *)employee {
     NSLog(@"%@ notified %@ about finish work", employee, self);
     [self processObject:employee];
 }
@@ -35,6 +35,8 @@
 #pragma mark Private
 
 - (void)performOperationWithObject:(AZWasher *)washer {
+    [washer setState:AZEmployeeReadyToWork];
+    
     [self calculateMoney];
 }
 

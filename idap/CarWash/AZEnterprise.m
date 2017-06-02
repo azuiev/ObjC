@@ -106,8 +106,10 @@ static const NSUInteger AZMaxWashersCount = 20;
     AZAccountant *accountant = [AZAccountant object];
     self.accountant = accountant;
     [accountant addObserver:director];
+    self.washController = [AZWashController object];
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
+    washersCount = 2;
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
         return [AZWasher object];
     }];
@@ -120,9 +122,9 @@ static const NSUInteger AZMaxWashersCount = 20;
 }
 
 - (void)hireWasher:(AZWasher *)washer {
-    [washer setState:AZEmployeeReadyToWork];
     [washer addObserver:self.accountant];
     [washer addObserver:self.washController];
+    [washer setState:AZEmployeeReadyToWork];
     
     [self.washers addObject:washer];
 }

@@ -10,6 +10,8 @@
 
 #import "AZWasher.h"
 
+#import "NSObject+AZExtension.h"
+
 @interface AZWashController ()
 @property (nonatomic, copy)   AZQueue         *washersQueue;
 @property (nonatomic, copy)   AZQueue         *carsQueue;
@@ -31,6 +33,16 @@
     self.carsQueue = nil;
     
     [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.washersQueue = [AZQueue object];
+        self.carsQueue = [AZQueue object];
+    }
+    
+    return self;
 }
 
 #pragma mark -
@@ -63,14 +75,30 @@
 
 - (void)processCar:(AZCar *)car {
     [self addCarToQueue:car];
+    [self startWashing];
+    
 }
 
 #pragma mark -
 #pragma mark Private
 
+- (BOOL)readyToWork {
+    return [self.washersQueue count] && [self.carsQueue count];
+}
+
 - (void)addCarToQueue:(AZCar *)car {
     @synchronized (_carsQueue) {
         [self.carsQueue enqueue:car];
+    }
+}
+
+- (void)startWashing {
+    @synchronized (self) {
+        if ([self readyToWork]) {
+            AZWasher *washer = [self.washersQueue dequeue];
+            AZCar *car = [self.carsQueue dequeue];
+            [washer processObject:car];
+        }
     }
 }
 
@@ -79,6 +107,7 @@
 
 - (void)employeeDidBecameReadyToWork:(AZWasher *)washer {
     [self.washersQueue enqueue:washer];
+    [self startWashing];
 }
 
 - (void)employeeDidStartWorking:(AZEmployee *)employee {
