@@ -35,12 +35,8 @@
 #pragma mark Override
 
 - (void)processObjectInBackgroundThread:(AZCar *)car {
-    self.state = AZEmployeeWorking;
-    
     [self performOperationWithObject:car];
     [self takeMoneyFromObject:car];
-    
-    self.state = AZEmployeeRequiredProcessing;
 }
 
 @end

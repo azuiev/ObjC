@@ -25,13 +25,11 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc
-{
+- (void)dealloc {
     [super dealloc];
 }
 
-- (instancetype)initWithTarget:(id)target;
-{
+- (instancetype)initWithTarget:(id)target {
     self = [super init];
     if (self) {
         self.target = target;
@@ -48,7 +46,7 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    if (nil == object) {
+    if (!object) {
         return NO;
     }
     
@@ -56,17 +54,15 @@
         return YES;
     }
     
-    if ([object isMemberOfClass:[self class]]) {
-        return [self isEqualToReference:object];
+    if (![object isMemberOfClass:[self class]]) {
+        return NO;
     }
     
-    return NO;
+    return [self isEqualToReference:object];
 }
 
 - (BOOL)isEqualToReference:(AZAssignReference *)reference {
     return self.target == reference.target;
 }
-
-
 
 @end

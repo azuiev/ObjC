@@ -26,7 +26,7 @@
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeDidBecameRequiredProcessing:(AZEmployee *)employee {
+- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
     NSLog(@"%@ notified %@ about finish work", employee, self);
     [self processObject:employee];
 }

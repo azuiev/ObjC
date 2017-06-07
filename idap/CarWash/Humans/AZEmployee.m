@@ -57,7 +57,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    [self performSelectorInBackground:@selector(processObjectInBackgroundThread:) withObject:object];
+    [self performSelectorInBackground:@selector(processObjectWithChangingStates:) withObject:object];
 }
 
 - (void)imitateWorkingProcess {
@@ -74,24 +74,31 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object {
-    [self performSelectorOnMainThread:notifyWithState withObject:self waitUntilDone:NO]
     [self takeMoneyFromObject:object];
     [self performOperationWithObject:object];
+}
+
+- (void)startProcessingWithObject:(id<AZMoneyFlow>)object {
+    self.state = AZEmployeeWorking;
+}
+
+- (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
+    //TODO
+    [(AZEmployee *)object setState:AZEmployeeReadyToWork];
+    self.state = AZEmployeeRequiredProcessing;
+}
+
+- (void)processObjectWithChangingStates:(id<AZMoneyFlow>)object {
+    [self performSelectorOnMainThread:@selector(startProcessingWithObject:)
+                           withObject:object
+                        waitUntilDone:NO];
     
-
-//    [self performSelectorOnMainThread:@selector(notifyWith:)
-//                           withObject:number
-//                        waitUntilDone:NO];
-    [self notifyWith:number];
+    [self processObjectInBackgroundThread:object];
+    
+    [self performSelectorOnMainThread:@selector(finishProcessingWithObject:)
+                           withObject:object
+                        waitUntilDone:NO];
 }
-
-#pragma mark -
-#pragma mark Private
-
-- (void)notifyWith:(NSNumber *)state {
-    self.state = [state integerValue];
-}
-
 
 #pragma mark -
 #pragma mark AZMoneyFlow
@@ -120,10 +127,10 @@ static const NSUInteger AZMaxDurationOfWork = 100;
             return @selector(employeeDidStartWorking:);
         
         case AZEmployeeReadyToWork:
-            return @selector(employeeDidBecameReadyToWork:);
+            return @selector(employeeBecameReadyToWork:);
             
         case AZEmployeeRequiredProcessing:
-            return @selector(employeeDidBecameRequiredProcessing:);
+            return @selector(employeeBecameRequiredProcessing:);
             
         default:
             return nil;

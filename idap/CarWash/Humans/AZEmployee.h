@@ -37,10 +37,13 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)imitateWorkingProcess;
 - (void)processObject:(id<AZMoneyFlow>)object;
 
-- (void)notifyWith:(NSNumber *)state;
+- (void)notifyWithState:(NSUInteger)state;
 
 //methods to override. Do not call this methods directly
 - (void)performOperationWithObject:(id<AZMoneyFlow>)object;
-- (void)__processObject:(id<AZMoneyFlow>)object;
+- (void)startProcessingWithObject:(id<AZMoneyFlow>)object;
+- (void)finishProcessingWithObject:(id<AZMoneyFlow>)object;
+- (void)processObjectWithChangingStates:(id<AZMoneyFlow>)object;
+- (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object;
 
 @end

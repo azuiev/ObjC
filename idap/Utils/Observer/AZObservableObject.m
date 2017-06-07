@@ -89,8 +89,9 @@
 - (void)notifyOfStateWithSelector:(SEL)selector {
     NSMutableSet *observers = self.mutableObservers;
     for (AZAssignReference *reference in observers) {
-        if ([reference.target respondsToSelector:selector]) {
-            [reference.target performSelector:selector withObject:self];
+        id target = reference.target;
+        if ([target respondsToSelector:selector]) {
+            [target performSelector:selector withObject:self];
         }
     }
 }

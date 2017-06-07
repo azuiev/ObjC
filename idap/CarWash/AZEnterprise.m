@@ -132,6 +132,22 @@ static const NSUInteger AZMaxWashersCount = 20;
 }
 
 #pragma mark -
+#pragma mark AZEmployeeObserver
+
+- (void)employeeBecameReadyToWork:(AZEmployee *)employee {
+    [self.washersQueue enqueue:employee];
+    [self startWashing];
+}
+
+- (void)employeeDidStartWorking:(AZEmployee *)employee {
+    //TODO. queue of washers to accountant
+}
+
+- (void)employeeBecameRequiredProcissing:(AZEmployee *)AZEmployee {
+    //TODO. 
+}
+
+#pragma mark -
 #pragma mark Cars queue
 
 - (void)addCarToQueue:car {
