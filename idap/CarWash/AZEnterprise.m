@@ -8,8 +8,6 @@
 
 #import "AZEnterprise.h"
 
-#import "AZWashController.h"
-
 #import "AZDirector.h"
 #import "AZAccountant.h"
 #import "AZWasher.h"
@@ -28,10 +26,16 @@ static const NSUInteger AZMaxWashersCount = 20;
 @property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   AZAccountant    *accountant;
 @property (nonatomic, retain)   NSMutableArray  *washers;
+@property (nonatomic, retain)   AZQueue         *washersQueue;
+@property (nonatomic, retain)   AZQueue         *carsQueue;
 
-@property (nonatomic, retain)   AZWashController    *washController;
+- (void)startWashing;
 
+- (void)removeObservers;
 - (void)prepareEnterprise;
+
+- (void)addCarToQueue:car;
+- (AZCar *)getCarFromQueue;
 
 @end
 
@@ -42,9 +46,12 @@ static const NSUInteger AZMaxWashersCount = 20;
 
 - (void)dealloc {
     [self removeObservers];
+    
     self.accountant = nil;
     self.director = nil;
     self.washers = nil;
+    self.washersQueue = nil;
+    self.carsQueue = nil;
     
     [super dealloc];
 }
@@ -61,52 +68,48 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    [self.washController processCar:car];
-}
-
-- (void)hireEmployee:(AZEmployee *)employee {
-    Class cls = [employee class];
-    
-    if (cls == [AZWasher class]) {
-        [self hireWasher:(AZWasher *)employee];
-    }
-    
-    if (cls == [AZAccountant class]) {
-        [self hireAccountant:(AZAccountant *)employee];
-    }
-    
-    if (cls == [AZDirector class]) {
-        [self hireDirector:(AZDirector *)employee];
-    }
-}
-
-- (void)fireEmployee:(AZEmployee *)employee {
-    
+    [self addCarToQueue:car];
+    [self startWashing];
 }
 
 #pragma mark -
 #pragma mark Private
 
+- (BOOL)readyToWork {
+    return [self.washersQueue count] && [self.carsQueue count];
+}
+
+- (void)startWashing {
+    @synchronized (self) {
+        if ([self readyToWork]) {
+            AZWasher *washer = [self.washersQueue dequeue];
+            AZCar *car = [self.carsQueue dequeue];
+            
+            [washer processObject:car];
+        }
+    }
+}
+
 - (void)removeObservers {
     AZAccountant *accountant = self.accountant;
-    AZWashController *controller = self.washController;
     [self.director removeObserver:accountant];
     
     NSArray *washers = self.washers;
     
     for (AZWasher *washer in washers) {
         [washer removeObserver:accountant];
-        [washer removeObserver:controller];
+        [washer removeObserver:self];
     }
 }
 
 - (void)prepareEnterprise {
     AZDirector *director = [AZDirector object];
     self.director = director;
+    
     AZAccountant *accountant = [AZAccountant object];
     self.accountant = accountant;
+    
     [accountant addObserver:director];
-    self.washController = [AZWashController object];
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     washersCount = 2;
@@ -114,28 +117,29 @@ static const NSUInteger AZMaxWashersCount = 20;
         return [AZWasher object];
     }];
    
-    self.washers = [NSMutableArray array];
+    AZQueue *queue = [AZQueue object];
     
     for (AZWasher *washer in washers) {
-        [self hireWasher:washer];
+        [washer addObserver:accountant];
+        [washer addObserver:self];
+        
+        [queue enqueue:washer];
     }
+    
+    self.washers = [NSMutableArray arrayWithArray:washers];
+    self.washersQueue = queue;
+    self.carsQueue = [AZQueue object];
 }
 
-- (void)hireWasher:(AZWasher *)washer {
-    [washer addObserver:self.accountant];
-    [washer addObserver:self.washController];
-    [washer setState:AZEmployeeReadyToWork];
-    
-    [self.washers addObject:washer];
+#pragma mark -
+#pragma mark Cars queue
+
+- (void)addCarToQueue:car {
+    [self.carsQueue enqueue:car];
 }
 
-
-- (void)hireAccountant:(AZAccountant *)accountant {
-    
-}
-
-- (void)hireDirector:(AZDirector *)director {
-    
+- (AZCar *)getCarFromQueue {
+    return [self.carsQueue dequeue];
 }
 
 @end

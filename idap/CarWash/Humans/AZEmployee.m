@@ -46,7 +46,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.name = [NSString randomNameWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
-    self.state = NSUIntegerMax;
+    self.state = AZEmployeeReadyToWork;
     
     [self sayHi];
     
@@ -57,15 +57,12 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    @synchronized (self) {
-        [self performSelectorInBackground:@selector(__processObject:) withObject:object];
-    }
+    [self performSelectorInBackground:@selector(processObjectInBackgroundThread:) withObject:object];
 }
 
 - (void)imitateWorkingProcess {
     usleep((uint32_t)(1000 * AZRandomNumberInRange(AZMakeRange(AZMinDurationOfWork, AZMaxDurationOfWork))));
 }
-
 
 - (void)sayHi {
     NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
@@ -76,25 +73,25 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     
 }
 
-- (void)__processObject:(id<AZMoneyFlow>)object {
-//    [self performSelectorOnMainThread:@selector(notifyWith:)
-//                           withObject:[NSNumber numberWithInteger:AZEmployeeWorking]
-//                        waitUntilDone:NO];
-    self.state = AZEmployeeWorking;
-    
+- (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object {
+    [self performSelectorOnMainThread:notifyWithState withObject:self waitUntilDone:NO]
     [self takeMoneyFromObject:object];
     [self performOperationWithObject:object];
     
-    NSNumber *number = [NSNumber numberWithInteger:AZEmployeeRequiredProcessing];
+
 //    [self performSelectorOnMainThread:@selector(notifyWith:)
 //                           withObject:number
 //                        waitUntilDone:NO];
     [self notifyWith:number];
 }
 
+#pragma mark -
+#pragma mark Private
+
 - (void)notifyWith:(NSNumber *)state {
     self.state = [state integerValue];
 }
+
 
 #pragma mark -
 #pragma mark AZMoneyFlow

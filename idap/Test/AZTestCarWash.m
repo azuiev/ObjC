@@ -26,11 +26,12 @@ static const NSUInteger AZCarsCount = 3;
 
     for (AZCar *car in cars) {
         
-        [enterprise performSelectorInBackground:@selector(washCar:) withObject:car];
-        //[enterprise washCar:car];
+        //[enterprise performSelectorInBackground:@selector(washCar:) withObject:car];
+        [enterprise washCar:car];
     }
     
-    sleep(100);
+    NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
+    [runLoop run];
 }
 
 @end

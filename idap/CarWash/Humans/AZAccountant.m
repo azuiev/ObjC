@@ -35,8 +35,6 @@
 #pragma mark Private
 
 - (void)performOperationWithObject:(AZWasher *)washer {
-    [washer setState:AZEmployeeReadyToWork];
-    
     [self calculateMoney];
 }
 

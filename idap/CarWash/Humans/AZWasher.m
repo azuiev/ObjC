@@ -34,7 +34,7 @@
 #pragma mark -
 #pragma mark Override
 
-- (void)__processObject:(AZCar *)car {
+- (void)processObjectInBackgroundThread:(AZCar *)car {
     self.state = AZEmployeeWorking;
     
     [self performOperationWithObject:car];

@@ -14,17 +14,17 @@
 @class AZEmployee;
 
 typedef NS_ENUM(NSUInteger, AZEmployeeState) {
-    AZEmployeeReadyToWork = 0,
-    AZEmployeeWorking = 1,
-    AZEmployeeRequiredProcessing = 2
+    AZEmployeeReadyToWork,
+    AZEmployeeWorking,
+    AZEmployeeRequiredProcessing
 };
 
 @protocol AZEmployeeObserver <NSObject>
 
 @optional
-- (void)employeeDidBecameReadyToWork:(AZEmployee *)employee;
+- (void)employeeBecameReadyToWork:(AZEmployee *)employee;
 - (void)employeeDidStartWorking:(AZEmployee *)employee;
-- (void)employeeDidBecameRequiredProcessing:(AZEmployee *)employee;
+- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee;
 
 @end
 

@@ -33,8 +33,6 @@
 #pragma mark Private 
 
 - (void)performOperationWithObject:(AZAccountant *)accountant {
-    [accountant setState:AZEmployeeReadyToWork];
-    
     [self getIncome];
 }
 

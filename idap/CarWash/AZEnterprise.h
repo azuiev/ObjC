@@ -10,10 +10,8 @@
 #import "AZCar.h"
 
 
-@interface AZEnterprise : NSObject 
+@interface AZEnterprise : NSObject <AZEmployeeObserver>
 
 - (void)washCar:(AZCar *)car;
-- (void)hireEmployee:(AZEmployee *)employee;
-- (void)fireEmployee:(AZEmployee *)employee;
 
 @end
