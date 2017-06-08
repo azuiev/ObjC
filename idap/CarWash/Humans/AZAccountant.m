@@ -23,6 +23,7 @@
     NSLog(@"%@ finish calculate money. %lu dollars ", self, self.money);
 }
 
+/*
 #pragma mark -
 #pragma mark Observer
 
@@ -30,6 +31,7 @@
     NSLog(@"%@ notified %@ about finish work", employee, self);
     [self processObject:employee];
 }
+*/
 
 #pragma mark -
 #pragma mark Private

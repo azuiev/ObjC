@@ -26,7 +26,8 @@ static const NSUInteger AZMaxWashersCount = 20;
 @property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   AZAccountant    *accountant;
 @property (nonatomic, retain)   NSMutableArray  *washers;
-@property (nonatomic, retain)   AZQueue         *washersQueue;
+@property (nonatomic, retain)   AZQueue         *freeWashersQueue;
+@property (nonatomic, retain)   AZQueue         *requiredProcessingWashersQueue;
 @property (nonatomic, retain)   AZQueue         *carsQueue;
 
 - (void)startWashing;
@@ -50,7 +51,8 @@ static const NSUInteger AZMaxWashersCount = 20;
     self.accountant = nil;
     self.director = nil;
     self.washers = nil;
-    self.washersQueue = nil;
+    self.freeWashersQueue = nil;
+    self.requiredProcessingWashersQueue = nil;
     self.carsQueue = nil;
     
     [super dealloc];
@@ -75,14 +77,27 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark -
 #pragma mark Private
 
+- (void)processWasher {
+    AZAccountant *accountant = self.accountant;
+    
+    @synchronized (accountant) {
+        if (AZEmployeeReadyToWork == self.accountant.state) {
+            AZWasher *washer = [self.requiredProcessingWashersQueue dequeue];
+            if (washer) {
+                [self.accountant processObject:washer];
+            }
+        }
+    }
+}
+
 - (BOOL)readyToWork {
-    return [self.washersQueue count] && [self.carsQueue count];
+    return [self.freeWashersQueue count] && [self.carsQueue count];
 }
 
 - (void)startWashing {
     @synchronized (self) {
         if ([self readyToWork]) {
-            AZWasher *washer = [self.washersQueue dequeue];
+            AZWasher *washer = [self.freeWashersQueue dequeue];
             AZCar *car = [self.carsQueue dequeue];
             
             [washer processObject:car];
@@ -110,9 +125,11 @@ static const NSUInteger AZMaxWashersCount = 20;
     self.accountant = accountant;
     
     [accountant addObserver:director];
+    [accountant addObserver:self];
+    
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
-    washersCount = 2;
+    washersCount = 22;
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
         return [AZWasher object];
     }];
@@ -127,7 +144,8 @@ static const NSUInteger AZMaxWashersCount = 20;
     }
     
     self.washers = [NSMutableArray arrayWithArray:washers];
-    self.washersQueue = queue;
+    self.freeWashersQueue = queue;
+    self.requiredProcessingWashersQueue = [AZQueue object];
     self.carsQueue = [AZQueue object];
 }
 
@@ -135,16 +153,24 @@ static const NSUInteger AZMaxWashersCount = 20;
 #pragma mark AZEmployeeObserver
 
 - (void)employeeBecameReadyToWork:(AZEmployee *)employee {
-    [self.washersQueue enqueue:employee];
-    [self startWashing];
+    if ([employee isMemberOfClass:[AZWasher class]]) {
+        [self.freeWashersQueue enqueue:employee];
+        [self startWashing];
+    } else {
+        [self processWasher];
+    }
 }
 
 - (void)employeeDidStartWorking:(AZEmployee *)employee {
     //TODO. queue of washers to accountant
+    
 }
 
-- (void)employeeBecameRequiredProcissing:(AZEmployee *)AZEmployee {
-    //TODO. 
+- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
+    if ([employee isMemberOfClass:[AZWasher class]]) {
+        [self.requiredProcessingWashersQueue enqueue:employee];
+        [self processWasher];
+    }
 }
 
 #pragma mark -
