@@ -56,7 +56,18 @@ const u_int AZMoneyForCar = 1;
 - (NSUInteger)giveMoney {
     NSUInteger result = self.money;
     self.money = 0;
+    
     NSLog(@"%@ give %lu dollars ", self, result);
+    
+    return result;
+}
+
+- (NSUInteger)giveMoneyWithCount:(NSUInteger)count {
+    NSUInteger money = self.money;
+    NSUInteger result = money >= count ? count : money;
+    self.money = money - result;
+    
+    NSLog(@"%@ give %lu dollars", self, result);
     
     return result;
 }

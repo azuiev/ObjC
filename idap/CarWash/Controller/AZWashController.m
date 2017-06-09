@@ -88,15 +88,15 @@
 
 - (void)addCarToQueue:(AZCar *)car {
     @synchronized (_carsQueue) {
-        [self.carsQueue enqueue:car];
+        [self.carsQueue enqueueObject:car];
     }
 }
 
 - (void)startWashing {
     @synchronized (self) {
         if ([self readyToWork]) {
-            AZWasher *washer = [self.washersQueue dequeue];
-            AZCar *car = [self.carsQueue dequeue];
+            AZWasher *washer = [self.washersQueue dequeueObject];
+            AZCar *car = [self.carsQueue dequeueObject];
             [washer processObject:car];
         }
     }
@@ -106,7 +106,7 @@
 #pragma mark AZEmployeeObserver
 
 - (void)employeeDidBecameReadyToWork:(AZWasher *)washer {
-    [self.washersQueue enqueue:washer];
+    [self.washersQueue enqueueObject:washer];
     [self startWashing];
 }
 

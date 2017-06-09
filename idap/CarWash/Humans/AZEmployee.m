@@ -48,8 +48,6 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZEmployeeReadyToWork;
     
-    [self sayHi];
-    
     return self;
 }
 
@@ -57,15 +55,11 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    [self performSelectorInBackground:@selector(processObjectWithChangingStates:) withObject:object];
+    [self performSelectorInBackground:@selector(processObjectWithChangingState:) withObject:object];
 }
 
 - (void)imitateWorkingProcess {
     usleep((uint32_t)(1000 * AZRandomNumberInRange(AZMakeRange(AZMinDurationOfWork, AZMaxDurationOfWork))));
-}
-
-- (void)sayHi {
-    NSLog(@"HI! I am %@ - %@, salary - %lu, expirience - %lu", [self class], self.name, self.salary, self.experience);
 }
 
 //method to override. Do not call this method
@@ -87,7 +81,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.state = AZEmployeeRequiredProcessing;
 }
 
-- (void)processObjectWithChangingStates:(id<AZMoneyFlow>)object {
+- (void)processObjectWithChangingState:(id<AZMoneyFlow>)object {
     [self performSelectorOnMainThread:@selector(startProcessingWithObject:)
                            withObject:object
                         waitUntilDone:NO];
@@ -104,14 +98,26 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 
 - (void)takeMoneyFromObject:(id<AZMoneyFlow>)moneySpender {
     NSUInteger income = [moneySpender giveMoney];
+    
     self.money += income;
     
     NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
 }
 
+- (NSUInteger)giveMoneyWithCount:(NSUInteger)count {
+    NSUInteger money = self.money;
+    NSUInteger result = money >= count ? count : money;
+    self.money = money - result;
+    
+    NSLog(@"%@ give %lu dollars", self, result);
+    
+    return result;
+}
+
 - (NSUInteger)giveMoney {
     NSUInteger result = self.money;
     self.money = 0;
+    
     NSLog(@"%@ give %lu dollars", self, result);
     
     return result;

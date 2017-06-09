@@ -9,7 +9,7 @@
 #import "AZQueue.h"
 
 @interface AZQueue ()
-@property (nonatomic, retain) NSMutableArray *mutableQueue;
+@property (nonatomic, retain) NSMutableArray    *mutableQueue;
 
 @end
 
@@ -43,23 +43,25 @@
     return self.mutableQueue.count;
 }
 
-- (void)enqueue:(id)object {
+- (void)enqueueObject:(id)object {
     @synchronized (self) {
         if (!object) {
             NSLog(@"%@", NSInvalidArgumentException);
+            
+            return;
         }
         
         [self.mutableQueue addObject:object];
     }
 }
 
-- (id)dequeue {
+- (id)dequeueObject {
     @synchronized (self) {
         id result = [[[self.mutableQueue firstObject] retain] autorelease];
         if (result) {
             [self.mutableQueue removeObjectAtIndex:0];
         } else {
-            NSLog(@"No objects in Queue");
+            NSLog(@"No objects in Queue - %@", self);
         }
         
         return result;

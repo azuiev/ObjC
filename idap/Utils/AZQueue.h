@@ -12,8 +12,7 @@
 @property (nonatomic, readonly) NSArray     *queue;
 @property (nonatomic, readonly) NSUInteger  count;
 
-- (void)enqueue:(id)object;
-- (id)dequeue;
-- (NSArray *)queue;
+- (void)enqueueObject:(id)object;
+- (id)dequeueObject;
 
 @end

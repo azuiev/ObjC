@@ -57,7 +57,7 @@
 - (void)processWasher {
     @synchronized (self) {
         if (AZEmployeeReadyToWork == self.state) {
-            AZWasher *washer = [self.washersQueue dequeue];
+            AZWasher *washer = [self.washersQueue dequeueObject];
             if (washer) {
                 [self processObject:washer];
             }
@@ -81,7 +81,7 @@
     
     NSLog(@"%@ notified %@ about finish work", employee, self);
 
-    [self.washersQueue enqueue:employee];
+    [self.washersQueue enqueueObject:employee];
     [self processWasher];
 }
 
