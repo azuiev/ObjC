@@ -20,15 +20,13 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
-- (void)dealloc
-{
+- (void)dealloc {
     self.mutableObservers = nil;
     
     [super dealloc];
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.mutableObservers = [NSMutableSet set];
@@ -54,7 +52,7 @@
     if (state != _state) {
         _state = state;
         
-        [self notifyOfStateWithSelector:[self selectorForState:(NSUInteger)state]];
+        [self notifyOfStateWithSelector:[self selectorForState:state]];
     }
 }
 
@@ -81,8 +79,6 @@
 #pragma mark Private
 
 - (SEL)selectorForState:(NSUInteger)state {
-    [self doesNotRecognizeSelector:_cmd];
-    
     return NULL;
 }
 

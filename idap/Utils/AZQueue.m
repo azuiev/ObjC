@@ -9,13 +9,14 @@
 #import "AZQueue.h"
 
 @interface AZQueue ()
-@property (nonatomic, copy) NSMutableArray *mutableQueue;
+@property (nonatomic, retain) NSMutableArray *mutableQueue;
 
 @end
 
 @implementation AZQueue
 
 @dynamic queue;
+@dynamic count;
 
 #pragma mark -
 #pragma mark Initialization and Deallocations
@@ -28,19 +29,11 @@
 
 - (instancetype)init {
     self = [super init];
-    self.mutableQueue = [NSMutableArray array];
+    if (self) {
+        self.mutableQueue = [NSMutableArray array];
+    }
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Accessors
-
-- (void)setMutableQueue:(NSMutableArray *)queue {
-    if ( _mutableQueue != queue ) {
-        [_mutableQueue release];
-        _mutableQueue = [queue mutableCopy];
-    }
 }
 
 #pragma mark -
@@ -62,14 +55,14 @@
 
 - (id)dequeue {
     @synchronized (self) {
-        id result = [self.mutableQueue firstObject];
+        id result = [[[self.mutableQueue firstObject] retain] autorelease];
         if (result) {
             [self.mutableQueue removeObjectAtIndex:0];
         } else {
             NSLog(@"No objects in Queue");
         }
         
-        return [[result retain] autorelease];
+        return result;
     }
 }
 

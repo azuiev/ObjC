@@ -7,10 +7,38 @@
 //
 
 #import "AZAccountant.h"
+#import "AZWasher.h"
+
+#import "AZQueue.h"
+
+#import "NSObject+AZExtension.h"
 
 @class AZWasher;
 
+@interface AZAccountant ()
+@property (nonatomic, retain)   AZQueue *washersQueue;
+
+@end
+
 @implementation AZAccountant
+
+#pragma mark -
+#pragma mark Initialization and deallocation
+
+- (void)dealloc {
+    self.washersQueue = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.washersQueue = [AZQueue object];
+    }
+    
+    return self;
+}
 
 #pragma mark -
 #pragma mark Public
@@ -23,15 +51,39 @@
     NSLog(@"%@ finish calculate money. %lu dollars ", self, self.money);
 }
 
-/*
+#pragma mark -
+#pragma mark Public
+
+- (void)processWasher {
+    @synchronized (self) {
+        if (AZEmployeeReadyToWork == self.state) {
+            AZWasher *washer = [self.washersQueue dequeue];
+            if (washer) {
+                [self processObject:washer];
+            }
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-    [self processObject:employee];
+- (void)employeeBecameReadyToWork:(AZEmployee *)employee {
+    if ([employee isMemberOfClass:[AZAccountant class]]) {
+        [self processWasher];
+    }
 }
-*/
+
+- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
+    if ([employee isMemberOfClass:[AZAccountant class]]) {
+        return;
+    }
+    
+    NSLog(@"%@ notified %@ about finish work", employee, self);
+
+    [self.washersQueue enqueue:employee];
+    [self processWasher];
+}
 
 #pragma mark -
 #pragma mark Private

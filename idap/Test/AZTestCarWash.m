@@ -14,7 +14,7 @@
 #import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
-static const NSUInteger AZCarsCount = 500;
+static const NSUInteger AZCarsCount = 10;
 
 @implementation AZTestCarWash
 
@@ -26,8 +26,8 @@ static const NSUInteger AZCarsCount = 500;
 
     for (AZCar *car in cars) {
         
-        //[enterprise performSelectorInBackground:@selector(washCar:) withObject:car];
-        [enterprise washCar:car];
+        [enterprise performSelectorInBackground:@selector(washCar:) withObject:car];
+        //[enterprise washCar:car];
     }
     
     NSRunLoop *runLoop = [NSRunLoop mainRunLoop];

@@ -83,7 +83,6 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
-    //TODO
     [(AZEmployee *)object setState:AZEmployeeReadyToWork];
     self.state = AZEmployeeRequiredProcessing;
 }

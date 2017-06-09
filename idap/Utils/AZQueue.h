@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface AZQueue : NSObject
-@property (nonatomic, readonly) NSArray *queue;
+@property (nonatomic, readonly) NSArray     *queue;
+@property (nonatomic, readonly) NSUInteger  count;
 
 - (void)enqueue:(id)object;
 - (id)dequeue;
 - (NSArray *)queue;
-- (NSUInteger)count;
 
 @end
