@@ -15,26 +15,21 @@
 
 @class AZWasher;
 
-@interface AZAccountant ()
-@property (nonatomic, retain)   AZQueue *washersQueue;
-
-@end
-
 @implementation AZAccountant
+
+@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.washersQueue = nil;
-    
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.washersQueue = [AZQueue object];
+       
     }
     
     return self;
@@ -57,7 +52,7 @@
 - (void)processWasher {
     @synchronized (self) {
         if (AZEmployeeReadyToWork == self.state) {
-            AZWasher *washer = [self.washersQueue dequeueObject];
+            AZWasher *washer = [self.employeesQueue dequeueObject];
             if (washer) {
                 [self processObject:washer];
             }
@@ -81,7 +76,7 @@
     
     NSLog(@"%@ notified %@ about finish work", employee, self);
 
-    [self.washersQueue enqueueObject:employee];
+    [self.employeesQueue enqueueObject:employee];
     [self processWasher];
 }
 
@@ -91,5 +86,26 @@
 - (void)performOperationWithObject:(AZWasher *)washer {
     [self calculateMoney];
 }
+
+#pragma mark -
+#pragma mark Observer
+
+- (void)setState:(NSUInteger)state {
+    @synchronized (self) {
+        if (state != _state) {
+            if (AZEmployeeRequiredProcessing == state && self.employeesQueue.count) {
+                _state = AZEmployeeReadyToWork;
+                [self processWasher];
+                return;
+            }
+            
+            _state = state;
+            
+            [self notifyOfStateWithSelector:[self selectorForState:state]];
+        }
+    }
+}
+
+
 
 @end

@@ -10,6 +10,7 @@
 
 #import "AZObservableObject.h"
 #import "AZMoneyFlow.h"
+#import "AZQueue.h"
 
 @class AZEmployee;
 
@@ -29,9 +30,10 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 @end
 
 @interface AZEmployee : AZObservableObject <AZMoneyFlow, AZEmployeeObserver>
-@property (nonatomic, copy)     NSString        *name;
-@property (nonatomic, assign)   NSUInteger      salary;
-@property (nonatomic, assign)   NSUInteger      experience;
+@property (nonatomic, copy)     NSString    *name;
+@property (nonatomic, assign)   NSUInteger  salary;
+@property (nonatomic, assign)   NSUInteger  experience;
+@property (nonatomic, retain)   AZQueue     *employeesQueue;
 
 - (void)imitateWorkingProcess;
 - (void)processObject:(id<AZMoneyFlow>)object;

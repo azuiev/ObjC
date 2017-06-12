@@ -21,6 +21,8 @@
 
 static const NSUInteger AZMinWashersCount = 2;
 static const NSUInteger AZMaxWashersCount = 20;
+static const NSUInteger AZDefaultWashersCount = 5;
+
 
 @interface AZEnterprise ()
 @property (nonatomic, retain)   AZDirector      *director;
@@ -111,10 +113,9 @@ static const NSUInteger AZMaxWashersCount = 20;
     self.accountant = accountant;
     
     [accountant addObserver:director];
-    [accountant addObserver:accountant];
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
-    washersCount = 21;
+    washersCount = AZDefaultWashersCount;
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
         return [AZWasher object];
     }];
@@ -140,14 +141,6 @@ static const NSUInteger AZMaxWashersCount = 20;
 - (void)employeeBecameReadyToWork:(AZEmployee *)employee {
         [self.washersQueue enqueueObject:employee];
         [self startWashing];
-}
-
-- (void)employeeDidStartWorking:(AZEmployee *)employee {
-
-}
-
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
-
 }
 
 #pragma mark -

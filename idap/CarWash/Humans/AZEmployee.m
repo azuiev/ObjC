@@ -36,6 +36,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 
 - (void)dealloc {
     self.name = nil;
+    self.employeesQueue = nil;
     
     [super dealloc];
 }
@@ -47,6 +48,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZEmployeeReadyToWork;
+    self.employeesQueue = [AZQueue object];
     
     return self;
 }
