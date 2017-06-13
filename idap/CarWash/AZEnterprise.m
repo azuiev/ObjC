@@ -36,9 +36,6 @@ static const NSUInteger AZDefaultWashersCount = 5;
 - (void)removeObservers;
 - (void)prepareEnterprise;
 
-- (void)addCarToQueue:car;
-- (AZCar *)getCarFromQueue;
-
 @end
 
 @implementation AZEnterprise
@@ -70,24 +67,26 @@ static const NSUInteger AZDefaultWashersCount = 5;
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    [self addCarToQueue:car];
+    [self.carsQueue enqueueObject:car];
     [self startWashing];
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (BOOL)readyToWork {
-    return [self.washersQueue count] && [self.carsQueue count];
-}
-
 - (void)startWashing {
     @synchronized (self) {
-        if ([self readyToWork]) {
-            AZWasher *washer = [self.washersQueue dequeueObject];
-            AZCar *car = [self.carsQueue dequeueObject];
-            
-            [washer processObject:car];
+        AZQueue *washers = self.washersQueue;
+        AZQueue *cars = self.carsQueue;
+        
+        AZWasher *washer = [washers dequeueObject];
+        if (washer) {
+            AZCar *car = [cars dequeueObject];
+            if (car) {
+                [washer processObject:car];
+            } else {
+                [washers enqueueObject:washer];
+            }
         }
     }
 }
@@ -97,11 +96,11 @@ static const NSUInteger AZDefaultWashersCount = 5;
     [accountant removeObserver:accountant];
     [accountant removeObserver:self.director];
     
+    NSArray *observers = @[accountant, self];
     NSArray *washers = self.washers;
-    
+
     for (AZWasher *washer in washers) {
-        [washer removeObserver:accountant];
-        [washer removeObserver:self];
+        [washer removeObservers:observers];
     }
 }
 
@@ -116,19 +115,19 @@ static const NSUInteger AZDefaultWashersCount = 5;
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     washersCount = AZDefaultWashersCount;
-    NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
-        return [AZWasher object];
-    }];
-   
-    AZQueue *queue = [AZQueue object];
     
-    for (AZWasher *washer in washers) {
-        [washer addObserver:accountant];
-        [washer addObserver:self];
+    AZQueue *queue = [AZQueue object];
+    NSArray *observers = @[accountant, self];
+    
+    NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
+        AZWasher *washer = [AZWasher object];
+        [washer addObservers:observers];
         
         [queue enqueueObject:washer];
-    }
-    
+        
+        return washer;
+    }];
+   
     self.washers = [NSMutableArray arrayWithArray:washers];
     self.washersQueue = queue;
 
@@ -139,19 +138,8 @@ static const NSUInteger AZDefaultWashersCount = 5;
 #pragma mark AZEmployeeObserver
 
 - (void)employeeBecameReadyToWork:(AZEmployee *)employee {
-        [self.washersQueue enqueueObject:employee];
-        [self startWashing];
-}
-
-#pragma mark -
-#pragma mark Cars queue
-
-- (void)addCarToQueue:car {
-    [self.carsQueue enqueueObject:car];
-}
-
-- (AZCar *)getCarFromQueue {
-    return [self.carsQueue dequeueObject];
+    [self.washersQueue enqueueObject:employee];
+    [self startWashing];
 }
 
 @end

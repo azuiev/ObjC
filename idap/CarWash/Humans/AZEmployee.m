@@ -57,7 +57,14 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    [self performSelectorInBackground:@selector(processObjectWithChangingState:) withObject:object];
+    if (AZEmployeeReadyToWork == self.state) {
+        self.state = AZEmployeeWorking;
+        
+        [self performSelectorInBackground:@selector(processObjectWithChangingState:) withObject:object];
+    } else {
+        [self.employeesQueue enqueueObject:object];
+    }
+    
 }
 
 - (void)imitateWorkingProcess {
@@ -78,16 +85,20 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.state = AZEmployeeWorking;
 }
 
-- (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
+- (void)finishProcessing:(id<AZMoneyFlow>)object {
     [(AZEmployee *)object setState:AZEmployeeReadyToWork];
+}
+
+- (void)finishProcessing {
     self.state = AZEmployeeRequiredProcessing;
 }
 
+- (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
+    [self finishProcessing:object];
+    [self finishProcessing];
+}
+
 - (void)processObjectWithChangingState:(id<AZMoneyFlow>)object {
-    [self performSelectorOnMainThread:@selector(startProcessingWithObject:)
-                           withObject:object
-                        waitUntilDone:NO];
-    
     [self processObjectInBackgroundThread:object];
     
     [self performSelectorOnMainThread:@selector(finishProcessingWithObject:)
@@ -99,30 +110,29 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark AZMoneyFlow
 
 - (void)takeMoneyFromObject:(id<AZMoneyFlow>)moneySpender {
-    NSUInteger income = [moneySpender giveMoney];
-    
-    self.money += income;
-    
-    NSLog(@"%@ take %lu dollars from %@ ", self, income, moneySpender);
-}
-
-- (NSUInteger)giveMoneyWithCount:(NSUInteger)count {
-    NSUInteger money = self.money;
-    NSUInteger result = money >= count ? count : money;
-    self.money = money - result;
-    
-    NSLog(@"%@ give %lu dollars", self, result);
-    
-    return result;
+    @synchronized (self) {
+        NSLog(@"%@ take money from %@", self, moneySpender);
+        [self takeMoney:[moneySpender giveMoney]];
+    }
 }
 
 - (NSUInteger)giveMoney {
-    NSUInteger result = self.money;
-    self.money = 0;
-    
-    NSLog(@"%@ give %lu dollars", self, result);
-    
-    return result;
+    @synchronized (self) {
+        NSUInteger result = self.money;
+        self.money = 0;
+        
+        NSLog(@"%@ give %lu dollars", self, result);
+        
+        return result;
+    }
+}
+
+- (void)takeMoney:(NSUInteger)money {
+    @synchronized (self) {
+        NSLog(@"%@ take %lu dollars", self, money);
+        
+        self.money += money;
+    }
 }
 
 #pragma mark -

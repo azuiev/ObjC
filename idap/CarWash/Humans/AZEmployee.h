@@ -40,13 +40,10 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 
 //overload points. With default implementation
 - (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object;
-- (void)startProcessingWithObject:(id<AZMoneyFlow>)object;
-- (void)finishProcessingWithObject:(id<AZMoneyFlow>)object;
+- (void)finishProcessing:(id<AZMoneyFlow>)object;
+- (void)finishProcessing;
 
 //methods to override. Do not call this method directly
 - (void)performOperationWithObject:(id<AZMoneyFlow>)object;
-
-//method for inheriting classes
-- (void)processObjectWithChangingState:(id<AZMoneyFlow>)object;
 
 @end
