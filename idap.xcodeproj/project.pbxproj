@@ -18,7 +18,7 @@
 		1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5BF96C1EB252980093099B /* AZTestCarWash.m */; };
 		1D5C0A831ECA43390080761D /* AZRandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C0A821ECA43390080761D /* AZRandomNumber.m */; };
 		1D5C0A871ECA55FE0080761D /* NSString+AZRandomName.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C0A861ECA55FE0080761D /* NSString+AZRandomName.m */; };
-		1D5C62BF1EE095BE0093B1FC /* AZWashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C62BE1EE095BE0093B1FC /* AZWashController.m */; };
+		1D5C62BF1EE095BE0093B1FC /* AZController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C62BE1EE095BE0093B1FC /* AZController.m */; };
 		1D5CA4291EB0F10C00706B17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA3F11EB0ECF500706B17 /* main.m */; };
 		1D5CA42B1EB0F1C700706B17 /* AZCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA4161EB0EFCC00706B17 /* AZCreature.m */; };
 		1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5CA41A1EB0EFCC00706B17 /* AZCreatureFemale.m */; };
@@ -70,8 +70,8 @@
 		1D5C0A841ECA43570080761D /* AZRandomNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZRandomNumber.h; sourceTree = "<group>"; };
 		1D5C0A851ECA55FE0080761D /* NSString+AZRandomName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+AZRandomName.h"; path = "Categories/NSString+AZRandomName.h"; sourceTree = "<group>"; };
 		1D5C0A861ECA55FE0080761D /* NSString+AZRandomName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+AZRandomName.m"; path = "Categories/NSString+AZRandomName.m"; sourceTree = "<group>"; };
-		1D5C62BD1EE095BE0093B1FC /* AZWashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZWashController.h; path = CarWash/Controller/AZWashController.h; sourceTree = "<group>"; };
-		1D5C62BE1EE095BE0093B1FC /* AZWashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZWashController.m; path = CarWash/Controller/AZWashController.m; sourceTree = "<group>"; };
+		1D5C62BD1EE095BE0093B1FC /* AZController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZController.h; path = CarWash/Controller/AZController.h; sourceTree = "<group>"; };
+		1D5C62BE1EE095BE0093B1FC /* AZController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZController.m; path = CarWash/Controller/AZController.m; sourceTree = "<group>"; };
 		1D5CA3F11EB0ECF500706B17 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D5CA4151EB0EFCC00706B17 /* AZCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZCreature.h; sourceTree = "<group>"; };
 		1D5CA4161EB0EFCC00706B17 /* AZCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZCreature.m; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 		1D5C62BC1EE095940093B1FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1D5C62BD1EE095BE0093B1FC /* AZWashController.h */,
-				1D5C62BE1EE095BE0093B1FC /* AZWashController.m */,
+				1D5C62BD1EE095BE0093B1FC /* AZController.h */,
+				1D5C62BE1EE095BE0093B1FC /* AZController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 				1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */,
 				1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
-				1D5C62BF1EE095BE0093B1FC /* AZWashController.m in Sources */,
+				1D5C62BF1EE095BE0093B1FC /* AZController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

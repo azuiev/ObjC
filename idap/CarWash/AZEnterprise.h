@@ -13,5 +13,6 @@
 @interface AZEnterprise : NSObject <AZEmployeeObserver>
 
 - (void)washCar:(AZCar *)car;
+- (void)washCars:(NSArray *)cars;
 
 @end
