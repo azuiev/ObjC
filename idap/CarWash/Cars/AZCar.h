@@ -11,8 +11,8 @@
 #import "AZMoneyFlow.h"
 
 typedef NS_ENUM(NSUInteger, AZCarState) {
-    AZDirtyCar,
-    AZCleanCar
+    AZCarDirty,
+    AZCarClear
 };
 
 @interface AZCar : NSObject <AZMoneyFlow>

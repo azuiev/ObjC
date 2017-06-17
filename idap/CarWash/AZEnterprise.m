@@ -67,10 +67,11 @@ static const NSUInteger AZDefaultWashersCount = 5;
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    [self.carsQueue enqueueObject:car];
-    [self startWashing];
+    @synchronized (self) {
+        [self.carsQueue enqueueObject:car];
+        [self startWashing];
+    }
 }
-
 - (void)washCars:(NSArray *)cars {
     for (AZCar * car in cars) {
         [self performSelectorInBackground:@selector(washCar:) withObject:car];

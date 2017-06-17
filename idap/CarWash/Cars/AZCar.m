@@ -37,7 +37,7 @@ const u_int AZMoneyForCar = 1;
     self = [super init];
     self.mark = [self randomMark];
     self.money = AZMoneyForCar;
-    self.state = AZDirtyCar;
+    self.state = AZCarDirty;
     [self sayHi];
     
     return self;

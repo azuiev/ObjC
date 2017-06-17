@@ -38,6 +38,11 @@ typedef NS_ENUM(NSUInteger, AZEmployeeState) {
 - (void)imitateWorkingProcess;
 - (void)processObject:(id<AZMoneyFlow>)object;
 
+//observer
+- (void)processObservableObject;
+- (void)employeeBecameReadyToWork:(AZEmployee *)employee;
+- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee;
+
 //overload points. With default implementation
 - (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object;
 - (void)finishProcessing:(id<AZMoneyFlow>)object;

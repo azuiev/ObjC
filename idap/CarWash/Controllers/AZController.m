@@ -8,7 +8,7 @@
 
 #import "AZController.h"
 
-static const double AZTimerInterwal = 8.0;
+static const double AZTimerInterwal = 3.0;
 
 @interface AZController ()
 @property (nonatomic, retain)   NSTimer *timer;
@@ -92,7 +92,7 @@ static const double AZTimerInterwal = 8.0;
         if (!block) {
             return;
         }
-        
+        NSLog(@"__Produce cars");
         block();
     }
 }

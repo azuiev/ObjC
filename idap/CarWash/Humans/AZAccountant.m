@@ -47,40 +47,6 @@
 }
 
 #pragma mark -
-#pragma mark Public
-
-- (void)processWasher {
-    @synchronized (self) {
-        if (AZEmployeeReadyToWork == self.state) {
-            AZWasher *washer = [self.employeesQueue dequeueObject];
-            if (washer) {
-                [self processObject:washer];
-            }
-        }
-    }
-}
-
-#pragma mark -
-#pragma mark Observer
-
-- (void)employeeBecameReadyToWork:(AZEmployee *)employee {
-    if ([employee isMemberOfClass:[AZAccountant class]]) {
-        [self processWasher];
-    }
-}
-
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
-    if ([employee isMemberOfClass:[AZAccountant class]]) {
-        return;
-    }
-    
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-
-    [self.employeesQueue enqueueObject:employee];
-    [self processWasher];
-}
-
-#pragma mark -
 #pragma mark Private
 
 - (void)performOperationWithObject:(AZWasher *)washer {
@@ -95,7 +61,8 @@
         if (state != _state) {
             if (AZEmployeeRequiredProcessing == state && self.employeesQueue.count) {
                 _state = AZEmployeeReadyToWork;
-                [self processWasher];
+                [self processObservableObject];
+                
                 return;
             }
             
@@ -105,7 +72,5 @@
         }
     }
 }
-
-
 
 @end
