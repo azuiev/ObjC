@@ -20,7 +20,6 @@
     
     [self imitateWorkingProcess];
     
-    car.state = AZCleanCar;
     NSLog(@"%@ finish wash the %@\n", self, car);
 }
 
@@ -39,4 +38,7 @@
     [self takeMoneyFromObject:car];
 }
 
+- (void)finishProcessing:(id<AZMoneyFlow>)car {
+    [(AZCar *)car setState:AZCarClear];
+}
 @end

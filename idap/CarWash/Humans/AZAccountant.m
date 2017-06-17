@@ -15,26 +15,21 @@
 
 @class AZWasher;
 
-@interface AZAccountant ()
-@property (nonatomic, retain)   AZQueue *washersQueue;
-
-@end
-
 @implementation AZAccountant
+
+@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Initialization and deallocation
 
 - (void)dealloc {
-    self.washersQueue = nil;
-    
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.washersQueue = [AZQueue object];
+       
     }
     
     return self;
@@ -52,44 +47,30 @@
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Private
 
-- (void)processWasher {
-    @synchronized (self) {
-        if (AZEmployeeReadyToWork == self.state) {
-            AZWasher *washer = [self.washersQueue dequeueObject];
-            if (washer) {
-                [self processObject:washer];
-            }
-        }
-    }
+- (void)performOperationWithObject:(AZWasher *)washer {
+    [self calculateMoney];
 }
 
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeBecameReadyToWork:(AZEmployee *)employee {
-    if ([employee isMemberOfClass:[AZAccountant class]]) {
-        [self processWasher];
+- (void)setState:(NSUInteger)state {
+    @synchronized (self) {
+        if (state != _state) {
+            if (AZEmployeeRequiredProcessing == state && self.employeesQueue.count) {
+                _state = AZEmployeeReadyToWork;
+                [self processObservableObject];
+                
+                return;
+            }
+            
+            _state = state;
+            
+            [self notifyOfStateWithSelector:[self selectorForState:state]];
+        }
     }
-}
-
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
-    if ([employee isMemberOfClass:[AZAccountant class]]) {
-        return;
-    }
-    
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-
-    [self.washersQueue enqueueObject:employee];
-    [self processWasher];
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)performOperationWithObject:(AZWasher *)washer {
-    [self calculateMoney];
 }
 
 @end

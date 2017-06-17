@@ -21,6 +21,10 @@
     NSLog(@"%@ get income - %lu dollars ", self, self.money);
 }
 
+- (void)finishProcessing {
+    self.state = AZEmployeeReadyToWork;
+}
+
 #pragma mark -
 #pragma mark Observer
 
