@@ -71,6 +71,18 @@
     [self.mutableObservers removeObject:[AZAssignReference referenceWithTarger:observer]];
 }
 
+- (void)addObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self addObserver:observer];
+    }
+}
+
+- (void)removeObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self removeObserver:observer];
+    }
+}
+
 - (BOOL)isObservedByObject:(id)object {
     return [self.mutableObservers containsObject:[AZAssignReference referenceWithTarger:object]];
 }

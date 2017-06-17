@@ -61,7 +61,7 @@
         if (result) {
             [self.mutableQueue removeObjectAtIndex:0];
         } else {
-            NSLog(@"No objects in Queue - %@", self);
+            //NSLog(@"No objects in Queue - %@", self);
         }
         
         return result;

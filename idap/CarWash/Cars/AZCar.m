@@ -37,7 +37,7 @@ const u_int AZMoneyForCar = 1;
     self = [super init];
     self.mark = [self randomMark];
     self.money = AZMoneyForCar;
-    self.state = AZDirtyCar;
+    self.state = AZCarDirty;
     [self sayHi];
     
     return self;
@@ -53,23 +53,23 @@ const u_int AZMoneyForCar = 1;
 #pragma mark -
 #pragma mark AZMoneyFlow
 
-- (NSUInteger)giveMoney {
-    NSUInteger result = self.money;
-    self.money = 0;
-    
-    NSLog(@"%@ give %lu dollars ", self, result);
-    
-    return result;
+- (void)takeMoney:(NSUInteger)money {
+    @synchronized (self) {
+        NSLog(@"%@ take %lu dollars", self, money);
+        
+        self.money += money;
+    }
 }
 
-- (NSUInteger)giveMoneyWithCount:(NSUInteger)count {
-    NSUInteger money = self.money;
-    NSUInteger result = money >= count ? count : money;
-    self.money = money - result;
-    
-    NSLog(@"%@ give %lu dollars", self, result);
-    
-    return result;
+- (NSUInteger)giveMoney {
+    @synchronized (self) {
+        NSUInteger result = self.money;
+        self.money = 0;
+        
+        NSLog(@"%@ give %lu dollars ", self, result);
+        
+        return result;
+    }
 }
 
 #pragma mark -

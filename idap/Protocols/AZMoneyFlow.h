@@ -10,9 +10,10 @@
 @property (nonatomic, readonly) NSUInteger money;
 
 - (NSUInteger)giveMoney;
-- (NSUInteger)giveMoneyWithCount:(NSUInteger)count;
+- (void)takeMoney:(NSUInteger)money;
 
 @optional
+- (NSUInteger)giveMoneyWithCount:(NSUInteger)count;
 - (void)takeMoneyFromObject:(id)object count:(NSUInteger)count;
 - (void)takeMoneyFromObject:(id)object;
 
