@@ -58,6 +58,8 @@ static const NSUInteger AZDefaultWashersCount = 5;
 - (instancetype)init {
     self = [super init];
     
+    self.carsQueue = [AZQueue object];
+    
     [self prepareEnterprise];
     
     return self;
@@ -113,17 +115,17 @@ static const NSUInteger AZDefaultWashersCount = 5;
 
 - (void)prepareEnterprise {
     AZDirector *director = [AZDirector object];
-    self.director = director;
-    
     AZAccountant *accountant = [AZAccountant object];
+    AZQueue *queue = [AZQueue object];
+    
     self.accountant = accountant;
+    self.director = director;
     
     [accountant addObserver:director];
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     washersCount = AZDefaultWashersCount;
-    
-    AZQueue *queue = [AZQueue object];
+
     NSArray *observers = @[accountant, self];
     
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
@@ -137,8 +139,6 @@ static const NSUInteger AZDefaultWashersCount = 5;
    
     self.washers = [NSMutableArray arrayWithArray:washers];
     self.washersQueue = queue;
-
-    self.carsQueue = [AZQueue object];
 }
 
 #pragma mark -
