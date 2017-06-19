@@ -59,8 +59,8 @@
 - (void)setState:(NSUInteger)state {
     @synchronized (self) {
         if (state != _state) {
-            if (AZEmployeeRequiredProcessing == state && self.employeesQueue.count) {
-                _state = AZEmployeeReadyToWork;
+            if (AZHandlerFinishWorking == state && self.employeesQueue.count) {
+                _state = AZHandlerReadyToWork;
                 [self processObservableObject];
                 
                 return;

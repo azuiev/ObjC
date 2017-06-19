@@ -47,7 +47,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     self.name = [NSString randomNameWithLengthInRange:AZMakeRange(AZMinLengthName, AZMaxLengthName)];
     self.salary = AZRandomNumberInRange(NSMakeRange(AZMinSalary, AZMaxSalary - AZMinSalary + 1));
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
-    self.state = AZEmployeeReadyToWork;
+    self.state = AZHandlerReadyToWork;
     self.employeesQueue = [AZQueue object];
     
     return self;
@@ -57,9 +57,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 #pragma mark Public
 
 - (void)processObject:(id<AZMoneyFlow>)object {
-    if (AZEmployeeReadyToWork == self.state) {
-        self.state = AZEmployeeWorking;
-        
+    if (AZHandlerReadyToWork == self.state) {
         [self performSelectorInBackground:@selector(processObjectWithChangingState:) withObject:object];
     } else {
         [self.employeesQueue enqueueObject:object];
@@ -82,15 +80,15 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)startProcessingWithObject:(id<AZMoneyFlow>)object {
-    self.state = AZEmployeeWorking;
+    
 }
 
 - (void)finishProcessing:(id<AZMoneyFlow>)object {
-    [(AZEmployee *)object setState:AZEmployeeReadyToWork];
+    [(AZEmployee *)object setState:AZHandlerReadyToWork];
 }
 
 - (void)finishProcessing {
-    self.state = AZEmployeeRequiredProcessing;
+    self.state = AZHandlerFinishWorking;
 }
 
 - (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
@@ -140,14 +138,11 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
-        case AZEmployeeWorking:
-            return @selector(employeeDidStartWorking:);
-        
-        case AZEmployeeReadyToWork:
-            return @selector(employeeBecameReadyToWork:);
+        case AZHandlerReadyToWork:
+            return @selector(handlerBecameReadyToWork:);
             
-        case AZEmployeeRequiredProcessing:
-            return @selector(employeeBecameRequiredProcessing:);
+        case AZHandlerFinishWorking:
+            return @selector(handlerBecameFinishWorking:);
             
         default:
             return nil;
@@ -156,7 +151,7 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 
 - (void)processObservableObject {
     @synchronized (self) {
-        if (AZEmployeeReadyToWork == self.state) {
+        if (AZHandlerReadyToWork == self.state) {
             AZEmployee *employee = [self.employeesQueue dequeueObject];
             if (employee) {
                 [self processObject:employee];

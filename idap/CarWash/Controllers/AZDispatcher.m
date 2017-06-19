@@ -8,28 +8,33 @@
 
 #import "AZDispatcher.h"
 
+#import "AZEmployee.h"
+
+#import "AZObservableObject.h"
 #import "AZQueue.h"
 
 #import "NSObject+AZExtension.h"
 
 @interface AZDispatcher ()
-@property (nonatomic, retain) AZQueue   *handlersQueue;
-@property (nonatomic, retain) AZQueue   *processedObjectsQueue;
+@property (nonatomic, retain) AZQueue       *handlersQueue;
+@property (nonatomic, retain) NSMutableSet  *mutableHandlers;
+@property (nonatomic, retain) AZQueue       *processedObjectsQueue;
 
 - (void)startProcessing;
-- (void)addProcessedObjectToQueue:(id<AZMoneyFlow> *)object;
+- (void)addProcessedObjectToQueue:(id<AZMoneyFlow>)object;
 
 @end
 
 @implementation AZDispatcher
 
-@dynamic handlers;
 @dynamic processedObjects;
+@dynamic handlers;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
+    self.mutableHandlers = nil;
     self.handlersQueue = nil;
     self.processedObjectsQueue = nil;
     
@@ -39,6 +44,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.mutableHandlers = [NSMutableSet set];
         self.handlersQueue = [AZQueue object];
         self.processedObjectsQueue = [AZQueue object];
     }
@@ -49,10 +55,9 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSArray *)handlers {
-    return self.handlersQueue.queue;
+- (NSSet *)handlers {
+    return [[self.mutableHandlers retain] autorelease];
 }
-
 - (NSArray *)processedObjects {
     return self.processedObjectsQueue.queue;
 }
@@ -60,26 +65,40 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)processObject:(id<AZMoneyFlow> *)object {
+- (void)takeObjectForProcessing:(id<AZMoneyFlow>)object {
     [self addProcessedObjectToQueue:object];
     [self startProcessing];
+}
+
+- (void)addHandler:(id<AZHandlerDispatcher>)handler {
+    [(AZObservableObject *)handler addObserver:self];
     
+    [self.mutableHandlers addObject:handler];
+    [self.handlersQueue enqueueObject:handler];
+    
+}
+
+- (void)addHandlersFromArray:(NSArray *)handlers {
+    for (id<AZHandlerDispatcher> handler in handlers) {
+        [self addHandler:handler];
+    }
 }
 
 #pragma mark -
 #pragma mark Private
 
-- (void)addProcessedObjectToQueue:(id<AZMoneyFlow> *)object {
+- (void)addProcessedObjectToQueue:(id<AZMoneyFlow>)object {
     [self.processedObjectsQueue enqueueObject:(id)object];
 }
 
 - (void)startProcessing {
     @synchronized (self) {
-        AZEmployee *handler = [self.handlersQueue dequeueObject];
+        id<AZHandlerDispatcher> handler = [self.handlersQueue dequeueObject];
         if (handler) {
-            id<AZMoneyFlow> *object = (id<AZMoneyFlow> *)[self.processedObjectsQueue dequeueObject];
+            id<AZHandlerDispatcher> object = [self.processedObjectsQueue dequeueObject];
+            
             if (object) {
-                [self processObject:object];
+                [handler processObject:object];
             } else {
                 [self.handlersQueue enqueueObject:handler];
             }
@@ -88,11 +107,17 @@
 }
 
 #pragma mark -
-#pragma mark AZEmployeeObserver
+#pragma mark AZHandlerDispatcher
 
-- (void)employeeDidBecameReadyToWork:(AZEmployee *) employee {
-    [self.handlersQueue enqueueObject:employee];
+- (void)handlerBecameReadyToWork:(id<AZHandlerDispatcher>)handler {
+    [self.handlersQueue enqueueObject:handler];
     [self startProcessing];
+}
+
+- (void)handlerBecameFinishWorking:(id<AZHandlerDispatcher>)handler {
+    if (![self.handlers containsObject:handler]) {
+        [self takeObjectForProcessing:handler];
+    }
 }
 
 @end

@@ -25,7 +25,8 @@ static const NSUInteger AZCarsCount = 7;
     
     NSLog(@"%@", AZDelimeter);
 
-    AZController *washController = [[AZController alloc] initWithBlock:^void {
+    AZController *washController = [[AZController alloc] initWithBlock: ^void {
+        NSLog(@"Produce cars");
         NSArray *cars = [AZCar objectsWithCount:AZCarsCount];
         
         [enterprise washCars:cars];

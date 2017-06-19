@@ -80,7 +80,7 @@ static const double AZTimerInterwal = 3.0;
                                              weakReferenceTarget:self
                                                         selector:@selector(onTick)
                                                         userInfo:nil
-                                                         repeats:YES];
+                                                         repeats:NO];
         } else {
             [self.timer invalidate];
             self.timer = nil;
@@ -94,7 +94,7 @@ static const double AZTimerInterwal = 3.0;
         if (!block) {
             return;
         }
-        NSLog(@"__Produce cars");
+        
         block();
     }
 }

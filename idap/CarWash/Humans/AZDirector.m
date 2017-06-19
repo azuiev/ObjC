@@ -22,7 +22,7 @@
 }
 
 - (void)finishProcessing {
-    self.state = AZEmployeeReadyToWork;
+    self.state = AZHandlerReadyToWork;
 }
 
 #pragma mark -

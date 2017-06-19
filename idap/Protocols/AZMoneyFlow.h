@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
-@protocol AZMoneyFlow
+@protocol AZMoneyFlow 
 @property (nonatomic, readonly) NSUInteger money;
 
 - (NSUInteger)giveMoney;

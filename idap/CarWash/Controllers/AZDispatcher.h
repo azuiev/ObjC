@@ -8,12 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AZEmployee.h"
+#import "AZMoneyFlow.h"
 
-@interface AZDispatcher : NSObject <AZEmployeeObserver>
-@property (nonatomic, readonly)   NSArray   *handlers;
-@property (nonatomic, readonly)   NSArray   *processedObjects;
+@class AZDispatcher;
 
-- (void)processObject:(id<AZMoneyFlow> *)object;
+typedef NS_ENUM(NSUInteger, AZHandlerState) {
+    AZHandlerReadyToWork,
+    AZHandlerFinishWorking
+};
+
+@protocol AZHandlerDispatcher <NSObject>
+
+@optional
+- (void)handlerBecameReadyToWork:(id<AZHandlerDispatcher>)handler;
+- (void)handlerBecameFinishWorking:(id<AZHandlerDispatcher>)handler;
+- (void)processObject:(id<AZHandlerDispatcher>)handler;
+
+@end
+
+@interface AZDispatcher : NSObject
+@property (nonatomic, readonly)   NSSet   *handlers;
+@property (nonatomic, readonly)   NSSet   *processedObjects;
+
+- (void)takeObjectForProcessing:(id<AZHandlerDispatcher>)object;
+
+- (void)addHandler:(id<AZHandlerDispatcher>)handler;
+- (void)addHandlersFromArray:(NSArray *)array;
 
 @end
