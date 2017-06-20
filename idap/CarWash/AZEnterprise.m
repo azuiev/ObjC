@@ -22,12 +22,11 @@
 
 static const NSUInteger AZMinWashersCount = 2;
 static const NSUInteger AZMaxWashersCount = 20;
-static const NSUInteger AZDefaultDirectorsCount = 1;
-static const NSUInteger AZDefaultAccountantsCount = 2;
-static const NSUInteger AZDefaultWashersCount = 5;
+static const NSUInteger AZDefaultAccountantsCount = 3;
+static const NSUInteger AZDefaultWashersCount = 9;
 
 @interface AZEnterprise ()
-@property (nonatomic, retain)   NSMutableSet    *directors;
+@property (nonatomic, retain)   AZDirector      *director;
 @property (nonatomic, retain)   NSMutableSet    *accountants;
 @property (nonatomic, retain)   NSMutableSet    *washers;
 @property (nonatomic, retain)   AZDispatcher    *washerDispatcher;
@@ -44,7 +43,7 @@ static const NSUInteger AZDefaultWashersCount = 5;
 
 - (void)dealloc {
     self.accountants = nil;
-    self.directors = nil;
+    self.director = nil;
     self.washers = nil;
     self.washerDispatcher = nil;
     self.accountantDispatcher = nil;
@@ -81,18 +80,24 @@ static const NSUInteger AZDefaultWashersCount = 5;
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     washersCount = AZDefaultWashersCount;
     
-    NSArray *directors = [AZDirector objectsWithCount:AZDefaultDirectorsCount];
-    NSArray *accountants = [AZAccountant objectsWithCount:AZDefaultAccountantsCount];
+    AZDirector *director = [AZDirector object];
+    NSArray *accountants = [NSArray objectsWithCount:AZDefaultAccountantsCount block: ^AZAccountant * {
+        AZAccountant *accountant = [AZAccountant object];
+        [accountant addObserver:director];
+        
+        return accountant;
+    }];
+    
     NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
         AZWasher *washer = [AZWasher object];
-        
         [washer addObserver:accountantDispatcher];
+        
         return washer;
     }];
     
     self.washers = [NSMutableSet setWithArray:washers];
     self.accountants = [NSMutableSet setWithArray:accountants];
-    self.directors = [NSMutableSet setWithArray:directors];
+    self.director = director;
     
     [washerDispatcher addHandlersFromArray:washers];
     [accountantDispatcher addHandlersFromArray:accountants];

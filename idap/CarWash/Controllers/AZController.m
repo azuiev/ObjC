@@ -80,7 +80,7 @@ static const double AZTimerInterwal = 3.0;
                                              weakReferenceTarget:self
                                                         selector:@selector(onTick)
                                                         userInfo:nil
-                                                         repeats:NO];
+                                                         repeats:YES];
         } else {
             [self.timer invalidate];
             self.timer = nil;

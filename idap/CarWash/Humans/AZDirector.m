@@ -16,8 +16,6 @@
 #pragma mark Public
 
 - (void)getIncome {
-    NSLog(@"%@ start getting income", self);
-    
     NSLog(@"%@ get income - %lu dollars ", self, self.money);
 }
 
@@ -28,8 +26,8 @@
 #pragma mark -
 #pragma mark Observer
 
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)accountant {
-    NSLog(@"%@ notified %@ about finish work", accountant, self);
+- (void)handlerBecameFinishWorking:(id<AZMoneyFlow>)accountant {
+    //NSLog(@"%@ notified %@ about finish work", accountant, self);
     [self processObject:accountant];
 }
 

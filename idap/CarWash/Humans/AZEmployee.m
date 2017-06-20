@@ -21,8 +21,8 @@ static const NSUInteger AZMaxSalary         = 5000;
 static const NSUInteger AZMaxExperience     = 50;
 static const NSUInteger AZMinLengthName     = 3;
 static const NSUInteger AZMaxLengthName     = 12;
-static const NSUInteger AZMinDurationOfWork = 20;
-static const NSUInteger AZMaxDurationOfWork = 100;
+static const NSUInteger AZMinDurationOfWork = 1;
+static const NSUInteger AZMaxDurationOfWork = 10;
 
 @interface AZEmployee ()
 @property (nonatomic, assign)   NSUInteger    money;
@@ -62,7 +62,6 @@ static const NSUInteger AZMaxDurationOfWork = 100;
     } else {
         [self.employeesQueue enqueueObject:object];
     }
-    
 }
 
 - (void)imitateWorkingProcess {
@@ -75,8 +74,11 @@ static const NSUInteger AZMaxDurationOfWork = 100;
 }
 
 - (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object {
-    [self takeMoneyFromObject:object];
-    [self performOperationWithObject:object];
+    @synchronized (self) {
+        [self takeMoneyFromObject:object];
+        [self imitateWorkingProcess];
+        [self performOperationWithObject:object];
+    }
 }
 
 - (void)startProcessingWithObject:(id<AZMoneyFlow>)object {

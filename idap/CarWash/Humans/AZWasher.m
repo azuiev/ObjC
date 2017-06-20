@@ -16,11 +16,7 @@
 #pragma mark Public
 
 - (void)washCar:(AZCar *)car {
-    NSLog(@"%@ start wash the %@\n", self, car);
-    
-    [self imitateWorkingProcess];
-    
-    NSLog(@"%@ finish wash the %@\n", self, car);
+    NSLog(@"%@ wash the %@\n", self, car);
 }
 
 #pragma mark -
@@ -34,6 +30,7 @@
 #pragma mark Override
 
 - (void)processObjectInBackgroundThread:(AZCar *)car {
+    [self imitateWorkingProcess];
     [self performOperationWithObject:car];
     [self takeMoneyFromObject:car];
 }

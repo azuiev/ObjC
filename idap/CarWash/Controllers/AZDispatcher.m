@@ -56,31 +56,42 @@
 #pragma mark Accessors
 
 - (NSSet *)handlers {
-    return [[self.mutableHandlers retain] autorelease];
+    @synchronized (self) {
+        return [[self.mutableHandlers retain] autorelease];
+    }
 }
+
 - (NSArray *)processedObjects {
-    return self.processedObjectsQueue.queue;
+    @synchronized (self) {
+        return self.processedObjectsQueue.queue;
+    }
+
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)takeObjectForProcessing:(id<AZMoneyFlow>)object {
-    [self addProcessedObjectToQueue:object];
-    [self startProcessing];
+    @synchronized (self) {
+        [self addProcessedObjectToQueue:object];
+        [self startProcessing];
+    }
 }
 
 - (void)addHandler:(id<AZHandlerDispatcher>)handler {
-    [(AZObservableObject *)handler addObserver:self];
-    
-    [self.mutableHandlers addObject:handler];
-    [self.handlersQueue enqueueObject:handler];
-    
+    @synchronized (self) {
+        [(AZObservableObject *)handler addObserver:self];
+        
+        [self.mutableHandlers addObject:handler];
+        [self.handlersQueue enqueueObject:handler];
+    }
 }
 
 - (void)addHandlersFromArray:(NSArray *)handlers {
-    for (id<AZHandlerDispatcher> handler in handlers) {
-        [self addHandler:handler];
+    @synchronized (self) {
+        for (id<AZHandlerDispatcher> handler in handlers) {
+            [self addHandler:handler];
+        }
     }
 }
 
@@ -110,8 +121,10 @@
 #pragma mark AZHandlerDispatcher
 
 - (void)handlerBecameReadyToWork:(id<AZHandlerDispatcher>)handler {
-    [self.handlersQueue enqueueObject:handler];
-    [self startProcessing];
+    if([self.handlers containsObject:handler]) {
+        [self.handlersQueue enqueueObject:handler];
+        [self startProcessing];
+    }
 }
 
 - (void)handlerBecameFinishWorking:(id<AZHandlerDispatcher>)handler {

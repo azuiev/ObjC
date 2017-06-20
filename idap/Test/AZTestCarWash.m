@@ -16,7 +16,7 @@
 #import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
-static const NSUInteger AZCarsCount = 7;
+static const NSUInteger AZCarsCount = 50;
 
 @implementation AZTestCarWash
 
