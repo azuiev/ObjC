@@ -31,6 +31,7 @@ static const NSUInteger AZDefaultWashersCount = 9;
 @property (nonatomic, retain)   NSMutableSet    *washers;
 @property (nonatomic, retain)   AZDispatcher    *washerDispatcher;
 @property (nonatomic, retain)   AZDispatcher    *accountantDispatcher;
+@property (nonatomic, retain)   AZDispatcher    *directorDispatcher;
 
 - (void)prepareEnterprise;
 
@@ -76,6 +77,7 @@ static const NSUInteger AZDefaultWashersCount = 9;
 - (void)prepareEnterprise {
     AZDispatcher *washerDispatcher = [AZDispatcher object];
     AZDispatcher *accountantDispatcher = [AZDispatcher object];
+    AZDispatcher *directorDispatcher = [AZDispatcher object];
     
     NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
     washersCount = AZDefaultWashersCount;
@@ -83,7 +85,7 @@ static const NSUInteger AZDefaultWashersCount = 9;
     AZDirector *director = [AZDirector object];
     NSArray *accountants = [NSArray objectsWithCount:AZDefaultAccountantsCount block: ^AZAccountant * {
         AZAccountant *accountant = [AZAccountant object];
-        [accountant addObserver:director];
+        [accountant addObserver:directorDispatcher];
         
         return accountant;
     }];
@@ -101,9 +103,11 @@ static const NSUInteger AZDefaultWashersCount = 9;
     
     [washerDispatcher addHandlersFromArray:washers];
     [accountantDispatcher addHandlersFromArray:accountants];
+    [directorDispatcher addHandler:director];
     
     self.washerDispatcher = washerDispatcher;
     self.accountantDispatcher = accountantDispatcher;
+    self.directorDispatcher = directorDispatcher;
 }
 
 @end

@@ -162,17 +162,6 @@ static const NSUInteger AZMaxDurationOfWork = 10;
     }
 }
 
-- (void)employeeBecameReadyToWork:(AZEmployee *)employee {
-    [self processObservableObject];
-}
-
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee {
-    NSLog(@"%@ notified %@ about finish work", employee, self);
-    
-    [self.employeesQueue enqueueObject:employee];
-    [self processObservableObject];
-}
-
 #pragma mark -
 #pragma mark Description
 

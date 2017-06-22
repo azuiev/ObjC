@@ -121,15 +121,19 @@
 #pragma mark AZHandlerDispatcher
 
 - (void)handlerBecameReadyToWork:(id<AZHandlerDispatcher>)handler {
-    if([self.handlers containsObject:handler]) {
-        [self.handlersQueue enqueueObject:handler];
-        [self startProcessing];
+    @synchronized (self) {
+        if([self.handlers containsObject:handler]) {
+            [self.handlersQueue enqueueObject:handler];
+            [self startProcessing];
+        }
     }
 }
 
 - (void)handlerBecameFinishWorking:(id<AZHandlerDispatcher>)handler {
-    if (![self.handlers containsObject:handler]) {
-        [self takeObjectForProcessing:handler];
+    @synchronized (self) {
+        if (![self.handlers containsObject:handler]) {
+            [self takeObjectForProcessing:handler];
+        }
     }
 }
 
