@@ -8,6 +8,8 @@
 
 #import "AZController.h"
 
+#import "NSTimer+AZWeakReferenceTimer.h"
+
 static const double AZTimerInterwal = 3.0;
 
 @interface AZController ()
@@ -75,7 +77,7 @@ static const double AZTimerInterwal = 3.0;
     @synchronized (self) {
         if (self.running) {
             self.timer = [NSTimer scheduledTimerWithTimeInterval:AZTimerInterwal
-                                                          target:self
+                                             weakReferenceTarget:self
                                                         selector:@selector(onTick)
                                                         userInfo:nil
                                                          repeats:YES];
@@ -92,7 +94,7 @@ static const double AZTimerInterwal = 3.0;
         if (!block) {
             return;
         }
-        NSLog(@"__Produce cars");
+        
         block();
     }
 }

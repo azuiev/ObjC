@@ -39,11 +39,7 @@
 #pragma mark Public
 
 - (void)calculateMoney {
-    NSLog(@"%@ start calculate money.", self);
-    
-    [self imitateWorkingProcess];
-    
-    NSLog(@"%@ finish calculate money. %lu dollars ", self, self.money);
+    NSLog(@"%@ calculate money. %lu dollars ", self, self.money);
 }
 
 #pragma mark -
@@ -59,8 +55,8 @@
 - (void)setState:(NSUInteger)state {
     @synchronized (self) {
         if (state != _state) {
-            if (AZEmployeeRequiredProcessing == state && self.employeesQueue.count) {
-                _state = AZEmployeeReadyToWork;
+            if (AZHandlerFinishWorking == state && self.employeesQueue.count) {
+                _state = AZHandlerReadyToWork;
                 [self processObservableObject];
                 
                 return;

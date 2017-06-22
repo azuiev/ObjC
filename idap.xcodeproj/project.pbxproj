@@ -33,6 +33,8 @@
 		1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15A1EB1062000D0B5E4 /* AZAccountant.m */; };
 		1D65E15E1EB1065B00D0B5E4 /* AZWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E15D1EB1065B00D0B5E4 /* AZWasher.m */; };
 		1D65E1611EB1070500D0B5E4 /* AZDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D65E1601EB1070500D0B5E4 /* AZDirector.m */; };
+		1D69CD931EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D69CD921EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m */; };
+		1D69CD981EF67B050093C417 /* AZAssignRererenceWithSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D69CD971EF67B050093C417 /* AZAssignRererenceWithSelector.m */; };
 		1D9DD5001ED4E80B00A68363 /* AZQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9DD4FF1ED4E80B00A68363 /* AZQueue.m */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,10 @@
 		1D65E15D1EB1065B00D0B5E4 /* AZWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZWasher.m; path = CarWash/Humans/AZWasher.m; sourceTree = "<group>"; };
 		1D65E15F1EB1070500D0B5E4 /* AZDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZDirector.h; path = CarWash/Humans/AZDirector.h; sourceTree = "<group>"; };
 		1D65E1601EB1070500D0B5E4 /* AZDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZDirector.m; path = CarWash/Humans/AZDirector.m; sourceTree = "<group>"; };
+		1D69CD911EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+AZWeakReferenceTimer.h"; path = "Categories/NSTimer+AZWeakReferenceTimer.h"; sourceTree = "<group>"; };
+		1D69CD921EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+AZWeakReferenceTimer.m"; path = "Categories/NSTimer+AZWeakReferenceTimer.m"; sourceTree = "<group>"; };
+		1D69CD961EF67B050093C417 /* AZAssignRererenceWithSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZAssignRererenceWithSelector.h; path = ReferenceWrapper/AZAssignRererenceWithSelector.h; sourceTree = "<group>"; };
+		1D69CD971EF67B050093C417 /* AZAssignRererenceWithSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZAssignRererenceWithSelector.m; path = ReferenceWrapper/AZAssignRererenceWithSelector.m; sourceTree = "<group>"; };
 		1D75D54B1EB38BC000813DB8 /* AZEnterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZEnterprise.h; path = CarWash/AZEnterprise.h; sourceTree = "<group>"; };
 		1D75D54C1EB38BC000813DB8 /* AZEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZEnterprise.m; path = CarWash/AZEnterprise.m; sourceTree = "<group>"; };
 		1D9DD4FE1ED4E80B00A68363 /* AZQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZQueue.h; sourceTree = "<group>"; };
@@ -122,6 +128,8 @@
 			children = (
 				1D319F151ED7719300605E30 /* AZAssignReference.h */,
 				1D319F161ED7719300605E30 /* AZAssignReference.m */,
+				1D69CD961EF67B050093C417 /* AZAssignRererenceWithSelector.h */,
+				1D69CD971EF67B050093C417 /* AZAssignRererenceWithSelector.m */,
 			);
 			name = ReferenceWrapper;
 			sourceTree = "<group>";
@@ -223,6 +231,8 @@
 				1D5062461EC1322200CCA4F3 /* NSString+AZRandomString.m */,
 				1D5C0A851ECA55FE0080761D /* NSString+AZRandomName.h */,
 				1D5C0A861ECA55FE0080761D /* NSString+AZRandomName.m */,
+				1D69CD911EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.h */,
+				1D69CD921EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -376,7 +386,9 @@
 				1D5CA42F1EB0F1C700706B17 /* AZCreatureFemale.m in Sources */,
 				1D5CA4311EB0F1C700706B17 /* AZCreatureMale.m in Sources */,
 				1D559FB71ECB8BEE0001AE5C /* AZClusterAlphabet.m in Sources */,
+				1D69CD931EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m in Sources */,
 				1D5BF96D1EB252980093099B /* AZTestCarWash.m in Sources */,
+				1D69CD981EF67B050093C417 /* AZAssignRererenceWithSelector.m in Sources */,
 				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
 				1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */,
 				1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */,

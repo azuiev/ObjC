@@ -16,7 +16,7 @@
 #import "NSObject+AZExtension.h"
 
 static const NSString *AZDelimeter = @"**********";
-static const NSUInteger AZCarsCount = 7;
+static const NSUInteger AZCarsCount = 50;
 
 @implementation AZTestCarWash
 
@@ -25,7 +25,8 @@ static const NSUInteger AZCarsCount = 7;
     
     NSLog(@"%@", AZDelimeter);
 
-    AZController *washController = [[AZController alloc] initWithBlock:^void {
+    AZController *washController = [[AZController alloc] initWithBlock: ^void {
+        NSLog(@"Produce cars");
         NSArray *cars = [AZCar objectsWithCount:AZCarsCount];
         
         [enterprise washCars:cars];

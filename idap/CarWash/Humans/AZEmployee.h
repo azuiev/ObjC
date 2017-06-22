@@ -12,24 +12,9 @@
 #import "AZMoneyFlow.h"
 #import "AZQueue.h"
 
-@class AZEmployee;
+#import "AZDispatcher.h"
 
-typedef NS_ENUM(NSUInteger, AZEmployeeState) {
-    AZEmployeeReadyToWork,
-    AZEmployeeWorking,
-    AZEmployeeRequiredProcessing
-};
-
-@protocol AZEmployeeObserver <NSObject>
-
-@optional
-- (void)employeeBecameReadyToWork:(AZEmployee *)employee;
-- (void)employeeDidStartWorking:(AZEmployee *)employee;
-- (void)employeeBecameRequiredProcessing:(AZEmployee *)employee;
-
-@end
-
-@interface AZEmployee : AZObservableObject <AZMoneyFlow, AZEmployeeObserver>
+@interface AZEmployee : AZObservableObject <AZMoneyFlow, AZHandlerDispatcher>
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, assign)   NSUInteger  salary;
 @property (nonatomic, assign)   NSUInteger  experience;
