@@ -27,6 +27,8 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 @interface AZEmployee ()
 @property (nonatomic, assign)   NSUInteger    money;
 
+@property (nonatomic, retain)   dispatch_queue_t queue;
+
 @end
 
 @implementation AZEmployee
@@ -37,6 +39,9 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 - (void)dealloc {
     self.name = nil;
     self.employeesQueue = nil;
+    
+    dispatch_release(self.queue);
+    self.queue = nil;
     
     [super dealloc];
 }
@@ -49,6 +54,7 @@ static const NSUInteger AZMaxDurationOfWork = 10;
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZHandlerReadyToWork;
     self.employeesQueue = [AZQueue object];
+    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
     
     return self;
 }
@@ -58,7 +64,13 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     if (AZHandlerReadyToWork == self.state) {
-        [self performSelectorInBackground:@selector(processObjectWithChangingState:) withObject:object];
+        dispatch_async(self.queue, ^ {
+            [self processObjectInBackgroundThread:object];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^ {
+                [self finishProcessingWithObject:object];
+            });
+        });
     } else {
         [self.employeesQueue enqueueObject:object];
     }
@@ -74,11 +86,9 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 }
 
 - (void)processObjectInBackgroundThread:(id<AZMoneyFlow>)object {
-    @synchronized (self) {
         [self takeMoneyFromObject:object];
         [self imitateWorkingProcess];
         [self performOperationWithObject:object];
-    }
 }
 
 - (void)startProcessingWithObject:(id<AZMoneyFlow>)object {
@@ -96,14 +106,6 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 - (void)finishProcessingWithObject:(id<AZMoneyFlow>)object {
     [self finishProcessing:object];
     [self finishProcessing];
-}
-
-- (void)processObjectWithChangingState:(id<AZMoneyFlow>)object {
-    [self processObjectInBackgroundThread:object];
-    
-    [self performSelectorOnMainThread:@selector(finishProcessingWithObject:)
-                           withObject:object
-                        waitUntilDone:NO];
 }
 
 #pragma mark -
