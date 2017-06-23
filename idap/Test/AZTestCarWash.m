@@ -10,6 +10,7 @@
 
 #import "AZEnterprise.h"
 #import "AZController.h"
+#import "AZGCDController.h"
 
 #import "AZCar.h"
 
@@ -25,7 +26,7 @@ static const NSUInteger AZCarsCount = 50;
     
     NSLog(@"%@", AZDelimeter);
 
-    AZController *washController = [[AZController alloc] initWithBlock: ^void {
+    AZGCDController *washController = [[AZGCDController alloc] initWithBlock: ^void {
         NSLog(@"Produce cars");
         NSArray *cars = [AZCar objectsWithCount:AZCarsCount];
         
@@ -36,6 +37,8 @@ static const NSUInteger AZCarsCount = 50;
     
     NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
     [runLoop run];
+    
+
 }
 
 @end
