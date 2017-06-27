@@ -9,6 +9,7 @@
 #import "AZEmployee.h"
 
 #import "AZRandomNumber.h"
+#import "AZGCD.h"
 
 #import "NSString+AZRandomString.h"
 #import "NSObject+AZExtension.h"
@@ -54,7 +55,7 @@ static const NSUInteger AZMaxDurationOfWork = 10;
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZHandlerReadyToWork;
     self.employeesQueue = [AZQueue object];
-    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT);
+    self.queue = [AZGCD createConcurrentQueue:@"queue"];
     
     return self;
 }
@@ -64,13 +65,13 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     if (AZHandlerReadyToWork == self.state) {
-        dispatch_async(self.queue, ^ {
+        [AZGCD dispatchAsyncWith:self.queue block: ^ {
             [self processObjectInBackgroundThread:object];
             
-            dispatch_sync(dispatch_get_main_queue(), ^ {
+            [AZGCD dispatchAsyncOnMainQueue: ^ {
                 [self finishProcessingWithObject:object];
-            });
-        });
+            }];
+        }];
     } else {
         [self.employeesQueue enqueueObject:object];
     }

@@ -12,5 +12,6 @@
 @property (nonatomic, readonly) SEL   selector;
 
 + (instancetype)referenceWithTarger:(id)target selector:(SEL)selector;
+- (void)performSelectorWithTarget;
 
 @end

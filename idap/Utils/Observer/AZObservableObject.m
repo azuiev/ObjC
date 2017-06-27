@@ -60,11 +60,9 @@
 #pragma mark Public
 
 - (void)addObserver:(id)observer {
-    if(!observer) {
-        NSLog(@"%@", NSInvalidArgumentException);
+    if(observer) {
+        [self.mutableObservers addObject:[AZAssignReference referenceWithTarger:observer]];
     }
-    
-    [self.mutableObservers addObject:[AZAssignReference referenceWithTarger:observer]];
 }
 
 - (void)removeObserver:(id)observer {

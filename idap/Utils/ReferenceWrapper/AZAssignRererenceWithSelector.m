@@ -43,19 +43,10 @@
 }
 
 #pragma mark -
-#pragma mark Forwarding
+#pragma mark Public
 
-- (id)forwardingTargetForSelector:(SEL)aSelector {
-    SEL selector = self.selector;
-    id target = self.target;
-    
-    if (selector == aSelector) {
-        if ([target respondsToSelector:selector]) {
-            return [[target retain] autorelease];
-        }
-    }
-    
-    return nil;
+- (void)performSelectorWithTarget {
+    [self.target performSelector:self.selector];
 }
 
 @end

@@ -20,7 +20,7 @@
 {
     return [NSTimer scheduledTimerWithTimeInterval:AZTimerInterwal
                                              target:[AZAssignRererenceWithSelector referenceWithTarger:target selector:selector]
-                                           selector:selector
+                                          selector:@selector(performSelectorWithTarget)
                                            userInfo:userInfo
                                             repeats:yesOrNo];
 }

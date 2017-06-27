@@ -65,7 +65,6 @@
     @synchronized (self) {
         return self.processedObjectsQueue.queue;
     }
-
 }
 
 #pragma mark -
@@ -88,10 +87,21 @@
 }
 
 - (void)addHandlersFromArray:(NSArray *)handlers {
+    for (id<AZHandlerDispatcher> handler in handlers) {
+        [self addHandler:handler];
+    }
+}
+
+- (void)removeHandler:(id<AZHandlerDispatcher>)handler {
     @synchronized (self) {
-        for (id<AZHandlerDispatcher> handler in handlers) {
-            [self addHandler:handler];
-        }
+        [(AZObservableObject *)handler removeObserver:self];
+        [self.mutableHandlers removeObject:handler];
+    }
+}
+
+- (void)removeHandlersWithArray:(NSArray *)handlers {
+    for (id<AZHandlerDispatcher> handler in handlers) {
+        [self removeHandler:handler];
     }
 }
 

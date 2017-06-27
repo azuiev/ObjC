@@ -8,14 +8,14 @@
 
 #import "AZGCDController.h"
 
+#import "AZGCD.h"
 
-static const double AZSleepInterwal = 3.0;
+static const double AZSleepInterval = 3.0;
 
 @interface AZGCDController ()
-@property (nonatomic, copy)     AZBlock block;
-@property (nonatomic, assign)   BOOL    running;
 
 @property (nonatomic, retain)   dispatch_queue_t    queue;
+@property (nonatomic, retain)   dispatch_queue_t    queue1;
 
 @end
 
@@ -25,9 +25,9 @@ static const double AZSleepInterwal = 3.0;
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    self.block = nil;
-    dispatch_release(self.queue);
+    [AZGCD releaseDispatchObject:self.queue];
     self.queue = nil;
+    self.queue1 = nil;
     
     [super dealloc];
 }
@@ -35,49 +35,27 @@ static const double AZSleepInterwal = 3.0;
 - (instancetype)init {
     self = [super init];
     
-    self.queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
-    
-    return self;
-}
-
-- (instancetype)initWithBlock:(void(^)())block {
-    self = [self init];
-    if (self) {
-        self.block = block;
-    }
+    self.queue = [AZGCD createSerialQueue:@"queue"];
+    self.queue1 = [AZGCD createSerialQueue:@"queue"];
     
     return self;
 }
 
 #pragma mark -
-#pragma mark Accessors
-
-- (void)setRunning:(BOOL)running {
-    @synchronized (self) {
-        if (_running != running) {
-            _running = running;
-            
-            if (running) {
-                [self performBlock];
-            }
-        }
-    }
-}
-
-#pragma mark -
-#pragma mark Public
+#pragma mark Override methods
 
 - (void)start {
-    self.running = true;
+    [self performBlock];
 }
 
-- (void)stop {
-    self.running = false;
-}
+#pragma mark -
+#pragma mark Private
 
 - (void)performBlock {
     dispatch_queue_t queue = self.queue;
+    dispatch_queue_t queue1 = self.queue1;
     dispatch_release(queue);
+    dispatch_release(queue1);
     
     AZBlock block = self.block;
     
@@ -85,13 +63,13 @@ static const double AZSleepInterwal = 3.0;
         return;
     }
     
-    dispatch_async(queue, ^ {
+    [AZGCD dispatchAsyncWith:queue block: ^ {
         while (self.running) {
-            sleep(AZSleepInterwal);
-                
-            block();
+            [AZGCD dispatchAfterDelay:AZSleepInterval block:block queue:queue1];
+            sleep(AZSleepInterval);
         }
-    });
+    }];
 }
+
 
 @end

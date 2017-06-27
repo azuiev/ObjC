@@ -1,8 +1,8 @@
 //
-//  AZWashController.h
+//  AZController.h
 //  idap
 //
-//  Created by Aleksey Zuiev on 01/06/2017.
+//  Created by Aleksey Zuiev on 27/06/2017.
 //  Copyright © 2017 Aleksey Zuiev. All rights reserved.
 //
 
@@ -11,11 +11,12 @@
 typedef void (^AZBlock)(void);
 
 @interface AZController : NSObject
-@property (nonatomic, readonly) AZBlock block;
-@property (nonatomic, readonly) BOOL    running;
+@property (nonatomic, assign)   BOOL    running;
+@property (atomic, copy)        AZBlock block;
 
-- (instancetype)initWithBlock:(void(^)())block;
+- (instancetype)initWithBlock:(AZBlock)block;
 
+//methods to override. Do not call this methods directly
 - (void)start;
 - (void)stop;
 

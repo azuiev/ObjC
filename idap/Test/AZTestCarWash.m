@@ -33,11 +33,10 @@ static const NSUInteger AZCarsCount = 50;
         [enterprise washCars:cars];
     }];
     
-    [washController start];
+    [washController setRunning:true];
     
     NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
     [runLoop run];
-    
 
 }
 

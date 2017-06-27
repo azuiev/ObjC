@@ -35,4 +35,7 @@ typedef NS_ENUM(NSUInteger, AZHandlerState) {
 - (void)addHandler:(id<AZHandlerDispatcher>)handler;
 - (void)addHandlersFromArray:(NSArray *)array;
 
+- (void)removeHandler:(id<AZHandlerDispatcher>)handler;
+- (void)removeHandlersWithArray:(NSArray *)array;
+
 @end

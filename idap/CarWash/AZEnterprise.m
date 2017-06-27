@@ -20,15 +20,13 @@
 #import "NSObject+AZExtension.h"
 #import "NSArray+AZExtension.h"
 
-static const NSUInteger AZMinWashersCount = 2;
-static const NSUInteger AZMaxWashersCount = 20;
+static const NSUInteger AZDefaultDirectorsCount = 1;
 static const NSUInteger AZDefaultAccountantsCount = 3;
 static const NSUInteger AZDefaultWashersCount = 9;
 
+typedef AZDispatcher * (^AZDispatcherBlock)(Class class, NSUInteger count, AZDispatcher *dispatcher);
+
 @interface AZEnterprise ()
-@property (nonatomic, retain)   AZDirector      *director;
-@property (nonatomic, retain)   NSMutableSet    *accountants;
-@property (nonatomic, retain)   NSMutableSet    *washers;
 @property (nonatomic, retain)   AZDispatcher    *washerDispatcher;
 @property (nonatomic, retain)   AZDispatcher    *accountantDispatcher;
 @property (nonatomic, retain)   AZDispatcher    *directorDispatcher;
@@ -43,11 +41,9 @@ static const NSUInteger AZDefaultWashersCount = 9;
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    self.accountants = nil;
-    self.director = nil;
-    self.washers = nil;
-    self.washerDispatcher = nil;
+    self.directorDispatcher = nil;
     self.accountantDispatcher = nil;
+    self.washerDispatcher = nil;
     
     [super dealloc];
 }
@@ -75,39 +71,24 @@ static const NSUInteger AZDefaultWashersCount = 9;
 }
 
 - (void)prepareEnterprise {
-    AZDispatcher *washerDispatcher = [AZDispatcher object];
-    AZDispatcher *accountantDispatcher = [AZDispatcher object];
-    AZDispatcher *directorDispatcher = [AZDispatcher object];
-    
-    NSUInteger washersCount = AZRandomNumberInRange(AZMakeRange(AZMinWashersCount, AZMaxWashersCount));
-    washersCount = AZDefaultWashersCount;
-    
-    AZDirector *director = [AZDirector object];
-    NSArray *accountants = [NSArray objectsWithCount:AZDefaultAccountantsCount block: ^AZAccountant * {
-        AZAccountant *accountant = [AZAccountant object];
-        [accountant addObserver:directorDispatcher];
+    AZDispatcherBlock block = ^AZDispatcher * (Class class, NSUInteger count, AZDispatcher *observer) {
+        AZDispatcher *dispatcher = [AZDispatcher object];
         
-        return accountant;
-    }];
-    
-    NSArray *washers = [NSArray objectsWithCount:washersCount block: ^AZWasher * {
-        AZWasher *washer = [AZWasher object];
-        [washer addObserver:accountantDispatcher];
+        NSArray *objects = [NSArray objectsWithCount:count block: ^id {
+            id object = [class object];
+            [object addObserver:observer];
+            
+            return object;
+        }];
         
-        return washer;
-    }];
+        [dispatcher addHandlersFromArray:objects];
+        
+        return dispatcher;
+    };
     
-    self.washers = [NSMutableSet setWithArray:washers];
-    self.accountants = [NSMutableSet setWithArray:accountants];
-    self.director = director;
-    
-    [washerDispatcher addHandlersFromArray:washers];
-    [accountantDispatcher addHandlersFromArray:accountants];
-    [directorDispatcher addHandler:director];
-    
-    self.washerDispatcher = washerDispatcher;
-    self.accountantDispatcher = accountantDispatcher;
-    self.directorDispatcher = directorDispatcher;
+    self.directorDispatcher = block([AZDirector class], AZDefaultDirectorsCount, nil);
+    self.accountantDispatcher = block([AZAccountant class], AZDefaultAccountantsCount, self.directorDispatcher);
+    self.washerDispatcher = block([AZWasher class], AZDefaultWashersCount, self.accountantDispatcher);
 }
 
 @end
