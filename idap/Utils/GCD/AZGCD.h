@@ -16,7 +16,7 @@
 + (void)dispatchSyncOnMainQueue:(void(^)())block;
 + (void)dispatchAsyncOnMainQueue:(void(^)())block;
 
-+ (void)dispatchAfterDelay:(NSUInteger)delay block:(void(^)())block queue:(id<OS_dispatch_queue>)queue;
++ (void)dispatchAfterDelay:(NSUInteger)delay queue:(id<OS_dispatch_queue>)queue block:(void(^)())block;
 
 + (id)createConcurrentQueue:(NSString *)label;
 + (id)createSerialQueue:(NSString *)label;

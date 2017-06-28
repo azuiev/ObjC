@@ -37,7 +37,7 @@
     }
 }
 
-+ (void)dispatchAfterDelay:(NSUInteger)delay block:(void(^)())block queue:(id<OS_dispatch_queue>)queue {
++ (void)dispatchAfterDelay:(NSUInteger)delay queue:(id<OS_dispatch_queue>)queue block:(void(^)())block{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
 }
 

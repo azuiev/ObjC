@@ -15,7 +15,6 @@ static const double AZSleepInterval = 3.0;
 @interface AZGCDController ()
 
 @property (nonatomic, retain)   dispatch_queue_t    queue;
-@property (nonatomic, retain)   dispatch_queue_t    queue1;
 
 @end
 
@@ -27,7 +26,6 @@ static const double AZSleepInterval = 3.0;
 - (void)dealloc {
     [AZGCD releaseDispatchObject:self.queue];
     self.queue = nil;
-    self.queue1 = nil;
     
     [super dealloc];
 }
@@ -36,7 +34,6 @@ static const double AZSleepInterval = 3.0;
     self = [super init];
     
     self.queue = [AZGCD createSerialQueue:@"queue"];
-    self.queue1 = [AZGCD createSerialQueue:@"queue"];
     
     return self;
 }
@@ -53,9 +50,6 @@ static const double AZSleepInterval = 3.0;
 
 - (void)performBlock {
     dispatch_queue_t queue = self.queue;
-    dispatch_queue_t queue1 = self.queue1;
-    dispatch_release(queue);
-    dispatch_release(queue1);
     
     AZBlock block = self.block;
     
@@ -64,9 +58,13 @@ static const double AZSleepInterval = 3.0;
     }
     
     [AZGCD dispatchAsyncWith:queue block: ^ {
-        while (self.running) {
-            [AZGCD dispatchAfterDelay:AZSleepInterval block:block queue:queue1];
-            sleep(AZSleepInterval);
+        if (self.running) {
+            block();
+            
+            [AZGCD dispatchAfterDelay:AZSleepInterval queue:queue block:^ {
+                [self performBlock];
+            }];
+
         }
     }];
 }
