@@ -28,8 +28,6 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 @interface AZEmployee ()
 @property (nonatomic, assign)   NSUInteger    money;
 
-@property (nonatomic, retain)   dispatch_queue_t queue;
-
 @end
 
 @implementation AZEmployee
@@ -40,9 +38,6 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 - (void)dealloc {
     self.name = nil;
     self.employeesQueue = nil;
-    
-    dispatch_release(self.queue);
-    self.queue = nil;
     
     [super dealloc];
 }
@@ -55,7 +50,6 @@ static const NSUInteger AZMaxDurationOfWork = 10;
     self.experience = AZRandomNumberWithMaxValue(AZMaxExperience);
     self.state = AZHandlerReadyToWork;
     self.employeesQueue = [AZQueue object];
-    self.queue = [AZGCD createConcurrentQueue:@"queue"];
     
     return self;
 }
@@ -65,7 +59,7 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     if (AZHandlerReadyToWork == self.state) {
-        [AZGCD dispatchAsyncWith:self.queue block: ^ {
+        [AZGCD dispatchAsyncWithBlock: ^ {
             [self processObjectInBackgroundThread:object];
             
             [AZGCD dispatchAsyncOnMainQueue: ^ {

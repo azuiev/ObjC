@@ -12,62 +12,61 @@
 
 static const double AZSleepInterval = 3.0;
 
-@interface AZGCDController ()
-
-@property (nonatomic, retain)   dispatch_queue_t    queue;
-
-@end
-
 @implementation AZGCDController
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
 
 - (void)dealloc {
-    [AZGCD releaseDispatchObject:self.queue];
-    self.queue = nil;
+    self.block = nil;
     
     [super dealloc];
 }
 
-- (instancetype)init {
-    self = [super init];
-    
-    self.queue = [AZGCD createSerialQueue:@"queue"];
+- (instancetype)initWithBlock:(AZBlock)block {
+    self = [self init];
+    if (self) {
+        self.block = block;
+    }
     
     return self;
 }
 
 #pragma mark -
-#pragma mark Override methods
+#pragma mark Accessors
 
-- (void)start {
-    [self performBlock];
+- (void)setRunning:(BOOL)running {
+    @synchronized (self) {
+        if (_running != running) {
+            _running = running;
+            
+            if (running) {
+                [self performBlock];
+            }
+        }
+    }
 }
 
 #pragma mark -
 #pragma mark Private
 
 - (void)performBlock {
-    dispatch_queue_t queue = self.queue;
-    
     AZBlock block = self.block;
     
     if (!block) {
         return;
     }
     
-    [AZGCD dispatchAsyncWith:queue block: ^ {
+    [AZGCD dispatchAsyncWithBlock: ^ {
         if (self.running) {
             block();
             
-            [AZGCD dispatchAfterDelay:AZSleepInterval queue:queue block:^ {
+            [AZGCD dispatchAfterDelay:AZSleepInterval block:^ {
                 [self performBlock];
             }];
 
         }
     }];
 }
-
 
 @end

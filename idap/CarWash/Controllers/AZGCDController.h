@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AZController.h"
+typedef void (^AZBlock)(void);
 
-@interface AZGCDController : AZController
+@interface AZGCDController : NSObject
+@property (nonatomic, assign)   BOOL    running;
+@property (atomic, copy)        AZBlock block;
+
+- (instancetype)initWithBlock:(AZBlock)block;
 
 @end

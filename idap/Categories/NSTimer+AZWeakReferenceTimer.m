@@ -18,10 +18,13 @@
                                    userInfo:(id)userInfo
                                     repeats:(BOOL)yesOrNo
 {
+    id weakTarget = [AZAssignRererenceWithSelector referenceWithTarger:target selector:selector];
+    
     return [NSTimer scheduledTimerWithTimeInterval:AZTimerInterwal
-                                             target:[AZAssignRererenceWithSelector referenceWithTarger:target selector:selector]
+                                             target:weakTarget
                                           selector:@selector(performSelectorWithTarget)
                                            userInfo:userInfo
                                             repeats:yesOrNo];
 }
+
 @end

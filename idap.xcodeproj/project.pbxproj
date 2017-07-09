@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D16AB441EF4F61000E4919F /* AZTimerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D16AB411EF4F61000E4919F /* AZTimerController.m */; };
 		1D16AB451EF4F61000E4919F /* AZDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D16AB431EF4F61000E4919F /* AZDispatcher.m */; };
 		1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D319F161ED7719300605E30 /* AZAssignReference.m */; };
 		1D3883B01EBD427200CF5848 /* AZTestRandomString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3883AF1EBD427200CF5848 /* AZTestRandomString.m */; };
@@ -37,7 +36,6 @@
 		1D69CD931EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D69CD921EF673AE0093C417 /* NSTimer+AZWeakReferenceTimer.m */; };
 		1D69CD981EF67B050093C417 /* AZAssignRererenceWithSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D69CD971EF67B050093C417 /* AZAssignRererenceWithSelector.m */; };
 		1D9C99F01F02C37500324B31 /* AZGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C99EF1F02C37500324B31 /* AZGCD.m */; };
-		1D9C99F31F02EE9700324B31 /* AZController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9C99F21F02EE9700324B31 /* AZController.m */; };
 		1D9DD5001ED4E80B00A68363 /* AZQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9DD4FF1ED4E80B00A68363 /* AZQueue.m */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +52,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D16AB401EF4F61000E4919F /* AZTimerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZTimerController.h; path = CarWash/Controllers/AZTimerController.h; sourceTree = "<group>"; };
-		1D16AB411EF4F61000E4919F /* AZTimerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZTimerController.m; path = CarWash/Controllers/AZTimerController.m; sourceTree = "<group>"; };
 		1D16AB421EF4F61000E4919F /* AZDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZDispatcher.h; path = CarWash/Controllers/AZDispatcher.h; sourceTree = "<group>"; };
 		1D16AB431EF4F61000E4919F /* AZDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZDispatcher.m; path = CarWash/Controllers/AZDispatcher.m; sourceTree = "<group>"; };
 		1D319F151ED7719300605E30 /* AZAssignReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZAssignReference.h; path = ReferenceWrapper/AZAssignReference.h; sourceTree = "<group>"; };
@@ -114,8 +110,6 @@
 		1D75D54C1EB38BC000813DB8 /* AZEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZEnterprise.m; path = CarWash/AZEnterprise.m; sourceTree = "<group>"; };
 		1D9C99EE1F02C37500324B31 /* AZGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZGCD.h; path = GCD/AZGCD.h; sourceTree = "<group>"; };
 		1D9C99EF1F02C37500324B31 /* AZGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZGCD.m; path = GCD/AZGCD.m; sourceTree = "<group>"; };
-		1D9C99F11F02EE9700324B31 /* AZController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AZController.h; path = CarWash/Controllers/AZController.h; sourceTree = "<group>"; };
-		1D9C99F21F02EE9700324B31 /* AZController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AZController.m; path = CarWash/Controllers/AZController.m; sourceTree = "<group>"; };
 		1D9DD4FE1ED4E80B00A68363 /* AZQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZQueue.h; sourceTree = "<group>"; };
 		1D9DD4FF1ED4E80B00A68363 /* AZQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZQueue.m; sourceTree = "<group>"; };
 		1D9FDCF71EA90C86003C4CE6 /* idap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = idap; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,14 +178,10 @@
 		1D5C62BC1EE095940093B1FC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1D16AB401EF4F61000E4919F /* AZTimerController.h */,
-				1D16AB411EF4F61000E4919F /* AZTimerController.m */,
 				1D16AB421EF4F61000E4919F /* AZDispatcher.h */,
 				1D16AB431EF4F61000E4919F /* AZDispatcher.m */,
 				1D6757E11EFD849F000D1AAD /* AZGCDController.h */,
 				1D6757E21EFD849F000D1AAD /* AZGCDController.m */,
-				1D9C99F11F02EE9700324B31 /* AZController.h */,
-				1D9C99F21F02EE9700324B31 /* AZController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -396,7 +386,6 @@
 				1D5C0A871ECA55FE0080761D /* NSString+AZRandomName.m in Sources */,
 				1D63663D1ED62A38002A7B3A /* AZObservableObject.m in Sources */,
 				1D6757E31EFD849F000D1AAD /* AZGCDController.m in Sources */,
-				1D9C99F31F02EE9700324B31 /* AZController.m in Sources */,
 				1D65E15B1EB1062000D0B5E4 /* AZAccountant.m in Sources */,
 				1D16AB451EF4F61000E4919F /* AZDispatcher.m in Sources */,
 				1D9DD5001ED4E80B00A68363 /* AZQueue.m in Sources */,
@@ -418,7 +407,6 @@
 				1D5CA4331EB0F1C700706B17 /* AZTestCreature.m in Sources */,
 				1D319F171ED7719300605E30 /* AZAssignReference.m in Sources */,
 				1D559FBA1ECB8C620001AE5C /* AZStringsAlphabet.m in Sources */,
-				1D16AB441EF4F61000E4919F /* AZTimerController.m in Sources */,
 				1D5CA4291EB0F10C00706B17 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

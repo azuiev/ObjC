@@ -8,20 +8,23 @@
 
 #import "AZGCD.h"
 
+static dispatch_queue_t AZAsyncQueue;
+static dispatch_queue_t AZSyncQueue;
+
 @implementation AZGCD
 
 #pragma mark -
 #pragma mark Public
 
-+ (void)dispatchSyncWith:(id<OS_dispatch_queue>)queue block:(void(^)())block {
-    if (block && queue) {
-        dispatch_sync(queue, block);
++ (void)dispatchSyncWithBlock:(void(^)())block {
+    if (block) {
+        dispatch_sync([self syncQueue], block);
     }
 }
 
-+ (void)dispatchAsyncWith:(id<OS_dispatch_queue>)queue block:(void(^)())block {
-    if (block && queue) {
-        dispatch_async(queue, block);
++ (void)dispatchAsyncWithBlock:(void(^)())block {
+    if (block) {
+        dispatch_async([self asyncQueue], block);
     }
 }
 
@@ -37,20 +40,31 @@
     }
 }
 
-+ (void)dispatchAfterDelay:(NSUInteger)delay queue:(id<OS_dispatch_queue>)queue block:(void(^)())block{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, block);
-}
-
-+ (id)createConcurrentQueue:(NSString *)label  {
-    return dispatch_queue_create([label UTF8String], DISPATCH_QUEUE_CONCURRENT);
-}
-
-+ (id)createSerialQueue:(NSString *)label  {
-    return dispatch_queue_create([label UTF8String], DISPATCH_QUEUE_SERIAL);
++ (void)dispatchAfterDelay:(NSUInteger)delay block:(void(^)())block{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), [self asyncQueue], block);
 }
 
 + (void)releaseDispatchObject:(id<OS_dispatch_object>)object {
     dispatch_release(object);
+}
+
+#pragma mark -
+#pragma mark Queue getters
+
++ (dispatch_queue_t)syncQueue {
+    if (!AZSyncQueue) {
+        AZSyncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
+    }
+    
+    return AZSyncQueue;
+}
+
++ (dispatch_queue_t)asyncQueue {
+    if (!AZAsyncQueue) {
+        AZAsyncQueue = dispatch_queue_create("asyncQueue", DISPATCH_QUEUE_CONCURRENT);
+    }
+    
+    return AZAsyncQueue;
 }
 
 @end
