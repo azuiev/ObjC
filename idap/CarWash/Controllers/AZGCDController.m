@@ -57,15 +57,16 @@ static const double AZSleepInterval = 3.0;
         return;
     }
     
-    [AZGCD dispatchAsyncWithBlock: ^ {
-        if (self.running) {
-            block();
-            
-            [AZGCD dispatchAfterDelay:AZSleepInterval block:^ {
-                [self performBlock];
-            }];
-
-        }
+    [AZGCD dispatchAsyncOnBackground:^ {
+        block();
+        [AZGCD dispatchAfterDelay:AZSleepInterval
+                    withCondition:^BOOL {
+                        return self.running;
+                    }
+                            block:^ {
+                                [self performBlock];
+                            }];
+        
     }];
 }
 

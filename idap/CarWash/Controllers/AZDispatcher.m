@@ -16,9 +16,9 @@
 #import "NSObject+AZExtension.h"
 
 @interface AZDispatcher ()
-@property (nonatomic, retain) AZQueue       *handlersQueue;
-@property (nonatomic, retain) NSMutableSet  *mutableHandlers;
-@property (nonatomic, retain) AZQueue       *processedObjectsQueue;
+@property (nonatomic, retain)   AZQueue         *handlersQueue;
+@property (nonatomic, copy)     NSMutableSet    *mutableHandlers;
+@property (nonatomic, retain)   AZQueue         *processedObjectsQueue;
 
 - (void)startProcessing;
 - (void)addProcessedObjectToQueue:(id<AZMoneyFlow>)object;
@@ -57,7 +57,7 @@
 
 - (NSSet *)handlers {
     @synchronized (self) {
-        return [[self.mutableHandlers retain] autorelease];
+        return [[self.mutableHandlers copy] autorelease];
     }
 }
 
@@ -80,8 +80,7 @@
 - (void)addHandler:(id<AZHandlerDispatcher>)handler {
     @synchronized (self) {
         [(AZObservableObject *)handler addObserver:self];
-        
-        [self.mutableHandlers addObject:handler];
+        self.mutableHandlers = [self.mutableHandlers setByAddingObject:handler];
         [self.handlersQueue enqueueObject:handler];
     }
 }

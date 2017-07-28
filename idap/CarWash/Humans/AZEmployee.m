@@ -59,7 +59,7 @@ static const NSUInteger AZMaxDurationOfWork = 10;
 
 - (void)processObject:(id<AZMoneyFlow>)object {
     if (AZHandlerReadyToWork == self.state) {
-        [AZGCD dispatchAsyncWithBlock: ^ {
+        [AZGCD dispatchAsyncOnBackground:^ {
             [self processObjectInBackgroundThread:object];
             
             [AZGCD dispatchAsyncOnMainQueue: ^ {

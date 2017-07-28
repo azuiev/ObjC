@@ -8,63 +8,76 @@
 
 #import "AZGCD.h"
 
-static dispatch_queue_t AZAsyncQueue;
-static dispatch_queue_t AZSyncQueue;
-
 @implementation AZGCD
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Queue getters
 
-+ (void)dispatchSyncWithBlock:(void(^)())block {
-    if (block) {
-        dispatch_sync([self syncQueue], block);
-    }
++ (dispatch_queue_t)dispatchGetMainQueue {
+    return dispatch_get_main_queue();
 }
 
-+ (void)dispatchAsyncWithBlock:(void(^)())block {
-    if (block) {
-        dispatch_async([self asyncQueue], block);
-    }
++ (dispatch_queue_t)dispatchGetBackgroundQueue {
+    return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0);
+}
+
++ (dispatch_queue_t)dispatchGetQueueWithQOS:(dispatch_qos_class_t)QOSClass {
+    return dispatch_get_global_queue(QOSClass, 0);
+}
+
+#pragma mark -
+#pragma mark Sync/Async methods
+
++ (void)dispatchSyncOnBackground:(void(^)())block {
+    [self dispatchSyncOnQueue:[self dispatchGetBackgroundQueue] block:block];
+}
+
++ (void)dispatchAsyncOnBackground:(void(^)())block {
+    [self dispatchAsyncOnQueue:[self dispatchGetBackgroundQueue] block:block];
 }
 
 + (void)dispatchSyncOnMainQueue:(void(^)())block {
-    if (block) {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
+    [self dispatchSyncOnQueue:[self dispatchGetMainQueue] block:block];
 }
 
 + (void)dispatchAsyncOnMainQueue:(void(^)())block {
+    [self dispatchAsyncOnQueue:[self dispatchGetMainQueue] block:block];
+}
+
++ (void)dispatchSyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block {
     if (block) {
-        dispatch_async(dispatch_get_main_queue(), block);
+        dispatch_sync(queue, block);
     }
 }
 
-+ (void)dispatchAfterDelay:(NSUInteger)delay block:(void(^)())block{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), [self asyncQueue], block);
++ (void)dispatchAsyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block {
+    if (block) {
+        dispatch_async(queue, block);
+    }
 }
+
+#pragma mark -
+#pragma mark Dispatch after
+
++ (void)dispatchAfterDelay:(double)delay block:(void(^)())block{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), [self dispatchGetBackgroundQueue], block);
+}
+
++ (void)dispatchAfterDelay:(double)delay withCondition:(BOOL(^)())condition block:(void(^)())block {
+    if (condition()) {
+        [self dispatchAfterDelay:delay block:block];
+    }
+}
+
+#pragma mark -
+#pragma mark Dispatch release
 
 + (void)releaseDispatchObject:(id<OS_dispatch_object>)object {
     dispatch_release(object);
 }
 
-#pragma mark -
-#pragma mark Queue getters
 
-+ (dispatch_queue_t)syncQueue {
-    if (!AZSyncQueue) {
-        AZSyncQueue = dispatch_queue_create("syncQueue", DISPATCH_QUEUE_SERIAL);
-    }
-    
-    return AZSyncQueue;
-}
 
-+ (dispatch_queue_t)asyncQueue {
-    if (!AZAsyncQueue) {
-        AZAsyncQueue = dispatch_queue_create("asyncQueue", DISPATCH_QUEUE_CONCURRENT);
-    }
-    
-    return AZAsyncQueue;
-}
+
 
 @end

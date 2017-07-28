@@ -10,12 +10,22 @@
 
 @interface AZGCD : NSObject
 
-+ (void)dispatchSyncWithBlock:(void(^)())block;
-+ (void)dispatchAsyncWithBlock:(void(^)())block;
++ (dispatch_queue_t)dispatchGetMainQueue;
++ (dispatch_queue_t)dispatchGetGlocalQueue;
++ (dispatch_queue_t)dispatchGetQueueWithQOS:(dispatch_qos_class_t)QOSClass;
+
++ (void)dispatchSyncOnBackground:(void(^)())block;
++ (void)dispatchAsyncOnBackground:(void(^)())block;
 
 + (void)dispatchSyncOnMainQueue:(void(^)())block;
 + (void)dispatchAsyncOnMainQueue:(void(^)())block;
 
-+ (void)dispatchAfterDelay:(NSUInteger)delay block:(void(^)())block;
++ (void)dispatchSyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block;
++ (void)dispatchAsyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block;
+
++ (void)dispatchAfterDelay:(double)delay block:(void(^)())block;
++ (void)dispatchAfterDelay:(double)delay withCondition:(BOOL(^)())condition block:(void(^)())block;
+
++ (void)releaseDispatchObject:(id<OS_dispatch_object>)object;
 
 @end
