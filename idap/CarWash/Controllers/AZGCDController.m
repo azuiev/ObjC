@@ -51,7 +51,6 @@ static const double AZSleepInterval = 3.0;
 #pragma mark Private
 
 - (void)performBlock {
-    [AZGCD dispatchAsyncOnBackground:^ {
          [AZGCD dispatchAfterDelay:AZSleepInterval
                     withCondition:^BOOL {
                         return self.running;
@@ -65,8 +64,7 @@ static const double AZSleepInterval = 3.0;
                                 
                                 block();
                             }];
-        
-    }];
+
 }
 
 @end
