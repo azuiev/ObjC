@@ -17,7 +17,7 @@
 
 @interface AZDispatcher ()
 @property (nonatomic, retain)   AZQueue         *handlersQueue;
-@property (nonatomic, copy)     NSMutableSet    *mutableHandlers;
+@property (nonatomic, retain)   NSMutableSet    *mutableHandlers;
 @property (nonatomic, retain)   AZQueue         *processedObjectsQueue;
 
 - (void)startProcessing;
@@ -80,7 +80,7 @@
 - (void)addHandler:(id<AZHandlerDispatcher>)handler {
     @synchronized (self) {
         [(AZObservableObject *)handler addObserver:self];
-        self.mutableHandlers = [self.mutableHandlers setByAddingObject:handler];
+        [self.mutableHandlers addObject:handler];
         [self.handlersQueue enqueueObject:handler];
     }
 }

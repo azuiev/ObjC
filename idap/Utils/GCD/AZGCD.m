@@ -12,6 +12,7 @@
 
 #pragma mark -
 #pragma mark Queue getters
+const uint AZMilisecondsInSecond = 1000000;
 
 + (dispatch_queue_t)dispatchGetMainQueue {
     return dispatch_get_main_queue();
@@ -45,14 +46,20 @@
 }
 
 + (void)dispatchSyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block {
-    if (block) {
-        dispatch_sync(queue, block);
-    }
+    [self dispatchWithFlag:YES queue:queue block:block];
 }
 
 + (void)dispatchAsyncOnQueue:(dispatch_queue_t)queue block:(void (^)())block {
+    [self dispatchWithFlag:NO queue:queue block:block];
+}
+
++ (void)dispatchWithFlag:(BOOL)sync queue:(dispatch_queue_t)queue block:(void (^)())block {
     if (block) {
-        dispatch_async(queue, block);
+        if (sync) {
+            dispatch_sync(queue, block);
+        } else {
+            dispatch_async(queue, block);
+        }
     }
 }
 
@@ -66,6 +73,8 @@
 + (void)dispatchAfterDelay:(double)delay withCondition:(BOOL(^)())condition block:(void(^)())block {
     if (condition()) {
         [self dispatchAfterDelay:delay block:block];
+        usleep(delay * AZMilisecondsInSecond);
+        [self dispatchAfterDelay:delay withCondition:condition block:block];
     }
 }
 
@@ -75,9 +84,5 @@
 + (void)releaseDispatchObject:(id<OS_dispatch_object>)object {
     dispatch_release(object);
 }
-
-
-
-
 
 @end
