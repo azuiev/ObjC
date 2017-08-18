@@ -71,13 +71,13 @@ const uint AZMilisecondsInSecond = 1000000;
 }
 
 + (void)dispatchAfterDelay:(double)delay withCondition:(BOOL(^)())condition block:(void(^)())block {
-    if (condition()) {
-        [self dispatchAfterDelay:delay block:^ {
+    [self dispatchAfterDelay:delay block:^ {
+        if (condition()) {
             block();
-            usleep(delay * AZMilisecondsInSecond);
+            
             [self dispatchAfterDelay:delay withCondition:condition block:block];
-        }];
-    }
+        }
+    }];
 }
 
 #pragma mark -
